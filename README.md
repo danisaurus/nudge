@@ -1,4 +1,4 @@
 shift-api
 =========
 
-An application to help people better manage their mental health.
+This is the API for the Shift application. 
