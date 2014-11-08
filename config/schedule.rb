@@ -1,3 +1,6 @@
+set :environment, "development"
+set :output, {:error => "log/cron_error_log.log", :standard => "log/cron_log.log"}
+
 # Use this file to easily define all of your cron jobs.
 #
 # It's helpful, but not entirely necessary to understand cron before proceeding.
@@ -19,6 +22,6 @@
 
 # Learn more: http://github.com/javan/whenever
 
-every 5.minutes do
-  rake "events:check_trigger"
+every 1.minutes do
+  rake "events:check_triggers"
 end

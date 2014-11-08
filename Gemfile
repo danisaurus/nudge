@@ -32,13 +32,16 @@ end
 gem 'twilio-ruby'
 gem 'phony_rails'
 
-
+# Gems for sidekiq
 gem 'sidekiq'
 gem 'whenever', :require => false
+gem 'sinatra', require: false
+gem 'slim'
 
 gem 'omniauth', '~> 1.2.2'
 gem 'omniauth-google-oauth2'
 gem 'json'
+
 
 
 # Use ActiveModel has_secure_password

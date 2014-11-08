@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141107235737) do
+ActiveRecord::Schema.define(version: 20141108213254) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -29,28 +29,23 @@ ActiveRecord::Schema.define(version: 20141107235737) do
 
   add_index "supporters", ["user_id"], name: "index_supporters_on_user_id", using: :btree
 
-  create_table "tokens", force: true do |t|
-    t.string   "access_token"
-    t.string   "refresh_token"
-    t.datetime "expires_at"
-
-  create_table "trigger_histories", force: true do |t|
-    t.integer  "trigger_id"
-    t.integer  "user_id"
-    t.datetime "execution_date"
+  create_table "tasks", force: true do |t|
+    t.string   "method_name"
+    t.integer  "frequency"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  create_table "trigger_types", force: true do |t|
-    t.string   "method_name"
-    t.integer  "frequency_to_run"
+  create_table "tokens", force: true do |t|
+    t.string   "access_token"
+    t.string   "refresh_token"
+    t.datetime "expires_at"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   create_table "triggers", force: true do |t|
-    t.integer  "trigger_type_id"
+    t.integer  "task_id"
     t.integer  "user_id"
     t.text     "message_text"
     t.integer  "duration_in_hours"
@@ -60,11 +55,13 @@ ActiveRecord::Schema.define(version: 20141107235737) do
   end
 
   create_table "users", force: true do |t|
-    t.string "first_name"
-    t.string "last_name"
-    t.string "phone"
-    t.string "gmail"
-    t.string "twitter"
+    t.string   "first_name"
+    t.string   "last_name"
+    t.string   "phone"
+    t.string   "gmail"
+    t.string   "twitter"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
 end

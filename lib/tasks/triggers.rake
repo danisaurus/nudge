@@ -1,20 +1,16 @@
-set :environment, "development"
-set :output, {:error => "log/cron_error_log.log", :standard => "log/cron_log.log"}
-
-
 namespace :events do
   desc "Rake task to check triggers"
   task :check_triggers => :environment do
     triggers = Trigger.all
     current_time = Time.now
     triggers.each do | trigger |
-      trigger_type = Trigger_type.find(trigger.trigger_type_id)
-      time_lapsed = current_time - trigger.last_run_timestamp
-      if time_lapsed > trigger_type.frequency
-        TriggerTaskWorker.perform_async(trigger)
-      end
-      trigger.last_run_timestamp = Time.now
-      trigger.save
+      task = Task.find(trigger.task_id)
+      # time_lapsed = current_time - trigger.time_last_run
+      # if time_lapsed > task.frequency
+        TriggerTaskWorker.perform_async(trigger.id)
+      # end
+      # trigger.time_last_run = Time.now
+      # trigger.save
     end
   end
 
