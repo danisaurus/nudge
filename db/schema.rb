@@ -29,6 +29,11 @@ ActiveRecord::Schema.define(version: 20141107235737) do
 
   add_index "supporters", ["user_id"], name: "index_supporters_on_user_id", using: :btree
 
+  create_table "tokens", force: true do |t|
+    t.string   "access_token"
+    t.string   "refresh_token"
+    t.datetime "expires_at"
+
   create_table "trigger_histories", force: true do |t|
     t.integer  "trigger_id"
     t.integer  "user_id"
