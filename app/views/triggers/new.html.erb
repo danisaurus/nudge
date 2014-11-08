@@ -1,8 +1,12 @@
-<p>Text my support network</p>
-<textarea rows="4" cols="50">
-</textarea>
-<p>if I haven't checked my email in</p>
-<div class="toggle-up"></div>
-<input type="text" name="days" value="1">
-<div class="toggle-down"></div>
-<p>days</p>
+<%= form_for @trigger do |f| %>
+  <p>Text my support network</p>
+  <%= f.text_area :message_text, size: '50x10' %>
+  <p>if I haven't checked my email in</p>
+  <div class="toggle-up"></div>
+  <%= f.text_field :duration_in_hours, value: '1' %>
+  <div class="toggle-down"></div>
+  <p>days</p>
+  <%= f.submit %>
+<% end %>
+
+

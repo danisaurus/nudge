@@ -1,5 +1,5 @@
 $(document).ready(function(){
-  var days = $("input")
+  var days = $("#trigger_duration_in_hours")
 
   $("body").on( "click", ".toggle-up", function() {
     days.val(Number(days.val()) + 1);
