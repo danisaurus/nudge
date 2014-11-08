@@ -10,10 +10,11 @@ namespace :events do
     triggers.each do | trigger |
       trigger_type = Trigger_type.find(trigger.trigger_type_id)
       time_lapsed = current_time - trigger.last_run_timestamp
-      if time_lapsed > duration
-        TriggerTaskWorker.perform_async(trigger_type.method_name, trigger.id)
+      if time_lapsed > trigger_type.frequency
+        TriggerTaskWorker.perform_async(trigger)
       end
       trigger.last_run_timestamp = Time.now
+      trigger.save
     end
   end
 
