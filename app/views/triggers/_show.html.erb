@@ -1,0 +1,4 @@
+<div class="show_trigger">
+  <p>If you have checked your email in <%= pluralize(@trigger.duration_in_hours, 'day') %>, we will let your support know that:</p>
+  <p><%= @trigger.message_text %></p>
+</div>
