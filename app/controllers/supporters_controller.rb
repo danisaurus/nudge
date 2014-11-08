@@ -27,12 +27,16 @@ class SupportersController < ApplicationController
 	end
 
 	def edit
+		@supporter = Supporter.find(params[:id])
+		@user = @supporter.user
 	end
 
 	def update
 	end
 
 	def show
+		@supporter = Supporter.find(params[:id])
+		@user = User.find(params[:user_id])
 	end
 
 	private
