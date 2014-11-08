@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   resources :users, except: [:index] do
     resources :supporters
   end
-  root to: 'sessions#new'
+  root to: 'users#new'
   resources :sessions, only: :index
   get "/auth/:provider/callback" => 'sessions#create'
 

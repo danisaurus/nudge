@@ -1,21 +1,20 @@
 class UsersController < ApplicationController
 
+	has_secure_password
+
 	def index
 	end
 
 	def show
-		# @user = curent_user
-		@user = User.find(params[:user_id]) # uncomment line above once we have a current_user method
+		@user = current_user
 	end
 
 	def edit
-		# @user = curent_user
-		@user = User.find(params[:user_id]) # uncomment line above once we have a current_user method
+		@user = current_user
 	end
 
 	def update
-		# @user = curent_user
-		@user = User.find(params[:user_id]) # uncomment line above once we have a current_user method
+		@user = current_user
 		respond_to do |format|
 		  if @user.update(user_params)
 		    format.html { redirect_to @user, notice: 'User was successfully updated.' }
