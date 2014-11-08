@@ -1,0 +1,28 @@
+<%= form_for([@user, @supporter]) do |f| %>
+  <% if @supporter.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@supporter.errors.count, "error") %> prohibited this supporter from being saved:</h2>
+
+      <ul>
+      <% @supporter.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <%= f.text_field :first_name %>
+  <%= f.label :first_name %><br>
+
+  <%= f.text_field :last_name %>
+  <%= f.label :last_name %><br>
+
+  <%= f.text_field :phone %>
+  <%= f.label :phone %><br>
+
+  <%= f.text_field :gmail %>
+  <%= f.label :gmail %><br>
+
+  <%= f.submit %>
+
+<% end %>

@@ -6,6 +6,8 @@ class CreateUsers < ActiveRecord::Migration
       t.string :phone
       t.string :gmail
       t.string :twitter
+
+      t.timestamps
     end
   end
 end

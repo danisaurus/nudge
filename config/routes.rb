@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   resources :triggers do
   end
 
-  resources :user do
+  resources :users, except: [:index] do
     resources :supporters
   end
 
