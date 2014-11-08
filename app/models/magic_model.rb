@@ -12,7 +12,7 @@ class MagicModel
     @labels = get_labels
   end
 
-  def fetch!
+  def fetch!(gmail, token)
     @data = Net::HTTP.get_response(URI(url)).body
   end
 
@@ -30,7 +30,7 @@ class MagicModel
   # end
 
   def get_most_recent_sent
-    # @emails_array.
+    @emails_array[0]
   end
 
   def get_labels
