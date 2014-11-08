@@ -14,7 +14,7 @@
     <tbody>
       <% @supporters.each do |supporter| %>
         <tr class="supporter-item">
-          <td><%= supporter.first_name %></td>
+          <td class="supporter-name"><%= supporter.first_name %></td>
           <td><%= supporter.last_name %></td>
           <td><%= mail_to supporter.gmail %></td>
           <td><a href="<%= supporter.phone.phony_formatted(:format => :international, spaces: "") %>">Call <%= supporter.first_name %></a></td>
