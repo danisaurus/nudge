@@ -4,8 +4,6 @@ class TriggersController < ApplicationController
 
   end
 
-
-
   def new
     @trigger = Trigger.new
   end
@@ -13,14 +11,14 @@ class TriggersController < ApplicationController
   def create
     @trigger = Trigger.new(trigger_params)
     if @trigger.save
-      render "new"
+      render partial: "triggers/show.html", formats: :html
     else
-      render "new"
+      @error = "Looks like that trigger wasn't valid!"
+      redirect_to new_trigger_path
     end
   end
 
   private
-
   def trigger_params
     params.require(:trigger).permit(:message_text, :duration_in_hours)
   end
