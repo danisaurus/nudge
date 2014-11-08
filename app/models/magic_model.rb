@@ -1,16 +1,15 @@
 class MagicModel
-  attr_reader :token, :url, :data, :ids, :labels
+  attr_reader :token, :url, :data, :ids, :labels, :labels_array, :emails_array, :sent_email_indices, :sent_emails
   attr_accessor :emails
   def initialize(gmail, token)
-    @labels = []
     @gmail = gmail
     @token = token
     @access_token = token.access_token
     @url = "https://www.googleapis.com/gmail/v1/users/#{@gmail}/messages?access_token=#{@access_token}"
     fetch!
     scrub_ids
-    @emails = get_email_messages
-    get_labels(@emails)
+    get_email_messages
+    @labels = get_labels
   end
 
   def fetch!
@@ -20,20 +19,38 @@ class MagicModel
   def scrub_ids
     @ids = []
     raw = JSON.parse(data)
-    raw['messages'].each { |hashed_ids| ids << hashed_ids['id'] }
-    return ids
+    raw['messages'].each { |hashed_ids| @ids << hashed_ids['id'] }
+    @ids
   end
 
-  def get_email_date(email)
+  # def get_most_recent_sent_email_date
+  #   sent_emails = []
+  #   @emails_array.each_with_index {|email, index| sent_emails << email if sent_email_indices.include?(index) }
+  #   sent_emails[0]
+  # end
+
+  def get_most_recent_sent
+    # @emails_array.
   end
 
-  def get_labels(emails)
-    emails.each {|email| labels << email['labelsId']}
+  def get_labels
+    @labels_array = []
+    @emails_array.each {|email| @labels_array << email['labelIds']}
+    @labels_array
+  end
+
+  def get_sent_email_indices
+    #use the labels array to find the indices of the arrays which contain 'SENT'
+    @sent_email_indices = []
+    @labels.each_with_index {|array, index| sent_email_indices << index if !array.nil? && array.include?("SENT")}
   end
 
   def retrieve_sent_emails
-    #use the labels array to find the indices of the arrays which contain 'SENT'
-    #iterate throug the emails_array and find the emails which match the indices
+    #iterate through the emails_array and find the emails which match the sent_email_indices
+    sent_emails = []
+    @sent_email_indices.each do |index|
+      sent_emails << @emails_array[index]
+    end
   end
 
   def fetch_email(email_id)
@@ -43,9 +60,9 @@ class MagicModel
   end
 
   def get_email_messages
-    emails_array = []
+    @emails_array = []
     ids.each {|email_id| emails_array << fetch_email(email_id)}
-    return emails_array
+    @emails_array
   end
 
 end
