@@ -1,28 +1,32 @@
-<table>
-  <thead>
-    <tr>
-      <th>First name</th>
-      <th>Last name</th>
-      <th>Email</th>
-      <th>Phone</th>
-      <th colspan="5"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @supporters.each do |supporter| %>
+<div id="supporters-container">
+  <p id="notice"><%= notice %></p>
+  <table>
+    <thead>
       <tr>
-        <td><%= supporter.first_name %></td>
-        <td><%= supporter.last_name %></td>
-        <td><%= supporter.gmail %></td>
-        <td><a href="<%= supporter.phone.phony_formatted(:format => :international, spaces: "") %>">Call <%= supporter.first_name %></a></td>
-        <td><%= link_to 'Show', user_supporter_path(@user, supporter) %></td>
-        <td><%= link_to 'Edit', edit_user_supporter_path(@user, supporter) %></td>
-        <td><%= link_to 'Destroy', user_supporter_path(@user, supporter), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <th>First name</th>
+        <th>Last name</th>
+        <th>Email</th>
+        <th>Phone</th>
+        <th colspan="5"></th>
       </tr>
-    <% end %>
-  </tbody>
-</table>
+    </thead>
 
-<br>
-<%= link_to 'Add a new supporter', new_user_supporter_path(@user) %>
+    <tbody>
+      <% @supporters.each do |supporter| %>
+        <tr class="supporter-item">
+          <td class="supporter-name"><%= supporter.first_name %></td>
+          <td><%= supporter.last_name %></td>
+          <td><%= mail_to supporter.gmail %></td>
+          <td><a href="<%= supporter.phone.phony_formatted(:format => :international, spaces: "") %>">Call <%= supporter.first_name %></a></td>
+          <td><%= link_to 'Show', user_supporter_path(@user, supporter) %></td>
+          <td><%= link_to 'Edit', edit_user_supporter_path(@user, supporter) %></td>
+          <td><%= link_to 'Destroy', user_supporter_path(@user, supporter), data: {action: :delete}, class: "supporter-delete" %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+  <br>
+  <%= link_to 'Add a new supporter', new_user_supporter_path(@user) %>
+  <%= link_to 'Back to user page', user_path(@user) %>
+</div>
