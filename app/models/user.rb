@@ -11,12 +11,16 @@ class User < ActiveRecord::Base
 
   def active?
     if self.last_history_number != find_last_history_id
-      self.last_active = Time.now
-      self.set_history_id
-      self.save
+      update_active_time
       return true
     end
     return false
+  end
+
+  def update_active_time
+    self.last_active = Time.now
+    self.set_history_id
+    self.save
   end
 
   def find_last_history_id
@@ -25,11 +29,9 @@ class User < ActiveRecord::Base
   end
 
   def check_email_activity(trigger)
-    if !active?
-     if Time.now - self.last_active > trigger.duration
-        self.supporters.each do |supporter|
-          supporter.text(trigger.message_text)
-        end
+    unless active_in_last_hours?(trigger.duration)
+      self.supporters.each do |supporter|
+        supporter.text(trigger.message_text)
       end
     end
     # trigger.time_last_run = Time.now
@@ -41,8 +43,9 @@ class User < ActiveRecord::Base
   end
 
   def active_in_last_hours?(inactivity_time_limit)
+    active?
     time_since_last_active = Time.now - self.last_active
-    return (time_since_last_active / 3600.to_f) > inactivity_time_limit
+    return (time_since_last_active / 3600.to_f) < inactivity_time_limit
   end
 
 end
