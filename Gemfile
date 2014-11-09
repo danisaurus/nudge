@@ -38,6 +38,8 @@ gem 'phony_rails'
 
 # Gems for sidekiq
 gem 'sidekiq'
+gem 'autoscaler/sidekiq'
+gem 'autoscaler/heroku_scaler'
 gem 'redis'
 gem 'capistrano-sidekiq' , group: :development
 gem 'whenever', :require => false
