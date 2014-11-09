@@ -1,0 +1,12 @@
+<h1>New User</h1>
+
+<%= form_for @user do |f| %>
+    <%= f.text_field :first_name, placeholder: "First Name" %>
+    <%= f.text_field :last_name, placeholder: "Last Name" %>
+    <%= f.text_field :phone, placeholder: "Phone Number" %>
+    <%= f.text_field :gmail, placeholder: "Email" %>
+    <%= f.text_field :twitter, placeholder: "Twitter" %>
+    <%= f.password_field :password, placeholder: "Password" %>
+    <%= f.password_field :password_confirmation, placeholder: "Enter password again" %>
+    <%= f.submit "Create Account" %>
+<% end %>

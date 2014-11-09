@@ -32,14 +32,21 @@ ActiveRecord::Schema.define(version: 20141108213254) do
   create_table "tasks", force: true do |t|
     t.string   "method"
     t.integer  "frequency"
-    t.datetime "created_at"
-    t.datetime "updated_at"
   end
 
   create_table "tokens", force: true do |t|
     t.string   "access_token"
     t.string   "refresh_token"
     t.datetime "expires_at"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "trigger_histories", force: true do |t|
+    t.integer  "trigger_id"
+    t.integer  "user_id"
+    t.datetime "execution_date"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -60,6 +67,11 @@ ActiveRecord::Schema.define(version: 20141108213254) do
     t.string   "phone"
     t.string   "gmail"
     t.string   "twitter"
+    t.string   "password_digest"
+    t.string   "phone"
+    t.string   "gmail"
+    t.string   "twitter"
+    t.string   "refresh_token"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
