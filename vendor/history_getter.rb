@@ -1,7 +1,7 @@
 module Magic
 
   def fetch_message_ids(gmail, token)
-    url = "https://www.googleapis.com/gmail/v1/users/#{@gmail}/messages?access_token=#{@access_token}"
+    url = "https://www.googleapis.com/gmail/v1/users/#{@gmail}/messages?access_token=#{token}"
     data = Net::HTTP.get_response(URI(url)).body
   end
 
