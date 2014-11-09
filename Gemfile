@@ -46,6 +46,7 @@ gem 'slim'
 
 gem 'omniauth', '~> 1.2.2'
 gem 'omniauth-google-oauth2'
+gem "google-api-client"
 gem 'json'
 
 
