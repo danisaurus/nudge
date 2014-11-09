@@ -4,6 +4,7 @@ class CreateTokens < ActiveRecord::Migration
       t.string :access_token
       t.string :refresh_token
       t.datetime :expires_at
+      t.belongs_to :user
 
       t.timestamps
     end

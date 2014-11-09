@@ -2,14 +2,26 @@ class SessionsController < ApplicationController
   layout false
 
   def new
+    @user = User.new
   end
 
   def create
-    @auth = request.env['omniauth.auth']['credentials']
-    token = Token.create(
-      access_token: @auth['token'],
-      refresh_token: @auth['refresh_token'],
-      expires_at: Time.at(@auth['expires_at']).to_datetime)
-    session[:token_id] = token.id
+    @user = User.find_by_gmail(params[:email])
+    if @user && @user.authenticate(params[:password])
+      session[:user_id] = @user.id
+      redirect_to current_user
+    else
+      render 'new'
+    end
+  end
+
+  def destroy
+    session[:user_id] = nil
+    redirect_to root_url
+  end
+
+  private
+  def session_params
+    params.require(:user).permit(:email, :password)
   end
 end
