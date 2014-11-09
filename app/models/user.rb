@@ -23,13 +23,13 @@ class User < ActiveRecord::Base
   end
 
   def check_email_activity(trigger)
-    if !active?
-     if Time.now - self.last_active > trigger.duration
+    # if !active?
+    #  if Time.now - self.last_active > trigger.duration
         self.supporters.each do |supporter|
-          supporter.text(trigger.message_text)
+          supporter.text("Bitches, sidekiq is working in development")
         end
-      end
-    end
+      # end
+    # end
     # trigger.time_last_run = Time.now
     # trigger.save
   end

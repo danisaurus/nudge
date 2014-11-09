@@ -4,11 +4,11 @@ namespace :events do
     triggers = Trigger.all
     current_time = Time.now
     triggers.each do | trigger |
-      task = Task.find(trigger.task_id)
-      time_lapsed = Time.now - trigger.time_last_run
-     if time_lapsed > task.frequency
+      # task = Task.find(trigger.task_id)
+      # time_lapsed = Time.now - trigger.time_last_run
+     # if time_lapsed > task.frequency
         TriggerTaskWorker.perform_async(trigger.id)
-     end
+     # end
     end
   end
 
