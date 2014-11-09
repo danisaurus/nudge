@@ -34,6 +34,7 @@ gem 'phony_rails'
 
 gem 'omniauth', '~> 1.2.2'
 gem 'omniauth-google-oauth2'
+gem "google-api-client"
 gem 'json'
 
 # Use ActiveModel has_secure_password
