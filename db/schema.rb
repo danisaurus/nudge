@@ -30,7 +30,7 @@ ActiveRecord::Schema.define(version: 20141108213254) do
   add_index "supporters", ["user_id"], name: "index_supporters_on_user_id", using: :btree
 
   create_table "tasks", force: true do |t|
-    t.string   "method_name"
+    t.string   "method"
     t.integer  "frequency"
     t.datetime "created_at"
     t.datetime "updated_at"

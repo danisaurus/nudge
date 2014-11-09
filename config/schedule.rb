@@ -22,6 +22,6 @@ set :output, {:error => "log/cron_error_log.log", :standard => "log/cron_log.log
 
 # Learn more: http://github.com/javan/whenever
 
-every 1.minutes do
-  rake "events:check_triggers"
-end
+# every 1.minutes do
+#   rake "events:check_triggers"
+# end

@@ -3,6 +3,8 @@ class TriggerTaskWorker
 
   def perform(trigger_id)
       trigger = Trigger.find(trigger_id)
-      trigger.hello_world
+      user = User.find(trigger.user_id)
+      user.send(trigger.task.method, trigger)
   end
+
 end
