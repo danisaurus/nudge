@@ -9,8 +9,10 @@ class TokensController < ApplicationController
       token = Token.create(
         access_token: @auth['token'],
         refresh_token: @auth['refresh_token'],
-        expires_at: Time.at(@auth['expires_at']).to_datetime)
+        expires_at: Time.at(@auth['expires_at']).to_datetime
+        )
       current_user.token = token
+      current_user.set_history_id
       current_user.save
       return redirect_to current_user
     elsif current_user.token.expired?
