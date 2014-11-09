@@ -1,32 +1,11 @@
 require 'sidekiq'
-require 'autoscaler/sidekiq'
-require 'autoscaler/heroku_scaler'
 
-heroku = nil
-if ENV['HEROKU_APP']
-  heroku = {}
-  scaleable = %w[critical default low] - (ENV['ALWAYS'] || '').split(' ')
-  scaleable.each do |queue|
-    heroku[queue] = Autoscaler::HerokuScaler.new(
-      queue,
-      ENV['HEROKU_API_KEY'],
-      ENV['HEROKU_APP'])
-  end
-end
 
 # When in Unicorn, this block needs to go in unicorn's `after_fork` callback:
 # Configure the CLIENT
 Sidekiq.configure_client do |config|
   config.redis = {url: ENV["REDISCLOUD_URL"], namespace: 'sidekiq'}
 
-  if heroku
-    config.client_middleware do |chain|
-      p("Setting up auto-scaleer client middleware")
-      chain.add Autoscaler::Sidekiq::Client, heroku
-    end
-  else
-    p("Not scaleable client middleware")
-  end
 end
 
 
@@ -65,27 +44,4 @@ Sidekiq.configure_server do |config|
     end
   end
 
-  config.server_middleware do |chain|
-    if heroku && ENV['HEROKU_PROCESS'] && heroku[ENV['HEROKU_PROCESS']]
-      p("Setting up auto-scaleer server middleware")
-      chain.add(Autoscaler::Sidekiq::Server, heroku[ENV['HEROKU_PROCESS']], 230, [ENV['HEROKU_PROCESS']])
-    else
-      p("Not scaleable server middleware")
-    end
-  end
 
-  # Because our jobs running in the server can schedule other jubs, thus acting as clients,
-  # we have to setup the client middleware in the server as well.
-  # https://github.com/mperham/sidekiq/wiki/Middleware
-  # https://github.com/mperham/sidekiq/issues/545
-  # https://github.com/mperham/sidekiq/issues/175
-  # https://github.com/JustinLove/autoscaler/issues/9#issuecomment-14069013
-  config.client_middleware do |chain|
-    if heroku && ENV['HEROKU_PROCESS'] && heroku[ENV['HEROKU_PROCESS']]
-      p("Setting up auto-scaleer server-as-client middleware")
-      chain.add Autoscaler::Sidekiq::Client, heroku
-    else
-      p("Not scaleable server-as-client middleware")
-    end
-  end
-end
