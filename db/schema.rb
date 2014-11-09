@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141108233126) do
+ActiveRecord::Schema.define(version: 20141109033219) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -37,6 +37,8 @@ ActiveRecord::Schema.define(version: 20141108233126) do
   create_table "tasks", force: true do |t|
     t.string   "method"
     t.integer  "frequency"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "tokens", force: true do |t|
@@ -46,15 +48,6 @@ ActiveRecord::Schema.define(version: 20141108233126) do
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "user_id"
-  end
-
-  create_table "trigger_histories", force: true do |t|
-    t.integer  "trigger_id"
-    t.integer  "user_id"
-    t.datetime "execution_date"
-    t.datetime "created_at"
-    t.datetime "updated_at"
   end
 
   create_table "triggers", force: true do |t|
@@ -62,7 +55,7 @@ ActiveRecord::Schema.define(version: 20141108233126) do
     t.integer  "user_id"
     t.text     "message_text"
     t.integer  "duration_in_hours"
-    t.datetime "time_last_run"
+    t.datetime "time_last_run",     default: '2014-11-09 03:34:25'
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -70,16 +63,15 @@ ActiveRecord::Schema.define(version: 20141108233126) do
   create_table "users", force: true do |t|
     t.string   "first_name"
     t.string   "last_name"
-    t.string   "phone"
-    t.string   "gmail"
-    t.string   "twitter"
     t.string   "password_digest"
     t.string   "phone"
     t.string   "gmail"
     t.string   "twitter"
     t.string   "refresh_token"
+    t.datetime "last_active"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "last_history_number"
   end
 
 end

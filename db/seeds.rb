@@ -34,7 +34,7 @@ dani.supporters << Supporter.create(first_name:Faker::Name.first_name,
 # Trigger_type.create(method_name: 'check_email', frequency_to_run: 5)
 # Task.create(method: 'hello_world', frequency: 1)
 
-Task.create(method: 'check_email', frequency: 1)
+Task.create(method: 'check_email_activity', frequency: 1)
 # Trigger.create(trigger_type_id: 1, user_id: 1, message_text: 'Hey. Call Me.', duration: 10, last_run_timestamp: Time.now)
 
 # Trigger.create(trigger_type_id: 1, user_id: 2, message_text: 'I\'m not feeling so well', duration: 5, last_run_timestamp: Time.now)
