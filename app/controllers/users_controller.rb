@@ -1,7 +1,5 @@
 class UsersController < ApplicationController
 
-	has_secure_password
-
 	def index
 	end
 
@@ -32,6 +30,7 @@ class UsersController < ApplicationController
 		@user = User.new(user_params)
 		respond_to do |format|
 		  if @user.save
+		  	session[:user_id] = @user.id
 		    format.html { redirect_to @user, notice: 'User was successfully created.' }
 		  else
 		    format.html { render :new }
@@ -46,11 +45,11 @@ class UsersController < ApplicationController
 			format.html { return redirect_to root_url, notice: "User was successfully destroyed."}
 		end
 	end
-	
+
 	private
 
 	def user_params
-		params.require(:user).permit(:first_name, :last_name, :gmail, :phone, :twitter)
+		params.require(:user).permit(:first_name, :last_name, :password, :password_confirmation, :gmail, :phone, :twitter)
 	end
 
 end
