@@ -14,7 +14,7 @@ class User < ActiveRecord::Base
   end
 
   def find_last_history_id
-    history_getter = HistoryGetter.new(self.email, token)
+    history_getter = HistoryGetter.new(self.gmail, self.tokens.first)
     history_getter.get_last_history_id
   end
 end
