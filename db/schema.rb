@@ -1,5 +1,3 @@
-<<<<<<< HEAD
-=======
 # encoding: UTF-8
 # This file is auto-generated from the current state of the database. Instead
 # of editing this file, please use the migrations feature of Active Record to
@@ -52,12 +50,27 @@ ActiveRecord::Schema.define(version: 20141109033219) do
     t.datetime "updated_at"
   end
 
+  create_table "trigger_histories", force: true do |t|
+    t.integer  "trigger_id"
+    t.integer  "user_id"
+    t.datetime "execution_date"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "trigger_types", force: true do |t|
+    t.string   "method_name"
+    t.integer  "frequency_to_run"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "triggers", force: true do |t|
-    t.integer  "task_id"
+    t.integer  "trigger_type_id"
     t.integer  "user_id"
     t.text     "message_text"
     t.integer  "duration_in_hours"
-    t.datetime "time_last_run",     default: '2014-11-09 03:34:25'
+    t.datetime "time_last_run",     default: '2014-11-09 19:52:18'
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -70,11 +83,9 @@ ActiveRecord::Schema.define(version: 20141109033219) do
     t.string   "gmail"
     t.string   "twitter"
     t.string   "refresh_token"
-    t.datetime "last_active"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "last_history_number"
   end
 
 end
->>>>>>> f0c7280b1bcfe3e4b55ff12846969e8c9b78e8bf
