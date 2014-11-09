@@ -8,6 +8,7 @@ class CreateUsers < ActiveRecord::Migration
       t.string :gmail
       t.string :twitter
       t.string :refresh_token
+      t.datetime :last_active
 
       t.timestamps
     end

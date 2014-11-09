@@ -10,6 +10,7 @@ class TriggersController < ApplicationController
 
   def create
     @trigger = Trigger.new(trigger_params)
+    @trigger.user_id = current_user.id
     if @trigger.save
       render partial: "triggers/show.html", formats: :html
     else
