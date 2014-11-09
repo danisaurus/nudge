@@ -1,3 +1,11 @@
 <%# app/views/sessions/new.html.erb %>
-<%= link_to "Authenticate with Google!", '/auth/google_oauth2' %>
+<%#= link_to "Authenticate with Google!", '/auth/google_oauth2' %>
 
+Login
+<%= form_tag sessions_path do %>
+  <%= text_field_tag :email, params[:email] %>
+  <%= password_field_tag :password, params[:password] %>
+  <%= submit_tag 'Save' %>
+<% end -%>
+
+<%= link_to "Signup", '/users/new' %>

@@ -38,6 +38,7 @@ ActiveRecord::Schema.define(version: 20141108233126) do
     t.string   "access_token"
     t.string   "refresh_token"
     t.datetime "expires_at"
+    t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "user_id"
@@ -69,11 +70,15 @@ ActiveRecord::Schema.define(version: 20141108233126) do
   end
 
   create_table "users", force: true do |t|
-    t.string "first_name"
-    t.string "last_name"
-    t.string "phone"
-    t.string "gmail"
-    t.string "twitter"
+    t.string   "first_name"
+    t.string   "last_name"
+    t.string   "password_digest"
+    t.string   "phone"
+    t.string   "gmail"
+    t.string   "twitter"
+    t.string   "refresh_token"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
 end
