@@ -29,7 +29,7 @@ class User < ActiveRecord::Base
   end
 
   def check_email_activity(trigger)
-    unless active_in_last_hours?(trigger.duration)
+    unless active_in_last_hours?(trigger.duration_in_hours)
       self.supporters.each do |supporter|
         supporter.text(trigger.message_text)
       end
