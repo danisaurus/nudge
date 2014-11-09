@@ -45,19 +45,18 @@ class HistoryGetter
 
   def get_history_id
     # get the first email in MagicModel's emails_array
-    data = fetch_message_ids(@gmail, @access_token)
+    data = fetch_message_ids(gmail, access_token)
     ids = scrub_ids(data)
     emails = get_email_messages(ids)
     emails[0]['historyId']
   end
 
   def fetch_history
-    @data = Net::HTTP.get_response(URI(url)).body
+    Net::HTTP.get_response(URI(url)).body
   end
 
   def get_last_history_id
-    fetch_history
-    raw = JSON.parse(@data)
+    raw = JSON.parse(fetch_history)
     raw['history'].last['id']
   end
 end
