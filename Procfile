@@ -1,4 +1,3 @@
-web: bundle exec rails server -p $PORT
-web: bundle exec unicorn ...
-worker: bundle exec sidekiq ...
+web: bundle exec unicorn -p $PORT
+worker: bundle exec sidekiq -e production
 heroku config:set REDIS_PROVIDER=REDISTOGO_URL
