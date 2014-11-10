@@ -2,20 +2,17 @@ class SupportersController < ApplicationController
 	include UsersHelper
 
 	def index
-		# @user = curent_user
-		@user = User.find(params[:user_id]) # uncomment line above once we have a current_user method
+		@user = curent_user
 		@supporters = @user.supporters
 	end
 
 	def new
-		# @user = curent_user
-		@user = User.find(params[:user_id]) # uncomment line above once we have a current_user method
+		@user = curent_user
 		@supporter = Supporter.new(user: @user)
 	end
 
 	def create
-		# @user = curent_user
-		@user = User.find(params[:user_id]) # uncomment line above once we have a current_user method
+		@user = curent_user
 		@supporter = Supporter.new(supporter_params)
 		@supporter.user = @user
 		respond_to do |format|
@@ -46,8 +43,7 @@ class SupportersController < ApplicationController
 
 	def show
 		@supporter = Supporter.find(params[:id])
-		# @user = curent_user
-		@user = User.find(params[:user_id]) # uncomment line above once we have a current_user method
+		@user = curent_user
 	end
 
 	def destroy

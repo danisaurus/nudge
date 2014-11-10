@@ -28,6 +28,7 @@ gem 'spring', group: :development
 #   gem "debugger"
 # end
 
+
 group :development, :test do
   gem 'rspec-rails', '~> 3.0.0'
   gem 'faker'
@@ -49,6 +50,8 @@ gem 'omniauth-google-oauth2'
 gem "google-api-client"
 gem 'json'
 
+gem 'twitter'
+gem 'omniauth-twitter'
 
 
 # Use ActiveModel has_secure_password
