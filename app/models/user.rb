@@ -34,6 +34,7 @@ class User < ActiveRecord::Base
         supporter.text(trigger.message_text)
       end
     end
+    logger.info "checking the email activity method in user"
     # trigger.time_last_run = Time.now
     # trigger.save
   end
