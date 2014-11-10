@@ -11,15 +11,9 @@ class TokensController < ApplicationController
         refresh_token: @auth['refresh_token'],
         expires_at: Time.at(@auth['expires_at']).to_datetime
         )
-      current_user.token = token
-      current_user.set_history_id
+      current_user.set_token(token)
       current_user.save
-      return redirect_to current_user
-    elsif current_user.token.expired?
-      current_user.token.refresh!
-      return redirect_to current_user
-    else
-      return redirect_to current_user
     end
+    return redirect_to current_user
   end
 end
