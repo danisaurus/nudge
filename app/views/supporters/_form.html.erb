@@ -10,19 +10,26 @@
       </ul>
     </div>
   <% end %>
+  <div class='block'>
+    <%= f.label :first_name %>
+    <%= f.text_field :first_name %>
+  </div >
+  <div class='block'>
+    <%= f.label :last_name %>
+    <%= f.text_field :last_name %>
+  </div>
+  <div class='block'>
+    <%= f.label :phone %>
+    <%= f.text_field :phone %>
+  </div>
 
-  <%= f.text_field :first_name %>
-  <%= f.label :first_name %><br>
+  <div class='block'>
+    <%= f.label :gmail %>
+    <%= f.text_field :gmail %>
+  </div>
 
-  <%= f.text_field :last_name %>
-  <%= f.label :last_name %><br>
-
-  <%= f.text_field :phone %>
-  <%= f.label :phone %><br>
-
-  <%= f.text_field :gmail %>
-  <%= f.label :gmail %><br>
-
-  <%= f.submit %>
+  <div class='block'>
+    <%= f.submit %>
+  </div>
 
 <% end %>

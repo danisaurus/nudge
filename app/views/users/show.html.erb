@@ -1,42 +1,32 @@
-<p id="notice"><%= notice %></p>
-
-<p>
-  <strong>First name:</strong>
-  <%= @user.first_name %>
-</p>
-
-<p>
-  <strong>Last name:</strong>
-  <%= @user.last_name %>
-</p>
-
-<p>
-  <strong>Phone:</strong>
-  <%= @user.phone %>
-</p>
-
-<p>
-  <strong>Email:</strong>
-  <%= @user.gmail %>
-</p>
-<%#= link_to "Activate Passive Monitoring", '/auth/google_oauth2' %>
-<%#= link_to 'Edit', edit_user_path(@user) %>
-<%#= link_to 'My Circle', user_supporters_path(@user) %>
-<%#= link_to "My Setup", new_trigger_path %>
-
-<h2 class='formHeader' id="tabOne">Set up your support network</h2>
-  <div class='formDiv' id="divOne">
-    <p>Complete the form below to add a someone to your support network.</p>
-    <%= render "supporters/form", locals: {user: @user} %>
+<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+  <div class="container-fluid">
+    <div class='navbar-header'>
+      <span class='navbar-brand'>Welcome <%= @user.first_name %></span>
+    </div>
+    <div class='collapse navbar-collapse'>
+      <ul class='nav navbar-nav'>
+        <li><a href="#" class='navLink'>Home</a></li>
+        <li><a href="#" class='navLink' id="activity">Activity</a></li>
+        <li><a href="#" class='navLink' id="settings">Settings</a></li>
+        <li><a href="#" class='navLink' id="account">Account</a></li>
+        <li><%= link_to 'Logout', logout_path %></li>
+      </ul>
+    </div>
   </div>
-<h2 class='formHeader' id="tabTwo">Enable passive monitoring</h2>
-  <div class='formDiv' id="divTwo">
-    <p>Follow the link below to authorize Shift to monitor your Gmail for inactivity</p>
-    <%= link_to "Activate Passive Monitoring", '/auth/google_oauth2' %>
-  </div>
-<h2 class='formHeader' id="tabThree">Configure notifications for your support network</h2>
-  <div class='formDiv' id="divThree">
-    <p>If you go inactive, what would message would you like your support network to get? Fill out the form below to set a inactivity duration and a message that will be send</p>
-    <%= render "triggers/new", locals: {user: @user} %>
-  </div>
+</nav>
+<div id='userContainer'  class='settingsShow'>
 
+
+  <div id='userHome'>
+    <%= render "home", locals: {user: @user} %>
+  </div>
+  <div id='userActivity'>
+    <%= render "activity", locals: {user: @user} %>
+  </div>
+  <div id='userSettings'>
+    <%= render "settings", locals: {user: @user} %>
+  </div>
+  <div id='userAccount'>
+    <%= render "account", locals: {user: @user} %>
+  </div>
+</div>

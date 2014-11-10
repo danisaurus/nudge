@@ -1,0 +1,41 @@
+<div id='wrapper'>
+  <div id='sidebar-wrapper' class='inline-block'>
+    <ul class='sidebar-nav'>
+      <li id='monitorSettings' class='sideNav'><a href="#">Monitors</a></li>
+      <li id='supportSettings' class='sideNav'><a href="#">Support Network</a></li>
+      <li id='notificationsSettings' class='sideNav'><a href="#">Notifications</a></li>
+    </ul>
+  </div>
+  <div id='page-content-wrapper' class='inline-block'>
+    <div id='supportersShow'>
+      <ul>
+        <% @user.supporters.each do |supporter| %>
+            <li>
+              <%= supporter.first_name %> <%= supporter.last_name %>
+            </li>
+            <li>
+              <%= supporter.phone %>
+            </li>
+            <li>
+              <%= supporter.gmail %>
+            </li>
+            <li>
+              <%= supporter.twitter %>
+            </li>
+            <%= link_to 'Edit', edit_user_supporter_path(@user, supporter), :class => "editSupporter" %>
+        <% end %>
+      </ul>
+    </div>
+    <div id='notificationsShow'>
+      <% @user.triggers.each do |trigger| %>
+        <div class="show_trigger">
+          <p>If you haven't checked your email in <%= pluralize(trigger.duration_in_hours, 'day') %>, we will let your support know that:</p>
+          <p><%= trigger.message_text %></p>
+        </div>
+      <% end %>
+    </div>
+    <div id='monitorsShow'>
+
+    </div>
+  </div>
+</div>

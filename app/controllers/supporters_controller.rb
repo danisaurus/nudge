@@ -27,6 +27,7 @@ class SupportersController < ApplicationController
 	def edit
 		@supporter = Supporter.find(params[:id])
 		@user = @supporter.user
+		render partial: "edit.html", formats: :html
 	end
 
 	def update

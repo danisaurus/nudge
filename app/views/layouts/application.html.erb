@@ -10,7 +10,9 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-<%= link_to 'Logout', logout_path %>
+<% if current_user %>
+  <%= link_to 'Logout', logout_path %>
+<% end %>
 <%= yield %>
 
 </body>

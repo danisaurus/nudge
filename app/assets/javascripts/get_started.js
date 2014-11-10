@@ -24,7 +24,7 @@ $(document).ready(function(){
     } else { steps[next - 1].removeClass('active') }
     if (next == 2) {
       $('#nextButton').html("<a href='/users/"+id+"'><h3>Done</h3></a>")
-    } else {$('#nextButton').html("<h3>Next Step</h3>")}
+    } else {$('#nextButton').html("<h3>Next Step <i class='fa fa-chevron-right'></i></h3>")}
     formsOne[next].fadeIn()
     steps[next].addClass('active')
     next = makeNext(next);
@@ -33,7 +33,7 @@ $(document).ready(function(){
   $('#backButton').on('click', function(event){
     if (next !== 0 ){
       $('#formHolder').children().hide();
-      $('#nextButton').html("<h3>Next Step</h3>")
+      $('#nextButton').html("<h3>Next Step <i class='fa fa-chevron-right'></i></h3>")
       if (next === 1) {
         next = 0
       } else if (next === 2 ) {
