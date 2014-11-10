@@ -32,9 +32,10 @@ class User < ActiveRecord::Base
     unless active_in_last_hours?(trigger.duration_in_hours/60.to_f)
       self.supporters.each do |supporter|
         supporter.text(trigger.message_text)
+      logger.info "checking the email activity method in #{supporter.first_name}, #{self.email}"
       end
     end
-    logger.info "checking the email activity method in user"
+
     # trigger.time_last_run = Time.now
     # trigger.save
   end
