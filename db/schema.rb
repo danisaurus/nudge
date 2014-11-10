@@ -60,6 +60,7 @@ ActiveRecord::Schema.define(version: 20141110201117) do
     t.datetime "time_last_run",     default: '2014-11-10 20:51:58'
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "active",            default: true
   end
 
   create_table "tweets", force: true do |t|
@@ -70,7 +71,6 @@ ActiveRecord::Schema.define(version: 20141110201117) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
-
   create_table "users", force: true do |t|
     t.string   "first_name"
     t.string   "last_name"
@@ -78,6 +78,7 @@ ActiveRecord::Schema.define(version: 20141110201117) do
     t.string   "phone"
     t.string   "gmail"
     t.string   "twitter"
+    t.string   "refresh_token"
     t.datetime "last_active"
     t.datetime "created_at"
     t.datetime "updated_at"
