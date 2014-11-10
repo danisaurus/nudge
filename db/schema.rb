@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141109033219) do
+ActiveRecord::Schema.define(version: 20141110184900) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -55,9 +55,10 @@ ActiveRecord::Schema.define(version: 20141109033219) do
     t.integer  "user_id"
     t.text     "message_text"
     t.integer  "duration_in_hours"
-    t.datetime "time_last_run",     default: '2014-11-09 23:53:43'
+    t.datetime "time_last_run",     default: '2014-11-09 03:34:25'
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "active",            default: true
   end
 
   create_table "users", force: true do |t|
@@ -67,6 +68,7 @@ ActiveRecord::Schema.define(version: 20141109033219) do
     t.string   "phone"
     t.string   "gmail"
     t.string   "twitter"
+    t.string   "refresh_token"
     t.datetime "last_active"
     t.datetime "created_at"
     t.datetime "updated_at"
