@@ -1,17 +1,28 @@
 require 'gmail_api_client'
+require 'twitter_client'
+require 'alchemyapi'
 
 class User < ActiveRecord::Base
   has_many :supporters
+  has_many :tweets
   has_many :triggers
   has_many :trigger_histories
-  has_one :token
+  has_many :tokens
   phony_normalize :phone, :default_country_code => 'US'
 
   has_secure_password
 
   def set_token(token)
-    self.token = token
+    self.tokens << token
     self.set_history_id
+  end
+
+  def twitter_token
+    self.tokens.where('type=?', "TwitterToken").first
+  end
+
+  def gmail_token
+    self.tokens.where('type=?', "GmailToken").first
   end
 
   def active?
@@ -29,7 +40,7 @@ class User < ActiveRecord::Base
   end
 
   def find_last_history_id
-    client = GmailAPI.new(self.token)
+    client = GmailAPI.new(self.gmail_token)
     return client.get_last_history_id
   end
 
@@ -55,4 +66,17 @@ class User < ActiveRecord::Base
     return (time_since_last_active / 3600.to_f) < inactivity_time_limit
   end
 
+  def get_daily_tweets
+    client = TwitterClient.new(self.twitter_token)
+    tweets = client.get_most_recent_tweets(self.tweets.last.id_of_tweet)
+    tweets.each do |tweet|
+      Tweet.create!(user: self, id_of_tweet: tweet.id)
+    end
+  end
+
+  def most_recent_tweet_id
+    client = TwitterClient.new(self.twitter_token)
+    tweet = client.get_tweets(1)[0]
+    Tweet.create!(user: self, id_of_tweet: tweet.id)
+  end
 end
