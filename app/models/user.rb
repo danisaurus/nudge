@@ -4,7 +4,7 @@ class User < ActiveRecord::Base
   has_many :supporters
   has_many :triggers
   has_many :trigger_histories
-  has_one :token
+  has_many :tokens
   phony_normalize :phone, :default_country_code => 'US'
 
   has_secure_password
@@ -12,6 +12,14 @@ class User < ActiveRecord::Base
   def set_token(token)
     self.token = token
     self.set_history_id
+  end
+
+  def twitter_token
+    self.tokens.where('type=?', "TwitterToken").first
+  end
+
+  def gmail_token
+    self.tokens.where('type=?', "GmailToken").first
   end
 
   def active?

@@ -15,6 +15,7 @@ Rails.application.routes.draw do
 
   root to: 'sessions#new'
   resources :tokens, only: :index
-  get "/auth/:provider/callback" => 'tokens#create'
+  get "/auth/google_oauth2/callback" => 'tokens#create_gmail_token', as: "gmail_auth"
+  get "/auth/twitter/callback" => 'tokens#create_twitter_token', as: "twitter_auth"
 
 end

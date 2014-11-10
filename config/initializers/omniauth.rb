@@ -3,4 +3,5 @@ Rails.application.config.middleware.use OmniAuth::Builder do
     scope: ['email',
       'https://www.googleapis.com/auth/gmail.readonly'],
       access_type: 'offline'}
+  provider :twitter, ENV["CONSUMER_KEY"], ENV["CONSUMER_SECRET"]
 end
