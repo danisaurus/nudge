@@ -55,4 +55,33 @@ class GmailAPI
       )
   end
 
+  def get_start_history_id
+    message_id = get_message_list.data.messages[0].id
+    message = get_message(message_id)
+    message.data.historyId
+  end
+
+  def get_history
+    @client.execute(
+      api_method: @gmail.users.history.list,
+      parameters: {
+        userId: "me",
+        startHistoryId: get_start_history_id},
+        headers: {'Content-Type' => 'application/json'}
+      )
+  end
+
+  def get_last_history_id
+    get_history.data.historyId
+  end
+
+  def get_message_body(message_id)
+    message_body = JSON.parse(get_message(message_id).body)
+    message_body['payload']['parts'][0]['body']['data']
+  end
+
+  def decode_message_body(body)
+    Base64.decode64(body).gsub(/\n/, "").gsub(/\r/, "")
+  end
+
 end
