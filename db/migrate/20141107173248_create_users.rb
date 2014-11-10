@@ -7,7 +7,6 @@ class CreateUsers < ActiveRecord::Migration
       t.string :phone
       t.string :gmail
       t.string :twitter
-      t.string :refresh_token
       t.datetime :last_active
 
       t.timestamps

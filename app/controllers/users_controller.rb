@@ -32,6 +32,7 @@ class UsersController < ApplicationController
 		@user = User.new(user_params)
 		@supporter = Supporter.new
 		@trigger = Trigger.new
+		@user.last_active = Time.now
 		respond_to do |format|
 		  if @user.save
 		  	session[:user_id] = @user.id
