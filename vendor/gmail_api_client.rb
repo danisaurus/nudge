@@ -4,7 +4,7 @@ class GmailAPI
   def initialize(token)
     @token = token
     @client = Google::APIClient.new(
-      application_name: 'Gmail Alerts',
+      application_name: 'shiftdbc',
       application_version: '1.0.0')
     @gmail = @client.discovered_api('gmail', 'v1')
     @client.authorization.access_token = @token.fresh_token #"ya29.uQBXW-pBGTN-INjHZtpQI3pez3L2T4weQUxr2FaYWz5jPgyL7OS3E5Tadmn7BrTcbt5o8mCgzya06g"
