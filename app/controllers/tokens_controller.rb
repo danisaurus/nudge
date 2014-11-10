@@ -6,7 +6,7 @@ class TokensController < ApplicationController
   end
 
   def create_gmail_token
-    unless current_user.gmail_token.nil?
+    if current_user.gmail_token.nil?
       @auth = request.env['omniauth.auth']['credentials']
       token = GmailToken.create(
         access_token: @auth['token'],
@@ -20,16 +20,17 @@ class TokensController < ApplicationController
   end
 
   def create_twitter_token
-    unless current_user.twitter_token.nil?
+    if current_user.twitter_token.nil?
       @auth = request.env['omniauth.auth']['credentials']
       token = TwitterToken.create(
         access_token: @auth['token'],
         secret: @auth['secret']
         )
       current_user.tokens << token
+      current_user.most_recent_tweet_id
       current_user.save
       return redirect_to current_user
     end
   end
-  
+
 end
