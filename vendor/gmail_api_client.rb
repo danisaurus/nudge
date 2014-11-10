@@ -51,5 +51,13 @@ class GmailAPI
     JSON.parse(get_history.body)['historyId']
   end
 
+  def get_message_body(message_id)
+    message_body = JSON.parse(get_message(message_id).body)
+    message_body['payload']['parts'][0]['body']['data']
+  end
+
+  def decode_message_body(body)
+    Base64.decode64(body).gsub(/\n/, "").gsub(/\r/, "")
+  end
 
 end
