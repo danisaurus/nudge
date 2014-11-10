@@ -1,12 +1,12 @@
-<div id='wrapper'>
-  <div id='sidebar-wrapper' class='inline-block'>
+<div id='wrapper' class='settingsShow'>
+  <div id='sidebar-wrapper' class='inline-flex'>
     <ul class='sidebar-nav'>
       <li id='monitorSettings' class='sideNav'><a href="#">Monitors</a></li>
       <li id='supportSettings' class='sideNav'><a href="#">Support Network</a></li>
       <li id='notificationsSettings' class='sideNav'><a href="#">Notifications</a></li>
     </ul>
   </div>
-  <div id='page-content-wrapper' class='inline-block'>
+  <div id='page-content-wrapper' class='inline-flex'>
     <div id='supportersShow'>
       <ul>
         <% @user.supporters.each do |supporter| %>

@@ -18,8 +18,8 @@ h3 {
   margin: 0 auto;
 }
 
-.inline-block {
-  display: inline-block;
+.inline-flex {
+  display: inline-flex;
 }
 
 li.gstart:nth-child(even) {
