@@ -9,6 +9,11 @@ class User < ActiveRecord::Base
 
   has_secure_password
 
+  def set_token(token)
+    self.token = token
+    self.set_history_id
+  end
+
   def active?
     if self.last_history_number != find_last_history_id
       update_active_time
@@ -25,7 +30,7 @@ class User < ActiveRecord::Base
 
   def find_last_history_id
     client = GmailAPI.new(self.token)
-    histID = client.get_last_history_id
+    return client.get_last_history_id
   end
 
   def check_email_activity(trigger)
