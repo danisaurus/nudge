@@ -55,8 +55,7 @@ ActiveRecord::Schema.define(version: 20141110184900) do
     t.integer  "user_id"
     t.text     "message_text"
     t.integer  "duration_in_hours"
-    t.datetime "time_last_run",     default: '2014-11-10 15:02:24'
-
+    t.datetime "time_last_run",     default: '2014-11-10 18:58:10'
     t.datetime "created_at"
     t.datetime "updated_at"
     t.boolean  "active",            default: true
@@ -69,7 +68,6 @@ ActiveRecord::Schema.define(version: 20141110184900) do
     t.string   "phone"
     t.string   "gmail"
     t.string   "twitter"
-    t.string   "refresh_token"
     t.datetime "last_active"
     t.datetime "created_at"
     t.datetime "updated_at"
