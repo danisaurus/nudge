@@ -1,5 +1,6 @@
 require 'gmail_api_client'
 require 'twitter_client'
+require 'alchemyapi'
 
 class User < ActiveRecord::Base
   has_many :supporters
