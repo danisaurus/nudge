@@ -19,8 +19,8 @@
   <strong>Email:</strong>
   <%= @user.gmail %>
 </p>
-<%= link_to "Activate Passive Monitoring", '/auth/google_oauth2' %>
-<%= link_to "Activate Passive Monitoring", '/auth/twitter' %>
+<%= link_to "Google", '/auth/google_oauth2' %>
+<%= link_to "Twitter", '/auth/twitter' %>
 <%= link_to 'Edit', edit_user_path(@user) %>
 <%= link_to 'My Circle', user_supporters_path(@user) %>
 <%= link_to "My Setup", new_trigger_path %>
