@@ -42,10 +42,12 @@ ActiveRecord::Schema.define(version: 20141109033219) do
   end
 
   create_table "tokens", force: true do |t|
+    t.integer  "user_id"
     t.string   "access_token"
     t.string   "refresh_token"
     t.datetime "expires_at"
-    t.integer  "user_id"
+    t.string   "secret"
+    t.string   "type"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -55,7 +57,7 @@ ActiveRecord::Schema.define(version: 20141109033219) do
     t.integer  "user_id"
     t.text     "message_text"
     t.integer  "duration_in_hours"
-    t.datetime "time_last_run",     default: '2014-11-09 23:53:43'
+    t.datetime "time_last_run",     default: '2014-11-10 17:26:16'
     t.datetime "created_at"
     t.datetime "updated_at"
   end
