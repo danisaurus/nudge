@@ -1,0 +1,19 @@
+<%= form_for @trigger do |f| %>
+<%= @error %>
+  <div class='col-md-6'>
+    <div class='inline-block width155'>
+      Text my support network if I haven't checked my email in
+    </div>
+    <div class='inline-block'>
+      <div><i id="toggle-up" class="fa fa-chevron-up"></i></div>
+        <div class='inline-block'> <span id='incDays'>1</span> <span id='day'>day</span> :</div>
+      <div><i id="toggle-down" class="fa fa-chevron-down"></i></div>
+    </div>
+    <%= f.text_area :message_text, size: '30x3' %>
+    <%= f.submit 'Add Notification' %>
+  </div>
+  <div class='col-md-6'>
+    <%= f.text_field :duration_in_hours%>
+  </div>
+<% end %>
+<div class="my_triggers"></div>

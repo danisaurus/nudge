@@ -16,15 +16,12 @@ class SupportersController < ApplicationController
 	def create
 		# @user = curent_user
 		@user = User.find(params[:user_id]) # uncomment line above once we have a current_user method
+		@trigger = Trigger.new
 		@supporter = Supporter.new(supporter_params)
 		@supporter.user = @user
-		respond_to do |format|
 		  if @supporter.save
-		    format.html { redirect_to user_supporters_path(@user), notice: 'Supporter was successfully created.' }
-		  else
-		    format.html { render :new }
+		    render partial: "show.html", formats: :html
 		  end
-		end
 	end
 
 	def edit

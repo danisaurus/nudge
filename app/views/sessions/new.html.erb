@@ -1,7 +1,8 @@
 <%# app/views/sessions/new.html.erb %>
 <%#= link_to "Authenticate with Google!", '/auth/google_oauth2' %>
 
-Login
+<h1>Shift</h1>
+<h2>Notify the people who care about you, when you need them the most.</h2>
 <%= form_tag sessions_path do %>
   <%= text_field_tag :email, params[:email] %>
   <%= password_field_tag :password, params[:password] %>

@@ -1,0 +1,16 @@
+<div>
+  <p>
+    <strong>First name:</strong>
+    <%= @supporter.first_name %>
+    <%= @supporter.last_name %>
+  </p>
+  <p>
+    <strong>Phone:</strong>
+    <a href="<%= @supporter.phone.phony_formatted(:format => :international, spaces: "") %>">+<%= @supporter.phone %></a>
+  </p>
+
+  <p>
+    <strong>Email:</strong>
+    <%= mail_to @supporter.gmail %>
+  </p>
+</div>

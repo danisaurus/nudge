@@ -10,6 +10,6 @@ class TokensController < ApplicationController
       refresh_token: @auth['refresh_token'],
       expires_at: Time.at(@auth['expires_at']).to_datetime)
     current_user.tokens << token
-    redirect_to current_user
+    render :new
   end
 end

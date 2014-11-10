@@ -19,7 +19,24 @@
   <strong>Email:</strong>
   <%= @user.gmail %>
 </p>
-<%= link_to "Activate Passive Monitoring", '/auth/google_oauth2' %>
-<%= link_to 'Edit', edit_user_path(@user) %>
-<%= link_to 'My Circle', user_supporters_path(@user) %>
-<%= link_to "My Setup", new_trigger_path %>
+<%#= link_to "Activate Passive Monitoring", '/auth/google_oauth2' %>
+<%#= link_to 'Edit', edit_user_path(@user) %>
+<%#= link_to 'My Circle', user_supporters_path(@user) %>
+<%#= link_to "My Setup", new_trigger_path %>
+
+<h2 class='formHeader' id="tabOne">Set up your support network</h2>
+  <div class='formDiv' id="divOne">
+    <p>Complete the form below to add a someone to your support network.</p>
+    <%= render "supporters/form", locals: {user: @user} %>
+  </div>
+<h2 class='formHeader' id="tabTwo">Enable passive monitoring</h2>
+  <div class='formDiv' id="divTwo">
+    <p>Follow the link below to authorize Shift to monitor your Gmail for inactivity</p>
+    <%= link_to "Activate Passive Monitoring", '/auth/google_oauth2' %>
+  </div>
+<h2 class='formHeader' id="tabThree">Configure notifications for your support network</h2>
+  <div class='formDiv' id="divThree">
+    <p>If you go inactive, what would message would you like your support network to get? Fill out the form below to set a inactivity duration and a message that will be send</p>
+    <%= render "triggers/new", locals: {user: @user} %>
+  </div>
+
