@@ -7,7 +7,7 @@ namespace :events do
       # task = Task.find(trigger.task_id)
       # time_lapsed = Time.now - trigger.time_last_run
      # if time_lapsed > task.frequency
-        TriggerTaskWorker.perform_async(trigger.id)
+        TriggerTaskWorker.perform_in(2.minutes, trigger.id)
      # end
     end
   end
