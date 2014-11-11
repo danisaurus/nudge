@@ -33,6 +33,20 @@ class GmailAPI
     get_draft_message_bodies(draft_ids)
   end
 
+  def get_sent_email_within_specific_date_range(datetime)
+    @client.execute(
+      api_method: @gmail.users.messages.list,
+      parameters: {
+        userId: "me",
+        q: "in:sent newer_than:1d"},
+        headers: {'Content-Type' => 'application/json'}
+      )
+  end
+
+  def get_message_date(message_id)
+    get_message(message_id).data.payload.headers[2].value
+  end
+
   private
 
   def clean_up_message_body(body)
@@ -45,12 +59,12 @@ class GmailAPI
     message.data.history_id
   end
 
-  def get_history
+  def get_history(history_id)
     @client.execute(
       api_method: @gmail.users.history.list,
       parameters: {
         userId: "me",
-        startHistoryId: get_start_history_id},
+        startHistoryId: history_id},
         headers: {'Content-Type' => 'application/json'}
       )
   end
@@ -72,16 +86,6 @@ class GmailAPI
         userId: "me",
         id: message_id},
       headers: {'Content-Type' => 'application/json'}
-      )
-  end
-
-  def get_history
-    @client.execute(
-      api_method: @gmail.users.history.list,
-      parameters: {
-        userId: "me",
-        startHistoryId: get_start_history_id},
-        headers: {'Content-Type' => 'application/json'}
       )
   end
 
@@ -138,6 +142,27 @@ class GmailAPI
     draft_body_array = []
     draft_message_ids.each {|draft_id| draft_body_array << get_draft_body(draft_id)}
     draft_body_array
+  end
+
+  def get_sent_history_list(start_history_id)
+    @client.execute(
+      api_method: @gmail.users.history.list,
+      parameters: {
+        userId: "me",
+        labelId: "SENT",
+        startHistoryId: start_history_id},
+        headers: {'Content-Type' => 'application/json'}
+      )
+  end
+
+  def get_sent_history_ids(start_history_id)
+    array = []
+    get_sent_history_list(start_history_id).data.history.each do |stuff|
+      unless stuff.messages.empty?
+        array << stuff.messages[0]['id']
+      end
+    end
+    array.uniq
   end
 
 end
