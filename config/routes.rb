@@ -5,7 +5,8 @@ Rails.application.routes.draw do
 
   resources :triggers do
   end
-
+  get '/triggers/:trigger_id/inc' => 'triggers#increase', as: 'trig_inc'
+  get '/triggers/:trigger_id/dec' => 'triggers#decrease', as: 'trig_dec'
   resources :sessions
   get '/logout' => 'sessions#destroy', as: 'logout'
 

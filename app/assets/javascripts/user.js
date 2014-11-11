@@ -31,14 +31,6 @@ $(document).ready(function(){
 
   });
 
-  $('.editSupporter').on('click', function(event){
-    event.preventDefault();
-    var url = $(this).attr('href'),
-        par = $(this).parent();
-    $.get(url, function(serverResponse, status, jqXHR) {
-      par.html(serverResponse)
-    });
-  })
 
   $('#monitorSettings').on('click', function() {
     $('#page-content-wrapper').children().hide();

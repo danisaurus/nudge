@@ -1,16 +1,13 @@
-<div>
-  <p>
-    <strong>First name:</strong>
-    <%= @supporter.first_name %>
-    <%= @supporter.last_name %>
-  </p>
-  <p>
-    <strong>Phone:</strong>
-    <a href="<%= @supporter.phone.phony_formatted(:format => :international, spaces: "") %>">+<%= @supporter.phone %></a>
-  </p>
-
-  <p>
-    <strong>Email:</strong>
-    <%= mail_to @supporter.gmail %>
-  </p>
-</div>
+<li>
+  <%= @supporter.first_name %> <%= @supporter.last_name %>
+</li>
+<li>
+  <%= @supporter.phone %>
+</li>
+<li>
+  <%= @supporter.gmail %>
+</li>
+<li>
+  <%= @supporter.twitter %>
+</li>
+<%= link_to 'Edit', edit_user_supporter_path(@user, @supporter), :class => "editSupporter" %>

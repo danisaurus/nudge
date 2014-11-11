@@ -4,7 +4,7 @@ class CreateTweets < ActiveRecord::Migration
       t.belongs_to :user
       t.string :qualitative
       t.float :quantitative
-      t.integer :id_of_tweet
+      t.integer :id_of_tweet, limit: 8
       t.timestamps
     end
   end

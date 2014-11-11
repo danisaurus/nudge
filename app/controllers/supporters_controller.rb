@@ -2,18 +2,18 @@ class SupportersController < ApplicationController
 	include UsersHelper
 
 	def index
-		@user = curent_user
+		@user = current_user
 		@supporters = @user.supporters
 	end
 
 	def new
-		@user = curent_user
+		@user = current_user
 		@supporter = Supporter.new(user: @user)
 	end
 
 	def create
 		@trigger = Trigger.new
-		@user = curent_user
+		@user = current_user
 		@supporter = Supporter.new(supporter_params)
 		@supporter.user = @user
 		  if @supporter.save
@@ -30,12 +30,8 @@ class SupportersController < ApplicationController
 	def update
 		@supporter = Supporter.find(params[:id])
 		@user = @supporter.user
-		respond_to do |format|
-		  if @supporter.update(supporter_params)
-		    format.html { redirect_to user_supporters_path(@user), notice: 'Supporter was successfully updated.' }
-		  else
-		    format.html { render :new }
-		  end
+	  if @supporter.update(supporter_params)
+	    render partial: "show.html", formats: :html
 		end
 	end
 

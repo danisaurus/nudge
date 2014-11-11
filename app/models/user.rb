@@ -69,14 +69,18 @@ class User < ActiveRecord::Base
   def get_daily_tweets
     client = TwitterClient.new(self.twitter_token)
     tweets = client.get_most_recent_tweets(self.tweets.last.id_of_tweet)
+    alchemyapi = AlchemyAPI.new
     tweets.each do |tweet|
-      Tweet.create!(user: self, id_of_tweet: tweet.id)
+      response = alchemyapi.sentiment("text", tweet.text)
+      Tweet.create!(user: self, id_of_tweet: tweet.id, qualitative: response['docSentiment']['type'], quantitative: response['docSentiment']['score'].to_f)
     end
   end
 
   def most_recent_tweet_id
     client = TwitterClient.new(self.twitter_token)
+    alchemyapi = AlchemyAPI.new
     tweet = client.get_tweets(1)[0]
-    Tweet.create!(user: self, id_of_tweet: tweet.id)
+    response = alchemyapi.sentiment("text", tweet.text)
+    Tweet.create!(user: self, id_of_tweet: tweet.id, qualitative: response['docSentiment']['type'], quantitative: response['docSentiment']['score'].to_f)
   end
 end

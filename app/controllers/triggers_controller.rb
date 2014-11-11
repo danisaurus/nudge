@@ -20,6 +20,18 @@ class TriggersController < ApplicationController
     end
   end
 
+  def increase_durations
+    @trigger = Trigger.find(params[:trigger_id])
+    @trigger.duration_in_hours += 1
+    @trigger.save
+  end
+
+  def decrease_durations
+    @trigger = Trigger.find(params[:trigger_id])
+    @trigger.duration_in_hours -= 1
+    @trigger.save
+  end
+
   private
   def trigger_params
     params.require(:trigger).permit(:message_text, :duration_in_hours)

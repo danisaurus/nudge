@@ -22,6 +22,10 @@ h3 {
   display: inline-flex;
 }
 
+.inline-block {
+  display: inline-block;
+}
+
 li.gstart:nth-child(even) {
   margin-left: 10px;
   margin-right: 10px;

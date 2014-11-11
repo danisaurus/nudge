@@ -29,7 +29,7 @@ class TokensController < ApplicationController
       current_user.tokens << token
       current_user.most_recent_tweet_id
       current_user.save
-      return redirect_to current_user
+      render :new
     end
   end
 
