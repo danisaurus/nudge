@@ -41,8 +41,11 @@ class User < ActiveRecord::Base
 
   def find_last_history_id
     client = GmailAPI.new(self.gmail_token)
-    p client
-    client.get_last_history_id
+    if self.last_history_number.nil?
+      self.last_history_number = client.get_start_history_id
+    else
+      return client.get_last_history_id(self.last_history_number)
+    end
   end
 
   def check_email_activity(trigger)
@@ -74,7 +77,9 @@ class User < ActiveRecord::Base
     alchemyapi = AlchemyAPI.new
     tweets.each do |tweet|
       response = alchemyapi.sentiment("text", tweet.text)
-      daily_report.tweets << Tweet.create!(user: self, id_of_tweet: tweet.id, qualitative: response['docSentiment']['type'], quantitative: response['docSentiment']['score'].to_f)
+      if response["status"] != "ERROR"
+        Tweet.create!(user: self, id_of_tweet: tweet.id, qualitative: response['docSentiment']['type'], quantitative: response['docSentiment']['score'].to_f)
+      end
     end
   end
 
@@ -85,4 +90,18 @@ class User < ActiveRecord::Base
     response = alchemyapi.sentiment("text", tweet.text)
     Tweet.create!(user: self, id_of_tweet: tweet.id, qualitative: response['docSentiment']['type'], quantitative: response['docSentiment']['score'].to_f)
   end
+
+  def get_daily_gmails
+    client = GmailAPI.new(self.gmail_token)
+    sent_gmails = client.get_emails_for_today(self.last_history_number)
+    p sent_gmails
+    alchemyapi = AlchemyAPI.new
+    sent_gmails.each do |gmail|
+      response = alchemyapi.sentiment("text", gmail)
+      if response["status"] != "ERROR"
+        Gmail.create!(user: self, quantitative: response['docSentiment']['score'].to_f, qualitative: response['docSentiment']['type'])
+      end
+    end
+  end
+
 end

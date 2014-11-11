@@ -29,6 +29,14 @@ ActiveRecord::Schema.define(version: 20141111032559) do
     t.integer "user_id"
   end
 
+  create_table "gmails", force: true do |t|
+    t.integer  "user_id"
+    t.float    "quantitative"
+    t.string   "qualitative"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "supporters", force: true do |t|
     t.integer  "user_id"
     t.string   "first_name"
