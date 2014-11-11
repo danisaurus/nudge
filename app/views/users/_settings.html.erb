@@ -1,0 +1,51 @@
+<div id='wrapper' class='settingsShow'>
+  <div id='sidebar-wrapper' class='inline-flex'>
+    <ul class='sidebar-nav'>
+      <li id='monitorSettings' class='sideNav'><a href="#">Monitors</a></li>
+      <li id='supportSettings' class='sideNav'><a href="#">Support Network</a></li>
+      <li id='notificationsSettings' class='sideNav'><a href="#">Notifications</a></li>
+    </ul>
+  </div>
+  <div id='page-content-wrapper' class='inline-flex'>
+    <div id='supportersShow'>
+      <ul>
+        <% @user.supporters.each do |supporter| %>
+        <li>
+          <ul class='supportContainer'>
+            <li>
+              <%= supporter.first_name %> <%= supporter.last_name %>
+            </li>
+            <li>
+              <%= supporter.phone %>
+            </li>
+            <li>
+              <%= supporter.gmail %>
+            </li>
+            <li>
+              <%= supporter.twitter %>
+            </li>
+            <%= link_to 'Edit', edit_user_supporter_path(@user, supporter), :class => "editSupporter" %>
+          </ul>
+        </li>
+        <% end %>
+      </ul>
+    </div>
+    <div id='notificationsShow'>
+      <% @user.triggers.each do |trigger| %>
+        <div>
+          <div class='inline-flex'>
+            <div><i id="toggle-up" class="fa fa-chevron-up block"></i></div>
+              <div class='block'> <span id='incDays'><%= trigger.duration_in_hours %></span> <span id='day'>day</span> :</div>
+            <div><i id="toggle-down" class="fa fa-chevron-down block"></i></div>
+          </div>
+          <div class='inline-flex'>
+            <%= trigger.message_text %>...
+          </div>
+        </div>
+      <% end %>
+    </div>
+    <div id='monitorsShow'>
+
+    </div>
+  </div>
+</div>

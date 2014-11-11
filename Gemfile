@@ -6,7 +6,9 @@ gem 'rails', '4.1.6'
 # Use postgresql as the database for Active Record
 gem 'pg'
 # Use SCSS for stylesheets
+gem 'bootstrap-sass', '~> 3.3.0'
 gem 'sass-rails', '~> 4.0.3'
+gem 'autoprefixer-rails'
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
 # Use CoffeeScript for .js.coffee assets and views
@@ -16,6 +18,7 @@ gem 'therubyracer',  platforms: :ruby
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
+gem 'jquery-ui-rails'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 2.0'
 # bundle exec rake doc:rails generates the API under doc/api.
@@ -27,6 +30,7 @@ gem 'spring', group: :development
 # group :development do
 #   gem "debugger"
 # end
+
 
 group :development, :test do
   gem 'rspec-rails', '~> 3.0.0'
@@ -49,6 +53,8 @@ gem 'omniauth-google-oauth2'
 gem "google-api-client"
 gem 'json'
 
+gem 'twitter'
+gem 'omniauth-twitter'
 
 
 # Use ActiveModel has_secure_password

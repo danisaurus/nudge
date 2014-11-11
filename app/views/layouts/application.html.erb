@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html>
 <head>
+  <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>ShiftApi</title>
   <%= stylesheet_link_tag    'application', media: 'all' %>
   <%= javascript_include_tag 'application' %>
@@ -8,7 +10,9 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-<%= link_to 'Logout', logout_path %>
+<% if current_user %>
+  <%= link_to 'Logout', logout_path %>
+<% end %>
 <%= yield %>
 
 </body>

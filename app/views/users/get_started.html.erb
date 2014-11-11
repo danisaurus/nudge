@@ -1,0 +1,47 @@
+<div class='container'>
+  <ul class='gstart pager' id="getStarted">
+      <li class='gstart active' id='stepOne'>Step One</li>
+      <li class='gstart' id='stepTwo'>Step Two</li>
+      <li class='gstart' id='stepThree'>Step Three</li>
+  </ul>
+  <div class='row formHolder'>
+    <div class='col-md-6 col-md-offset-3' id='formHolder'>
+      <div class='formDiv' id="divOne">
+        <h2 class='formHeader' id="tabTwo">Enable Monitoring</h2>
+        <p>Follow the link below to authorize Shift to monitor your Gmail for inactivity</p>
+        <div class='ellipse inline-block'>
+          <div class='circle inline-block'>
+          </div>
+        </div>
+        <%= link_to "Activate Passive Monitoring with Google", "/auth/google_oauth2", :target => "_blank" %>
+        <div class='ellipse inline-block'>
+          <div class='circle inline-block'>
+          </div>
+        </div>
+        <%= link_to "Activate Passive Monitoring with Twitter", "/auth/twitter", :target => "_blank" %>
+      </div>
+      <div class='formDiv' id="divTwo">
+        <h2 class='formHeader' id="tabOne">Build Support Network</h2>
+        <p>Set up your support by completing the form below to add a someone to your support network.</p>
+        <%= render "supporters/form", locals: {user: @user} %>
+      </div>
+      <div class='formDiv' id="divThree">
+        <h2 class='formHeader' id="tabThree">Setup Notifications</h2>
+        <p>If you go inactive, what would message would you like your support network to get? Fill out the form below to set a inactivity duration and a message that will be sent.</p>
+        <%= render "triggers/new", locals: {user: @user} %>
+      </div>
+    </div>
+  </div>
+  <div class='row' id='<%=@user.id%>'>
+    <div class='col-md-3' id='backButton'><h3><i class="fa fa-chevron-left"></i> Go Back</h3></div>
+    <div class='col-md-3 col-md-offset-6' id='nextButton'><h3>Next Step <i class="fa fa-chevron-right"></i></h3></div>
+  </div>
+  <div class='row'>
+    <div class='col-xs-6' id='network'>
+      <h3>Your Support</h3>
+    </div>
+    <div class='col-xs-6' id='notifications'>
+      <h3>Your Notifications</h3>
+    </div>
+  </div>
+</div>

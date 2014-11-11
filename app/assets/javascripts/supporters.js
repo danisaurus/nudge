@@ -1,28 +1,21 @@
 $(document).ready(function(){
 
-	$("#supporters-container").on("click", ".supporter-delete", function(event){
-		event.preventDefault();
-		var supporter = $(this).closest('.supporter-item');
-		console.log(supporter);
-		var supporterName = $(supporter).find(".supporter-name").text();
-		if (confirm("Are you sure you want to remove " + supporterName + " from your circle?")){
-			var type = $(this).data('action');
-			var url = $(this).attr('href');
-			$.ajax({
-				url: url,
-				type: type,
-				success: function(response){
-					console.log(response);
-					$('#notice').text(response.notice);
-					supporter.remove();
+    $('#supportersShow').on('click','.editSupporter', function(event){
+      event.preventDefault();
+      var url = $(this).attr('href'),
+          par = $(this).parent();
+      $.get(url, function(serverResponse, status, jqXHR) {
+        par.html(serverResponse)
+      });
+    })
 
-				},
-				error: function(response) {
-					console.log("Error during supporter delete");
-					console.log(response);
-				}
-			});
-		}
-	});
-
+  	$('#supportersShow').on('submit', '.edit_supporter', function(){
+  		event.preventDefault();
+  		var url = $(event.target).attr( 'action' ),
+          par = $(event.target).parent()
+  				data = $(event.target).serialize();
+    $.post(url, data, function(serverResponse, status, jqXHR) {
+      par.html(serverResponse)
+  	});
+  });
 });

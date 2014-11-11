@@ -5,7 +5,8 @@ Rails.application.routes.draw do
 
   resources :triggers do
   end
-
+  get '/triggers/:trigger_id/inc' => 'triggers#increase', as: 'trig_inc'
+  get '/triggers/:trigger_id/dec' => 'triggers#decrease', as: 'trig_dec'
   resources :sessions
   get '/logout' => 'sessions#destroy', as: 'logout'
 
@@ -15,6 +16,7 @@ Rails.application.routes.draw do
 
   root to: 'sessions#new'
   resources :tokens, only: :index
-  get "/auth/:provider/callback" => 'tokens#create'
+  get "/auth/google_oauth2/callback" => 'tokens#create_gmail_token', as: "gmail_auth"
+  get "/auth/twitter/callback" => 'tokens#create_twitter_token', as: "twitter_auth"
 
 end

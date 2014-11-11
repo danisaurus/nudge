@@ -2,52 +2,42 @@ class SupportersController < ApplicationController
 	include UsersHelper
 
 	def index
-		# @user = curent_user
-		@user = User.find(params[:user_id]) # uncomment line above once we have a current_user method
+		@user = current_user
 		@supporters = @user.supporters
 	end
 
 	def new
-		# @user = curent_user
-		@user = User.find(params[:user_id]) # uncomment line above once we have a current_user method
+		@user = current_user
 		@supporter = Supporter.new(user: @user)
 	end
 
 	def create
-		# @user = curent_user
-		@user = User.find(params[:user_id]) # uncomment line above once we have a current_user method
+		@trigger = Trigger.new
+		@user = current_user
 		@supporter = Supporter.new(supporter_params)
 		@supporter.user = @user
-		respond_to do |format|
 		  if @supporter.save
-		    format.html { redirect_to user_supporters_path(@user), notice: 'Supporter was successfully created.' }
-		  else
-		    format.html { render :new }
+		    render partial: "show.html", formats: :html
 		  end
-		end
 	end
 
 	def edit
 		@supporter = Supporter.find(params[:id])
 		@user = @supporter.user
+		render partial: "edit.html", formats: :html
 	end
 
 	def update
 		@supporter = Supporter.find(params[:id])
 		@user = @supporter.user
-		respond_to do |format|
-		  if @supporter.update(supporter_params)
-		    format.html { redirect_to user_supporters_path(@user), notice: 'Supporter was successfully updated.' }
-		  else
-		    format.html { render :new }
-		  end
+	  if @supporter.update(supporter_params)
+	    render partial: "show.html", formats: :html
 		end
 	end
 
 	def show
 		@supporter = Supporter.find(params[:id])
-		# @user = curent_user
-		@user = User.find(params[:user_id]) # uncomment line above once we have a current_user method
+		@user = curent_user
 	end
 
 	def destroy

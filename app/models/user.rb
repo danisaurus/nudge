@@ -1,17 +1,28 @@
 require 'gmail_api_client'
+require 'twitter_client'
+require 'alchemyapi'
 
 class User < ActiveRecord::Base
   has_many :supporters
+  has_many :tweets
   has_many :triggers
   has_many :trigger_histories
-  has_one :token
+  has_many :tokens
   phony_normalize :phone, :default_country_code => 'US'
 
   has_secure_password
 
   def set_token(token)
-    self.token = token
+    self.tokens << token
     self.set_history_id
+  end
+
+  def twitter_token
+    self.tokens.where('type=?', "TwitterToken").first
+  end
+
+  def gmail_token
+    self.tokens.where('type=?', "GmailToken").first
   end
 
   def active?
@@ -29,16 +40,18 @@ class User < ActiveRecord::Base
   end
 
   def find_last_history_id
-    client = GmailAPI.new(self.token)
+    client = GmailAPI.new(self.gmail_token)
     return client.get_last_history_id
   end
 
   def check_email_activity(trigger)
-    unless active_in_last_hours?(trigger.duration_in_hours)
+    unless active_in_last_hours?(trigger.duration_in_hours/60.to_f)
       self.supporters.each do |supporter|
         supporter.text(trigger.message_text)
+      logger.info "checking the email activity method in #{supporter.first_name}, #{self.email}"
       end
     end
+
     # trigger.time_last_run = Time.now
     # trigger.save
   end
@@ -53,4 +66,21 @@ class User < ActiveRecord::Base
     return (time_since_last_active / 3600.to_f) < inactivity_time_limit
   end
 
+  def get_daily_tweets
+    client = TwitterClient.new(self.twitter_token)
+    tweets = client.get_most_recent_tweets(self.tweets.last.id_of_tweet)
+    alchemyapi = AlchemyAPI.new
+    tweets.each do |tweet|
+      response = alchemyapi.sentiment("text", tweet.text)
+      Tweet.create!(user: self, id_of_tweet: tweet.id, qualitative: response['docSentiment']['type'], quantitative: response['docSentiment']['score'].to_f)
+    end
+  end
+
+  def most_recent_tweet_id
+    client = TwitterClient.new(self.twitter_token)
+    alchemyapi = AlchemyAPI.new
+    tweet = client.get_tweets(1)[0]
+    response = alchemyapi.sentiment("text", tweet.text)
+    Tweet.create!(user: self, id_of_tweet: tweet.id, qualitative: response['docSentiment']['type'], quantitative: response['docSentiment']['score'].to_f)
+  end
 end
