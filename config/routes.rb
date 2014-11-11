@@ -20,6 +20,7 @@ Rails.application.routes.draw do
   get "/auth/google_oauth2/callback" => 'tokens#create_gmail_token', as: "gmail_auth"
   get "/auth/twitter/callback" => 'tokens#create_twitter_token', as: "twitter_auth"
 
+  get "/reports" => "daily_reports#weekly_report"
 
 
 end
