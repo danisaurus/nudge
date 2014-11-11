@@ -1,9 +1,14 @@
+#mood-wheel {
+    background-color: #9CD5F6;
+    height: 800px;
+}
+
 #menu {
     position: relative;
     width: 230px;
     margin: 0px auto;
-    top: 100px;
-    left: 37px;
+    top: 35%;
+    left: 1%;
 }
  
 /* We're using overflow: hidden; so we need to create a fake shadow */
@@ -134,39 +139,35 @@
 }
  
 /* So the info divs wont appear should the button be unchecked */
-#menu #on-check:not(:checked) ~ .info {
-    opacity: 0;
-}
+// #menu #on-check:not(:checked) ~ .info {
+//     opacity: 0;
+// }
  
 /* Show info sections with a delay of 0.4s to give the menu time to finish the inital
    sprawling out animation */
-#menu #on-check:checked ~ .info {
-    -webkit-transition: all 0.2s linear 0.4s;
-    -moz-transition: all 0.2s linear 0.4s;
-    -ms-transition: all 0.2s linear 0.4s;
-    -o-transition: all 0.2s linear 0.4s;
-    transition: all 0.2s linear 0.4s;
-}
+// #menu #on-check:checked ~ .info {
+//     -webkit-transition: all 0.2s linear 0.4s;
+//     -moz-transition: all 0.2s linear 0.4s;
+//     -ms-transition: all 0.2s linear 0.4s;
+//     -o-transition: all 0.2s linear 0.4s;
+//     transition: all 0.2s linear 0.4s;
+// }
  
  
 /* Sprawl out the menu items when the on button is checked */
-#on-check:checked ~ #menu-items {
-    width: 300px;
-    height: 300px;
-    left: -75px;
-    top: -75px;
+#on-check:checked {
+
 }
 
 /* The styling of the menu items container div */
 #menu-items {
-    width: 150px;
-    height: 150px;
+    width: 400px;
+    height: 400px;
+    left: -127px;
+    top: -128px;
     border-radius: 250px;
     background: #aaa;
     position: absolute;
-    top: 0;
-    left: 0;
-    z-index: -99;
     overflow: hidden;
     -webkit-mask-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAIAAACQd1PeAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAA5JREFUeNpiYGBgAAgwAAAEAAGbA+oJAAAAAElFTkSuQmCC);
     box-shadow: 0 0 15px rgba(0,0,0,0.3);
@@ -232,28 +233,28 @@
 }
  
 #menu-items .middle .top .bg-piece:nth-of-type(2):after {
-    border-color: #eee transparent transparent transparent;
+    // border-color: #eee transparent transparent transparent;
     top: -5px;
     left: 0;
 }
  
 #menu-items .middle .top .bg-piece:nth-of-type(1) { 
-    box-shadow: inset -125px 0 36px -35px rgba(0, 0, 0, 0.1), inset -7px -161px 72px rgba(0, 0, 0, 0.1);
+    // box-shadow: inset -125px 0 36px -35px rgba(0, 0, 0, 0.1), inset -7px -161px 72px rgba(0, 0, 0, 0.1);
 }
  
 #menu-items .middle .top .bg-piece:nth-of-type(3) { 
-    box-shadow: inset 125px 0 36px -35px rgba(0, 0, 0, 0.1), inset -7px -161px 72px rgba(0, 0, 0, 0.1);
+    // box-shadow: inset 125px 0 36px -35px rgba(0, 0, 0, 0.1), inset -7px -161px 72px rgba(0, 0, 0, 0.1);
 }
  
 #menu-items .middle > div .bg-piece:nth-of-type(1) {
     width: 50%;
-    box-shadow: inset -125px 0 36px -35px rgba(0, 0, 0, 0.1);
+    // box-shadow: inset -125px 0 36px -35px rgba(0, 0, 0, 0.1);
 }
  
 #menu-items .middle > div .bg-piece:nth-of-type(3) {
     width: 50%;
     right: 0;
-    box-shadow: inset 125px 0 36px -35px rgba(0, 0, 0, 0.1);
+    // box-shadow: inset 125px 0 36px -35px rgba(0, 0, 0, 0.1);
 }
  
 /* ------------------------------------------------------------ */
@@ -277,7 +278,7 @@
     opacity: 0;
     position: absolute;
     left: 55px;
-    top: -136px;
+    bottom: 100px;
     display: inline-block;
     background-color: #d2d2d2;
     padding: 10px;
@@ -295,7 +296,7 @@
 #menu .info:after {
     position: absolute;
     content: " ";
-    top: 37px;
+    top: 43px;
     left: 8px;
     border-color: #f3f3f3 transparent transparent transparent;
     border-width: 10px;
@@ -307,7 +308,7 @@
 #menu .info:before {
     position: absolute;
     content: " ";
-    top: 38px;
+    top: 45px;
     left: 8px;
     border-color: #ddd transparent transparent transparent;
     border-width: 10px;
@@ -318,16 +319,16 @@
 #menu input[type='checkbox'], input[type='radio'] { display: none; }
  
 /* Position the icons correctly */
-#menu-items .top .ss-home { top: 90px; left: 34px; }
-#menu-items .top .ss-heart {  top: 90px; left: 241px; }
-#menu-items .top .ss-compass { top: 21px; left: 137px; }
-#menu-items .bottom .ss-rss {  top: 181px; left: 35px; }
-#menu-items .bottom .ss-star {  top: 181px; left: 243px; }
-#menu-items .bottom .ss-refresh { top: 249px; left: 139px; }
+#menu-items .top .ss-tranquil { top: 90px; left: 34px; background-image: url("/assets/tranquil.png"); height: 83px; width: 83px; }
+#menu-items .top .ss-partly-cloudy {  top: 90px; left: 241px; background-image: url("/assets/sunshine.png"); height: 83px; width: 83px; }
+#menu-items .top .ss-sunshine { top: 21px; left: 137px; background-image: url("/assets/partly-cloudy.png"); height: 83px; width: 83px;}
+#menu-items .bottom .ss-rainy {  top: 181px; left: 35px; background-image: url("/assets/rainy.png"); height: 83px; width: 83px;}
+#menu-items .bottom .ss-tornado {  top: 181px; left: 243px; background-image: url("/assets/stormy.png"); height: 83px; width: 83px;}
+#menu-items .bottom .ss-stormy { top: 249px; left: 139px; background-image: url("/assets/tornado.png"); height: 83px; width: 83px;}
 
 /* The below code rotates the menu items to the correct position
    when each is clicked. */
-#info-home:checked ~ #menu-items, #menu-items .top .ss-heart { 
+#info-tranquil:checked ~ #menu-items, #menu-items .top .ss-partly-cloudy { 
     -webkit-transform: rotateZ(66deg); 
     -moz-transform: rotateZ(66deg); 
     -ms-transform: rotateZ(66deg); 
@@ -336,7 +337,7 @@
 }
  
  
-#info-heart:checked ~ #menu-items, #menu-items .top .ss-home { 
+#info-partly-cloudy:checked ~ #menu-items, #menu-items .top .ss-tranquil { 
     -webkit-transform: rotateZ(-66deg); 
     -moz-transform: rotateZ(-66deg); 
     -ms-transform: rotateZ(-66deg); 
@@ -344,7 +345,7 @@
     transform: rotateZ(-66deg); 
 }
  
-#info-rss:checked ~ #menu-items, #menu-items .bottom .ss-star { 
+#info-rainy:checked ~ #menu-items, #menu-items .bottom .ss-tornado { 
     -webkit-transform: rotateZ(114deg); 
     -moz-transform: rotateZ(114deg); 
     -ms-transform: rotateZ(114deg); 
@@ -352,7 +353,7 @@
     transform: rotateZ(114deg); 
 }
  
-#info-star:checked ~ #menu-items, #menu-items .bottom .ss-rss { 
+#info-tornado:checked ~ #menu-items, #menu-items .bottom .ss-rainy { 
     -webkit-transform: rotateZ(-114deg); 
     -moz-transform: rotateZ(-114deg); 
     -ms-transform: rotateZ(-114deg); 
@@ -360,7 +361,7 @@
     transform: rotateZ(-114deg); 
 }
  
-#info-refresh:checked ~ #menu-items, #menu-items .bottom .ss-refresh { 
+#info-stormy:checked ~ #menu-items, #menu-items .bottom .ss-stormy { 
     -webkit-transform: rotateZ(180deg); 
     -moz-transform: rotateZ(180deg); 
     -ms-transform: rotateZ(180deg); 
@@ -371,22 +372,22 @@
 /* --------------------------------------------------------------- */
  
 /* Highlight the selected item */
-#info-home:checked ~ #menu-items .ss-home,
-#info-heart:checked ~ #menu-items .ss-heart,
-#info-rss:checked ~ #menu-items .ss-rss,
-#info-star:checked ~ #menu-items .ss-star,
-#info-refresh:checked ~ #menu-items .ss-refresh,
-#info-compass:checked ~ #menu-items .ss-compass { 
+#info-tranquil:checked ~ #menu-items .ss-tranquil,
+#info-partly-cloudy:checked ~ #menu-items .ss-partly-cloudy,
+#info-rainy:checked ~ #menu-items .ss-rainy,
+#info-tornado:checked ~ #menu-items .ss-tornado,
+#info-stormy:checked ~ #menu-items .ss-stormy,
+#info-sunshine:checked ~ #menu-items .ss-sunshine { 
     text-shadow: 0 0 15px #3facf2;
     color: #24434f;
 }
  
 /* Make opacity of the info boxes 1 when they are clicked on */
-#info-home:checked ~ .home-info,
-#info-heart:checked ~ .heart-info,
-#info-rss:checked ~ .rss-info,
-#info-star:checked ~ .star-info,
-#info-refresh:checked ~ .refresh-info,
-#info-compass:checked ~ .compass-info {
+#info-tranquil:checked ~ .home-info,
+#info-partly-cloudy:checked ~ .heart-info,
+#info-rainy:checked ~ .rss-info,
+#info-tornado:checked ~ .star-info,
+#info-stormy:checked ~ .refresh-info,
+#info-sunshine:checked ~ .compass-info {
     opacity: 1;
 }

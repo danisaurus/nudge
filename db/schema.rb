@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141111032559) do
+ActiveRecord::Schema.define(version: 20141111154330) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -27,6 +27,22 @@ ActiveRecord::Schema.define(version: 20141111032559) do
   create_table "gmail_accounts", force: true do |t|
     t.string  "last_history_number"
     t.integer "user_id"
+  end
+
+  create_table "gmails", force: true do |t|
+    t.float    "quantitative"
+    t.string   "qualitative"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "daily_report_id"
+  end
+
+  create_table "keywords", force: true do |t|
+    t.string   "text"
+    t.float    "relevance"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "gmail_id"
   end
 
   create_table "supporters", force: true do |t|
@@ -50,34 +66,22 @@ ActiveRecord::Schema.define(version: 20141111032559) do
   end
 
   create_table "tokens", force: true do |t|
+    t.integer  "user_id"
     t.string   "access_token"
     t.string   "refresh_token"
     t.datetime "expires_at"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "trigger_histories", force: true do |t|
-    t.integer  "trigger_id"
-    t.integer  "user_id"
-    t.datetime "execution_date"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "trigger_types", force: true do |t|
-    t.string   "method_name"
-    t.integer  "frequency_to_run"
+    t.string   "secret"
+    t.string   "type"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   create_table "triggers", force: true do |t|
-    t.integer  "trigger_type_id"
+    t.integer  "task_id"
     t.integer  "user_id"
     t.text     "message_text"
     t.integer  "duration_in_hours"
-    t.datetime "time_last_run",     default: '2014-11-10 21:20:07'
+    t.datetime "time_last_run",     default: '2014-11-11 18:24:46'
     t.datetime "created_at"
     t.datetime "updated_at"
     t.boolean  "active",            default: true
@@ -95,9 +99,9 @@ ActiveRecord::Schema.define(version: 20141111032559) do
   create_table "users", force: true do |t|
     t.string   "first_name"
     t.string   "last_name"
-    t.string   "phone"
+    t.string   "password_digest"
     t.string   "gmail"
-    t.string   "twitter"
+    t.datetime "last_active"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "last_history_number"
