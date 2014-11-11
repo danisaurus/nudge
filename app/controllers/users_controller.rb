@@ -51,6 +51,22 @@ class UsersController < ApplicationController
 		end
 	end
 
+	def toggle_twitter_triggers
+		current_user.toggle_twitter_triggers
+    render nothing: true
+	end
+
+	def toggle_google_triggers
+		current_user.toggle_google_triggers
+    render nothing: true
+	end
+
+	def specific_toggle
+    trigger = current_user.triggers.find(params[:trigger_id])
+		current_user.toggle(trigger)
+    render nothing: true
+	end
+
 	private
 
 	def user_params
