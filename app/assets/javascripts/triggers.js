@@ -34,4 +34,30 @@ $(document).ready(function(){
       $('form').find("textarea").val("");
     });
   });
+
+  $('body').on('click', '.toggle-up', function(){
+    event.preventDefault();
+    var url = $(event.target).parent().attr('href');
+    var par = $(event.target).parent().parent().next();
+    var dayVal = par.children().first();
+    var oldVal = parseInt(dayVal.text());
+    var newVal = oldVal + 1;
+        dayVal.text(newVal)
+    $.get(url, function(serverResponse, status, jqXHR){
+    });
+  });
+  $('body').on('click', '.toggle-down', function(){
+    event.preventDefault();
+    var url = $(event.target).parent().attr('href');
+    var par = $(event.target).parent().parent().prev();
+    var dayVal = par.children().first();
+    var oldVal = parseInt(dayVal.text());
+    if (oldVal > 1 ){
+        var newVal = oldVal - 1;
+            dayVal.text(newVal)
+          }
+    $.get(url, function(serverResponse, status, jqXHR){
+    })
+  })
+
 });
