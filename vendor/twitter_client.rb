@@ -1,5 +1,5 @@
 class TwitterClient
-  attr_reader :client
+  # attr_reader :client
 	def initialize(token)
 		@client = Twitter::REST::Client.new do |config|
   			config.consumer_key        = ENV["CONSUMER_KEY"]
