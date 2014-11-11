@@ -4,7 +4,8 @@ require 'alchemyapi'
 
 class User < ActiveRecord::Base
   has_many :supporters
-  has_many :tweets
+  has_many :daily_reports
+  has_many :tweets, through: :daily_reports
   has_many :triggers
   has_many :trigger_histories
   has_many :tokens
