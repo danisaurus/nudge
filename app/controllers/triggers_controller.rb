@@ -4,6 +4,11 @@ class TriggersController < ApplicationController
 
   end
 
+  def destroy
+    Trigger.find(params[:trigger_id]).destroy
+    render nothing: true
+  end
+
   def new
     @trigger = Trigger.new
   end
@@ -11,7 +16,7 @@ class TriggersController < ApplicationController
   def create
     @trigger = Trigger.new(trigger_params)
     @trigger.user_id = current_user.id
-    @trigger.task_id = 1
+    @trigger.task = Task.create(method: params[:method])
     if @trigger.save
       render partial: "triggers/show.html", formats: :html
     else
@@ -25,7 +30,6 @@ class TriggersController < ApplicationController
     @trigger.duration_in_hours += 1
     @trigger.save
     render nothing: true
-    # render :json => @trigger.duration_in_hours
   end
 
   def decrease_durations
@@ -33,8 +37,8 @@ class TriggersController < ApplicationController
     @trigger.duration_in_hours -= 1 unless @trigger.duration_in_hours == 1
     @trigger.save
     render nothing: true
-    # render :json => @trigger.duration_in_hours
   end
+
 
   private
   def trigger_params

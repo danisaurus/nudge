@@ -32,6 +32,7 @@ class UsersController < ApplicationController
 		@user = User.new(user_params)
 		@supporter = Supporter.new
 		@trigger = Trigger.new
+		@user.daily_reports << DailyReport.new
 		@user.last_active = Time.now
 		respond_to do |format|
 		  if @user.save
@@ -49,6 +50,22 @@ class UsersController < ApplicationController
 		respond_to do |format|
 			format.html { return redirect_to root_url, notice: "User was successfully destroyed."}
 		end
+	end
+
+	def toggle_twitter_triggers
+		current_user.toggle_twitter_triggers
+    render nothing: true
+	end
+
+	def toggle_google_triggers
+		current_user.toggle_google_triggers
+    render nothing: true
+	end
+
+	def specific_toggle
+    trigger = current_user.triggers.find(params[:trigger_id])
+		current_user.toggle(trigger)
+    render nothing: true
 	end
 
 	private

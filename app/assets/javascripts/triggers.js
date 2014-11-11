@@ -2,6 +2,7 @@ $(document).ready(function(){
   var days = $("#trigger_duration_in_hours");
   days.val(1);
   days.hide();
+  $('.messageHolder').hide();
   $("body").on( "click", "#toggle-up", function() {
     days.val(Number(days.val()) + 1);
       $('#incDays').text(days.val());
@@ -60,4 +61,39 @@ $(document).ready(function(){
     })
   })
 
+  $('.editTrigger').on('click', function(){
+    event.preventDefault();
+    var par = $(this).parent();
+    var messageHolder = par.next().children();
+    messageHolder.slideToggle();
+    });
+
+
+    var changeDivColorTheSequel = function(div, color, margin){
+        div.animate({
+              backgroundColor: color,
+              'margin-left': margin
+            }, 400 );
+      }
+
+    $('.trigDelete').on('click', function(event){
+      event.preventDefault();
+      var url = $(this).attr('href');
+      var par = $(this).parent().parent();
+      par.fadeOut('slow');
+      $.get(url, function(serverResponse, status, jqXHR){})
+    });
+
+  $('.toggleTwitterTriggers').on('click', function(event){
+    event.preventDefault();
+    var url = $(this).attr('href');
+    var childTarget = $(this).children().first().children().first()
+    if ( childTarget.css("margin-left") === '1px' ) {
+      changeDivColorTheSequel(childTarget, '#FF0000', 19)
+    } else {
+     changeDivColorTheSequel(childTarget, 'green', 1)
+    }
+    $.get(url, function(serverResponse, status, jqXHR){
+    });
+  });
 });
