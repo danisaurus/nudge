@@ -1,0 +1,88 @@
+body {
+	font-family: Gotham, sans-serif, helvetica;
+}
+
+#cloud-intro {
+	background-color: #9CD5F6;
+}
+
+#introduction {
+	width:100%;
+	height:800px;
+	background: url(/animated-clouds-background.png) no-repeat center center fixed;
+	-webkit-background-size: cover;
+  	-moz-background-size: cover;
+  	-o-background-size: cover;
+  	background-size: cover;
+  	h2 {
+  		font-weight: 100 !important;
+  	}
+  	.headline {
+  		color:white;
+  	}
+  	.main-images{
+  		margin: 50px 0px;
+  	}
+}
+
+.centered {
+	margin: 0 auto;
+	text-align:center;
+}
+
+#intro-info {
+	background:white;
+	section {
+		padding: 100px 0;
+		border-bottom: 1px solid #FBAF3F;
+	}
+
+}
+
+.xlarge-headline {
+	font-weight: 200 !important;
+	font-size: 46px;
+	color: #FBAF3F;
+	margin-top: 100px;
+}
+
+.xlarge-subheadline {
+	font-size: 25px;
+	font-weight: 100 !important;
+	color: #FBAF3F;
+}
+
+
+
+.btn-primary {
+	background: #FBAF3F !important;
+	border-color: transparent !important;
+	border: 0px;
+}
+
+.btn-primary:hover {
+	background: #DA5D26 !important;
+	border-color: transparent !important;
+	border: 0px;
+}
+
+.btn-lg {
+	height: 60px;
+	width: 200px;
+	padding: 15px;
+	margin-top: 25px
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
