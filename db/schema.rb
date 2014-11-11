@@ -17,6 +17,7 @@ ActiveRecord::Schema.define(version: 20141111032559) do
   enable_extension "plpgsql"
 
   create_table "daily_reports", force: true do |t|
+    t.integer  "user_id"
     t.float    "average_tweet_sentiment"
     t.float    "average_email_sentiment"
     t.date     "created_at"
@@ -64,7 +65,7 @@ ActiveRecord::Schema.define(version: 20141111032559) do
     t.integer  "user_id"
     t.text     "message_text"
     t.integer  "duration_in_hours"
-    t.datetime "time_last_run",     default: '2014-11-11 02:27:34'
+    t.datetime "time_last_run",     default: '2014-11-11 14:45:57'
     t.datetime "created_at"
     t.datetime "updated_at"
     t.boolean  "active",            default: true

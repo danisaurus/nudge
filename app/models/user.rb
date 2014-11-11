@@ -9,7 +9,6 @@ class User < ActiveRecord::Base
   has_many :triggers
   has_many :trigger_histories
   has_many :tokens
-  phony_normalize :phone, :default_country_code => 'US'
 
   has_secure_password
 
@@ -42,7 +41,8 @@ class User < ActiveRecord::Base
 
   def find_last_history_id
     client = GmailAPI.new(self.gmail_token)
-    return client.get_last_history_id
+    p client
+    client.get_last_history_id
   end
 
   def check_email_activity(trigger)
