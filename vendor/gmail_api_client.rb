@@ -43,11 +43,19 @@ class GmailAPI
       )
   end
 
+
+  def get_emails_for_today(start_history_id)
+    daily_emails = []
+    daily_email_ids = get_sent_history_ids(start_history_id)
+    daily_email_ids.each {|email_id| daily_emails << get_message_body(email_id)}
+    daily_emails
+  end
+
   def get_message_date(message_id)
     get_message(message_id).data.payload.headers[2].value
   end
 
-  private
+  # private
 
   def clean_up_message_body(body)
     body.gsub(/(\r\n)/, " ")
