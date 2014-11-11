@@ -10,6 +10,8 @@
     <div id='supportersShow'>
       <ul>
         <% @user.supporters.each do |supporter| %>
+        <li>
+          <ul class='supportContainer'>
             <li>
               <%= supporter.first_name %> <%= supporter.last_name %>
             </li>
@@ -23,14 +25,22 @@
               <%= supporter.twitter %>
             </li>
             <%= link_to 'Edit', edit_user_supporter_path(@user, supporter), :class => "editSupporter" %>
+          </ul>
+        </li>
         <% end %>
       </ul>
     </div>
     <div id='notificationsShow'>
       <% @user.triggers.each do |trigger| %>
-        <div class="show_trigger">
-          <p>If you haven't checked your email in <%= pluralize(trigger.duration_in_hours, 'day') %>, we will let your support know that:</p>
-          <p><%= trigger.message_text %></p>
+        <div>
+          <div class='inline-flex'>
+            <div><i id="toggle-up" class="fa fa-chevron-up block"></i></div>
+              <div class='block'> <span id='incDays'><%= trigger.duration_in_hours %></span> <span id='day'>day</span> :</div>
+            <div><i id="toggle-down" class="fa fa-chevron-down block"></i></div>
+          </div>
+          <div class='inline-flex'>
+            <%= trigger.message_text %>...
+          </div>
         </div>
       <% end %>
     </div>
