@@ -31,22 +31,32 @@
       </ul>
     </div>
     <div id='notificationsShow'>
-      <% @user.triggers.each do |trigger| %>
-        <div>
-          <div class='inline-flex'>
-            <%= link_to raw('<i class="fa fa-chevron-up block toggle-up"></i>'), trig_inc_path(trigger) %>
-          </div>
-          <div class='block'>
-            <span class='incDays'><%= trigger.duration_in_hours %></span> <span class='day'>day</span>
-          </div>
-          <div>
-            <%= link_to raw('<i class="fa fa-chevron-down block toggle-down"></i>'), trig_dec_path(trigger) %>
-          </div>
-          <div class='inline-block'>
-            <%= trigger.message_text %>
-          </div>
+      <div class='block'>
+        <div id='showNewTrigger'>
+          Add New Notification
         </div>
-      <% end %>
+        <div id='newTriggerSettings'>
+          <%= render "triggers/new", locals: {user: @user} %>
+        </div>
+      </div>
+      <div id='notifications'>
+        <% @user.triggers.each do |trigger| %>
+          <div class='block'>
+            <div class='inline-flex'>
+              <%= link_to raw('<i class="fa fa-chevron-up block toggle-up"></i>'), trig_inc_path(trigger) %>
+            </div>
+            <div class='block'>
+              <span class='incDays'><%= trigger.duration_in_hours %></span> <span class='day'>day</span>
+            </div>
+            <div>
+              <%= link_to raw('<i class="fa fa-chevron-down block toggle-down"></i>'), trig_dec_path(trigger) %>
+            </div>
+            <div class='inline-block'>
+              <%= trigger.message_text %>
+            </div>
+          </div>
+        <% end %>
+      </div>
     </div>
     <div id='monitorsShow'>
     </div>

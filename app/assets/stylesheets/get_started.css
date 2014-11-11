@@ -7,6 +7,10 @@ h3 {
   color: white;
 }
 
+.cursorPointer {
+  cursor: pointer;
+}
+
 .formHolder {
   display: inline-block;
   height: 240px;

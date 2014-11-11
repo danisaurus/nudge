@@ -6,10 +6,10 @@ class User < ActiveRecord::Base
   has_many :supporters
   has_many :daily_reports
   has_many :tweets, through: :daily_reports
+  has_many :gmails, through: :daily_reports
   has_many :triggers
   has_many :trigger_histories
   has_many :tokens
-  phony_normalize :phone, :default_country_code => 'US'
 
   has_secure_password
 
@@ -42,7 +42,11 @@ class User < ActiveRecord::Base
 
   def find_last_history_id
     client = GmailAPI.new(self.gmail_token)
-    return client.get_last_history_id
+    if self.last_history_number.nil?
+      self.last_history_number = client.get_start_history_id
+    else
+      return client.get_last_history_id(self.last_history_number)
+    end
   end
 
   def check_email_activity(trigger)
@@ -74,7 +78,9 @@ class User < ActiveRecord::Base
     alchemyapi = AlchemyAPI.new
     tweets.each do |tweet|
       response = alchemyapi.sentiment("text", tweet.text)
-      daily_report.tweets << Tweet.create!(user: self, id_of_tweet: tweet.id, qualitative: response['docSentiment']['type'], quantitative: response['docSentiment']['score'].to_f)
+      if response["status"] != "ERROR"
+        Tweet.create!(user: self, id_of_tweet: tweet.id, qualitative: response['docSentiment']['type'], quantitative: response['docSentiment']['score'].to_f)
+      end
     end
   end
 
@@ -85,4 +91,19 @@ class User < ActiveRecord::Base
     response = alchemyapi.sentiment("text", tweet.text)
     Tweet.create!(user: self, id_of_tweet: tweet.id, qualitative: response['docSentiment']['type'], quantitative: response['docSentiment']['score'].to_f)
   end
+
+  def get_daily_gmails
+    client = GmailAPI.new(self.gmail_token)
+    sent_gmails = client.get_emails_for_today(self.last_history_number)
+    alchemyapi = AlchemyAPI.new
+    sent_gmails.each do |gmail|
+      sentiment_response = alchemyapi.sentiment("text", gmail)
+      keyword_response = alchemyapi.keywords("text", gmail)
+      if sentiment_response["status"] != "ERROR"
+        database_gmail = Gmail.create!(user: self, quantitative: sentiment_response['docSentiment']['score'].to_f, qualitative: sentiment_response['docSentiment']['type'])
+        keyword_response['keywords'].each{ |keyword_hash| database_gmail.keywords << Keyword.create!(keyword_hash) }
+      end
+    end
+  end
+
 end

@@ -3,46 +3,38 @@ $(document).ready(function(){
   $('#divThree').hide();
   var steps = [$('#stepOne'), $('#stepTwo'), $('#stepThree')]
   var formsOne = [$('#divOne'), $('#divTwo'), $('#divThree')];
-  var next = 1;
-  var makeNext = function(next){
-    if (next < 2){
-      return next+=1
-    } else { return next = 2 }
-  };
-  var makePrevious = function(previous){
-    if (previous > 0) {
-      return previous -= 1
-    } else { return previous = 0 }
-  };
 
   $('#nextButton').on('click', function(event){
     var id = $(this).parent().attr("id")
-    $('#formHolder').children().hide();
-    if (next === 0) {
-      steps[next].removeClass('active')
-      next = 1;
-    } else { steps[next - 1].removeClass('active') }
-    if (next == 2) {
+    if ($(formsOne[0]).is(":visible")) {
+      $('#formHolder').children().hide();
+      formsOne[1].fadeIn()
+      steps[0].removeClass('active')
+      steps[1].addClass('active')
+    } else if ( $(formsOne[1]).is(":visible")) {
+      $('#formHolder').children().hide();
+      formsOne[2].fadeIn()
       $('#nextButton').html("<a href='/users/"+id+"'><h3>Done</h3></a>")
-    } else {$('#nextButton').html("<h3>Next Step <i class='fa fa-chevron-right'></i></h3>")}
-    formsOne[next].fadeIn()
-    steps[next].addClass('active')
-    next = makeNext(next);
+      steps[1].removeClass('active')
+      steps[2].addClass('active')
+    }
+
   });
 
   $('#backButton').on('click', function(event){
-    if (next !== 0 ){
+    if ($(formsOne[1]).is(":visible")) {
       $('#formHolder').children().hide();
       $('#nextButton').html("<h3>Next Step <i class='fa fa-chevron-right'></i></h3>")
-      if (next === 1) {
-        next = 0
-      } else if (next === 2 ) {
-        next = makePrevious(next)
-      };
-      steps[next + 1].removeClass('active')
-      formsOne[next].fadeIn()
-      steps[next].addClass('active')
-      }
+      steps[1].removeClass('active')
+      steps[0].addClass('active')
+      formsOne[0].fadeIn()
+    } else if ( $(formsOne[2]).is(":visible")) {
+      $('#formHolder').children().hide();
+      formsOne[1].fadeIn()
+      $('#nextButton').html("<h3>Next Step <i class='fa fa-chevron-right'></i></h3>")
+      steps[2].removeClass('active')
+      steps[1].addClass('active')
+    }
   });
 
   $('#new_supporter').on('submit', function(event){

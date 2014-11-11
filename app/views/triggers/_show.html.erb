@@ -1,4 +1,14 @@
-<div class="show_trigger">
-  <p>If you haven't checked your email in <%= pluralize(@trigger.duration_in_hours, 'day') %>, we will let your support know that:</p>
-  <p><%= @trigger.message_text %></p>
+<div class='block'>
+  <div class='inline-flex'>
+    <%= link_to raw('<i class="fa fa-chevron-up block toggle-up"></i>'), trig_inc_path(@trigger) %>
+  </div>
+  <div class='block'>
+    <span class='incDays'><%= @trigger.duration_in_hours %></span> <span class='day'>day</span>
+  </div>
+  <div>
+    <%= link_to raw('<i class="fa fa-chevron-down block toggle-down"></i>'), trig_dec_path(@trigger) %>
+  </div>
+  <div class='inline-block'>
+    <%= @trigger.message_text %>
+  </div>
 </div>

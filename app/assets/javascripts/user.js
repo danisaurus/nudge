@@ -3,6 +3,7 @@ $(document).ready(function(){
   var activity = $('#userActivity')
   var settings = $('#userSettings')
   var account = $('#userAccount')
+  $('#newTriggerSettings').hide();
   account.hide();
   activity.hide();
   settings.hide();
@@ -47,5 +48,9 @@ $(document).ready(function(){
   $('#notificationsSettings').on('click', function() {
     $('#page-content-wrapper').children().hide();
     $('#notificationsShow').show();
+  })
+
+  $('#showNewTrigger').on('click', function(){
+    $( "#newTriggerSettings" ).slideToggle( "fast" );
   })
 });
