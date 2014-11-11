@@ -31,6 +31,10 @@ $(document).ready(function(){
 
   });
 
+  $('#userAccount').on('click', function() {
+    $('#page-content-wrapper').children().hide();
+    $('#monitorsShow').show();
+  })
 
   $('#monitorSettings').on('click', function() {
     $('#page-content-wrapper').children().hide();

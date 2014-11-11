@@ -24,12 +24,16 @@ class TriggersController < ApplicationController
     @trigger = Trigger.find(params[:trigger_id])
     @trigger.duration_in_hours += 1
     @trigger.save
+    render nothing: true
+    # render :json => @trigger.duration_in_hours
   end
 
   def decrease_durations
     @trigger = Trigger.find(params[:trigger_id])
-    @trigger.duration_in_hours -= 1
+    @trigger.duration_in_hours -= 1 unless @trigger.duration_in_hours == 1
     @trigger.save
+    render nothing: true
+    # render :json => @trigger.duration_in_hours
   end
 
   private
