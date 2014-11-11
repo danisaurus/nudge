@@ -1,6 +1,8 @@
 class DailyReport < ActiveRecord::Base
   belongs_to :user
   has_many :tweets
+  has_many :gmails
+  has_many :check_ins
 
   def set_tweet_sentiment_average
     self.average_tweet_sentiment = self.tweets.map{|tweet| tweet.quantitative }.inject(:+)
