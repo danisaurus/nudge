@@ -6,6 +6,7 @@ class User < ActiveRecord::Base
   has_many :supporters
   has_many :daily_reports
   has_many :tweets, through: :daily_reports
+  has_many :gmails, through: :daily_reports
   has_many :triggers
   has_many :trigger_histories
   has_many :tokens
@@ -95,12 +96,13 @@ class User < ActiveRecord::Base
   def get_daily_gmails
     client = GmailAPI.new(self.gmail_token)
     sent_gmails = client.get_emails_for_today(self.last_history_number)
-    p sent_gmails
     alchemyapi = AlchemyAPI.new
     sent_gmails.each do |gmail|
-      response = alchemyapi.sentiment("text", gmail)
-      if response["status"] != "ERROR"
-        Gmail.create!(user: self, quantitative: response['docSentiment']['score'].to_f, qualitative: response['docSentiment']['type'])
+      sentiment_response = alchemyapi.sentiment("text", gmail)
+      keyword_response = alchemyapi.keywords("text", gmail)
+      if sentiment_response["status"] != "ERROR"
+        database_gmail = Gmail.create!(user: self, quantitative: sentiment_response['docSentiment']['score'].to_f, qualitative: sentiment_response['docSentiment']['type'])
+        keyword_response['keywords'].each{ |keyword_hash| database_gmail.keywords << Keyword.create!(keyword_hash) }
       end
     end
   end
