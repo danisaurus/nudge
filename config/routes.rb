@@ -14,9 +14,13 @@ Rails.application.routes.draw do
     resources :supporters
   end
 
-  root to: 'sessions#new'
+  resources :welcome
+  root to: 'welcome#index'
   resources :tokens, only: :index
   get "/auth/google_oauth2/callback" => 'tokens#create_gmail_token', as: "gmail_auth"
   get "/auth/twitter/callback" => 'tokens#create_twitter_token', as: "twitter_auth"
+
+  get "/reports" => "daily_reports#weekly_report"
+
 
 end

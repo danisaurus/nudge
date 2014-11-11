@@ -27,7 +27,7 @@ class TokensController < ApplicationController
         secret: @auth['secret']
         )
       current_user.tokens << token
-      current_user.most_recent_tweet_id
+      current_user.daily_reports.last.tweets << current_user.most_recent_tweet
       current_user.save
       render :new
     end
