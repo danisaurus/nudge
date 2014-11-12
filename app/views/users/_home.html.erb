@@ -1,4 +1,4 @@
-<div id="mood-wheel">
+<div id="mood-wheel" class="col-lg-12">
     <div id="menu">
          
         <input type="checkbox" id="on-check" name="on-check" />
@@ -7,44 +7,53 @@
             <span><span class="ss-plus"><!-- Put plus icon here if not using symbol set --></span></span>
             <span><span class="ss-hyphen"><!-- Put minus icon here if not using symbol set --></span></span>
         </label>
-        
-        <input type="radio" id="info-sunshine" name="radio-check" />
-        <input type="radio" id="info-tranquil" name="radio-check" />
-        <input type="radio" id="info-partly-cloudy" name="radio-check" />
-        <input type="radio" id="info-rainy" name="radio-check" />
-        <input type="radio" id="info-stormy" name="radio-check" />
+
+        <!-- <form action="/moods" method="POST"> -->
+         
         <input type="radio" id="info-tornado" name="radio-check" />
+        <input type="radio" id="info-sun" name="radio-check" />
+        <input type="radio" id="info-sunset" name="radio-check" />
+        <input type="radio" id="info-storm" name="radio-check" />
+        <input type="radio" id="info-rainy" name="radio-check" />
+        <input type="radio" id="info-cloudy" name="radio-check" />
+
+    <!--     </form> -->
          
         <div id="menu-items">
             <div class="middle">
                 <div class="top">
                     <span class="bg-piece"> </span> 
-                    <label class="ss-sunshine" for="info-sunshine"></label>
+                    <label class="ss-tornado" for="info-tornado"><!-- Put home icon here if not using symbol set --></label>
                     <span class="bg-piece"> </span> 
-                    <label class="ss-tranquil" for="info-tranquil"></label>
-                    
+                    <label class="ss-sun" for="info-sun"><!-- Put compass icon here if not using symbol set --></label>
                     <span class="bg-piece"> </span> 
-                    <label class="ss-partly-cloudy" for="info-partly-cloudy"></label> 
+                    <label class="ss-sunset" for="info-sunset"><!-- Put heart icon here if not using symbol set --></label> 
                 </div>
                 <div class="bottom">
                     <span class="bg-piece"> </span> 
-                    <label class="ss-rainy" for="info-rainy"></label> 
+                    <label class="ss-storm" for="info-storm"><!-- Put rss icon here if not using symbol set --></label> 
                     <span class="bg-piece"> </span> 
-                    <label class="ss-stormy" for="info-stormy"></label> 
+                    <label class="ss-rainy" for="info-rainy"><!-- Put refresh icon here if not using symbol set --></label> 
                     <span class="bg-piece"> </span> 
-                    <label class="ss-tornado" for="info-tornado"></label> 
+                    <label class="ss-cloudy" for="info-cloudy"><!-- Put icon here if not using symbol set --></label> 
                 </div>
             </div>
              
         </div>
          
-        <div class="info tranquil-info">Happy</div>
-        <div class="info sunshine-info">Okay</div>
-        <div class="info partly-clouded-info">Not Well</div>
-        <div class="info rainy-info">Sad</div>
-        <div class="info tornado-info">Really Sad</div>
-        <div class="info stormy-info">Depressed</div>
+        <div class="info tornado-info">Lets go home</div>
+        <div class="info sun-info">Want directions?</div>
+        <div class="info sunset-info">Love</div>
+        <div class="info storm-info">RSS Feed</div>
+        <div class="info cloudy-info">Galactic domination</div>
+        <div class="info rainy-info">Refreshing</div>
          
         <div class="faux-shadow"> </div>
     </div>
 </div>
+
+<div class="col-lg-12">
+    <button id="mood-submit" type="submit" class="btn btn-primary btn-lg">submit</button>
+</div>
+<!-- 
+<button type="submit" class="btn btn-primary btn-lg"></button> -->
