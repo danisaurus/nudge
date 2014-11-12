@@ -18,7 +18,9 @@
   <%= link_to "Signup", '/users/new', :id => "signUp" %>
   </div>
   <% if @user.errors.any?  %>
-    <p><%= @user.errors.messages %></p>
+    <% @user.errors.full_messages.each do |message| %>
+    <p><%= message %></p>
+    <% end %>
   <% end %>
 
   <div class='col-md-offset-4' id='newUser'>

@@ -28,6 +28,6 @@ Rails.application.routes.draw do
 
   get "/reports" => "daily_reports#weekly_report"
 
-  get '*path', :controller => 'user', :action => 'show'
+  get '*path', :controller => 'users', :action => 'show'
 
 end
