@@ -18,4 +18,23 @@ $(document).ready(function(){
       par.html(serverResponse)
   	});
   });
+
+    $('body').on('click','.deleteSupporter', function(event){
+      event.preventDefault();
+      var url = $(this).attr('href');
+      $(this).parent().fadeOut();
+      $.get(url, function(serverResponse, status, jqXHR) {});
+    })
+
+
+  $('body').on('submit', '#new_supporter', function(event){
+    event.preventDefault();
+    var url = $(this).attr( 'action' ),
+        data = $("#new_supporter").serialize();
+
+    $.post(url, data, function(serverResponse, status, jqXHR) {
+      $(serverResponse).hide().appendTo('#network').fadeIn();
+      $('form').find("input[type=text]").val("");
+    });
+  })
 });

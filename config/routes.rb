@@ -2,7 +2,6 @@ require 'sidekiq/web'
 
 Rails.application.routes.draw do
   mount Sidekiq::Web, at: "/sidekiq"
-
   get '/triggers/:trigger_id/delete' => 'triggers#destroy'
   resources :triggers do
   end
@@ -15,7 +14,7 @@ Rails.application.routes.draw do
   get '/users/:user_id/toggle_twitter_triggers' => 'users#toggle_twitter_triggers', as: 'toggle_twitter_trig'
   get '/users/:user_id/toggle_google_triggers' => 'users#toggle_google_triggers', as: 'toggle_google_trig'
   get '/users/:trigger_id/toggle' => 'users#specific_toggle', as: 'trig_toggle'
-
+  get '/user/:user_id/supporters/:supporter_id/delete' => 'supporters#destroy', as: 'delete_supporter'
   resources :users, except: [:index] do
     resources :supporters
   end
@@ -28,5 +27,6 @@ Rails.application.routes.draw do
 
   get "/reports" => "daily_reports#weekly_report"
 
+  get '*path', :controller => 'user', :action => 'show'
 
 end
