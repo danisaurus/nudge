@@ -13,8 +13,8 @@ class User < ActiveRecord::Base
   has_many :trigger_histories
   has_many :tokens
 
-  # phony_normalize :phone, :default_country_code => 'US' # takes care of the many different ways to input a phone number
-  # validates :phone, :phony_plausible => true
+  phony_normalize :phone, :default_country_code => 'US' # takes care of the many different ways to input a phone number
+  validates :phone, :phony_plausible => true
 
   has_secure_password
 
