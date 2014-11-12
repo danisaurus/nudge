@@ -15,10 +15,5 @@
   <a href="<%= @supporter.phone.phony_formatted(:format => :international, spaces: "") %>">+<%= @supporter.phone %></a>
 </p>
 
-<p>
-  <strong>Email:</strong>
-  <%= mail_to @supporter.gmail %>
-</p>
-
 <%= link_to 'Edit', edit_user_supporter_path(@user, @supporter) %>
 <%= link_to 'Back', user_supporters_path(@user) %>

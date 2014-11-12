@@ -15,7 +15,8 @@ class User < ActiveRecord::Base
 
   phony_normalize :phone, :default_country_code => 'US' # takes care of the many different ways to input a phone number
   validates :phone, :phony_plausible => true
-
+  validates :gmail, :phone, :first_name, :last_name, presence: true
+  validates :gmail, uniqueness: true
   has_secure_password
 
   include Texter
