@@ -147,6 +147,16 @@ class User < ActiveRecord::Base
     end
   end
 
+  def all_email?
+    email_triggers = self.triggers.all.select { |t| t.task.method =~ /email/i }
+    email_triggers.any? { |t| t.active }
+  end
+
+  def all_twitter?
+    twitter_triggers = self.triggers.all.select { |t| t.task.method =~ /twitter/i }
+    twitter_triggers.any? { |t| t.active }
+  end
+
   def get_daily_check_ins(daily_report)
     check_ins_for_the_day = self.check_ins.where(created_at: Date.today + 1)
     check_ins_for_the_day.each do |check_in|

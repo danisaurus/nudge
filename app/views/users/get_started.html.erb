@@ -13,7 +13,7 @@
           <%= link_to raw("<div class='ellipse inline-block'>
             <div class='circle inline-block'>
             </div>
-          </div>"), "/auth/google_oauth2", :target => "_blank" %>
+          </div>"), "/auth/google_oauth2", :target => "_blank", :id => 'googleAuth' %>
           <% if current_user.gmail_token.nil? %>
             Activate Passive Monitor with Google
           <% else %>
@@ -24,7 +24,7 @@
           <%= link_to raw("<div class='ellipse inline-block'>
             <div class='circle inline-block'>
             </div>
-          </div>"), "/auth/twitter", :target => "_blank" %>
+          </div>"), "/auth/twitter", :target => "_blank", :id => 'twitterAuth' %>
           <% if current_user.gmail_token.nil? %>
             Activate Passive Monitor with Twitter
           <% else %>

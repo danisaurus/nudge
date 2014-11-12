@@ -8,9 +8,11 @@
   </div>
   <div id='page-content-wrapper' class='inline-flex'>
     <div id='supportersShow'>
-      <ul>
+      <div class='newSupporter'>
+        <%= render 'supporters/form', locals: {user: @user} %>
+      </div>
+      <div id='network'>
         <% @user.supporters.each do |supporter| %>
-        <li>
           <ul class='supportContainer'>
             <% if @user.supporters.nil? %>
               You have no one in your support network! Add some!
@@ -27,11 +29,10 @@
             <li>
               <%= supporter.twitter %>
             </li>
-            <%= link_to 'Edit', edit_user_supporter_path(@user, supporter), :class => "editSupporter" %>
+            <%= link_to 'Edit', edit_user_supporter_path(current_user, supporter), :class => "editSupporter" %> <%= link_to 'Delete', delete_supporter_path(current_user, supporter), :class => "deleteSupporter" %>
           </ul>
-        </li>
         <% end %>
-      </ul>
+      </div>
     </div>
     <div id='notificationsShow'>
       <div class='block'>
@@ -101,15 +102,23 @@
         <%= link_to raw("<div class='ellipse inline-block'>
             <div class='circle inline-block'>
             </div>
-          </div>"), toggle_twitter_trig_path(current_user), :id => 'toggleTwitterTriggers' %>
-        Twitter Monitoring: <span>Active</span>
+          </div>"), toggle_twitter_trig_path(current_user), :id =>'toggleTwitterTriggers', :class => current_user.all_twitter? ? "" : "marginNineteen" %>
+          <% if current_user.all_twitter? %>
+            Twitter Monitoring: <span>Active</span>
+          <% else %>
+            Twitter Monitoring: <span>Inactive</span>
+          <% end %>
       </div>
       <div class='block'>
         <%= link_to raw("<div class='ellipse inline-block'>
             <div class='circle inline-block'>
             </div>
-          </div>"), toggle_google_trig_path(current_user), :id => 'toggleGoogleTriggers' %>
-        Google Monitoring: <span>Active</span>
+          </div>"), toggle_google_trig_path(current_user), :id => 'toggleGoogleTriggers', :class => current_user.all_email? ? "" : "marginNineteen" %>
+        <% if current_user.all_email? %>
+            Google Monitoring: <span>Active</span>
+          <% else %>
+            Google Monitoring: <span>Inactive</span>
+          <% end %>
       </div>
     </div>
   </div>

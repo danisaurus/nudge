@@ -31,7 +31,7 @@ $(document).ready(function(){
         par = $('body');
 
     $.post(url, data, function(serverResponse, status, jqXHR) {
-      $(serverResponse).hide().appendTo('#notifications').fadeIn();
+      $(serverResponse).hide().appendTo('.tbody').fadeIn();
       $('form').find("textarea").val("");
     });
   });

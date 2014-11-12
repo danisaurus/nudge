@@ -41,13 +41,8 @@ class SupportersController < ApplicationController
 	end
 
 	def destroy
-		supporter = Supporter.find(params[:id])
-		@user = supporter.user
-		supporter.destroy
-		respond_to do |format|
-			format.json { return render json: {notice: "Removed #{supporter.first_name} from your circle."} }
-			format.html { return redirect_to user_supporters_path(@user) }
-		end
+		Supporter.find(params[:supporter_id]).destroy
+    render nothing: true
 	end
 
 	private
