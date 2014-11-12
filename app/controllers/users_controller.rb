@@ -39,7 +39,7 @@ class UsersController < ApplicationController
 		  	session[:user_id] = @user.id
 		    format.html { render :get_started }
 		  else
-		    format.html { render :new }
+		    format.html { render :"sessions/new" }
 		  end
 		end
 	end
@@ -71,7 +71,7 @@ class UsersController < ApplicationController
 	private
 
 	def user_params
-		params.require(:user).permit(:first_name, :last_name, :password, :password_confirmation, :gmail, :phone, :twitter)
+		params.require(:user).permit(:first_name, :last_name, :password, :password_confirmation, :phone, :gmail, :twitter)
 	end
 
 end

@@ -58,9 +58,9 @@ class User < ActiveRecord::Base
   end
 
   def text_supporters(message)
-     self.supporters.each do |supporter|
-        supporter.text(message, supporter.phone)
-      end
+    self.supporters.each do |supporter|
+      supporter.text(message, supporter.phone)
+    end
   end
 
   def happy_messages?(number_of_days, data_type)
