@@ -81,7 +81,7 @@ ActiveRecord::Schema.define(version: 20141111165428) do
     t.integer  "user_id"
     t.text     "message_text"
     t.integer  "duration_in_hours"
-    t.datetime "time_last_run",     default: '2014-11-11 22:16:54'
+    t.datetime "time_last_run",     default: '2014-11-12 00:24:08'
     t.datetime "created_at"
     t.datetime "updated_at"
     t.boolean  "active",            default: true

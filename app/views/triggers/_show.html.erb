@@ -1,18 +1,30 @@
-<div class='block'>
-  <div class='inline-flex'>
-    <%= link_to raw('<i class="fa fa-chevron-up block toggle-up"></i>'), trig_inc_path(@trigger) %>
+<div class='tr'>
+  <div class='td'>
+    <%= link_to raw("<div class='ellipse inline-block'>
+    <div class='circle inline-block '>
+    </div>
+    </div>"), trig_toggle_path(@trigger), :class => @trigger.active ? "toggleTwitterTriggers" : "toggleTwitterTriggers marginNineteen" %>
   </div>
-  <div class='block'>
-    <span class='incDays'><%= @trigger.duration_in_hours %></span> <span class='day'>day</span>
+  <div class='td'>
+    <div class='inline-flex'>
+      <%= link_to raw('<i class="fa fa-plus inline-block toggle-up"></i>'), trig_inc_path(@trigger) %>
+    </div>
+    <div class='inline-block'>
+      <span class='incDays'>
+        <%= @trigger.duration_in_hours %>
+      </span>
+    </div>
+    <div>
+    <%= link_to raw('<i class="fa fa-minus inline-block toggle-down"></i>'), trig_dec_path(@trigger) %>
+    </div>
   </div>
-  <div>
-    <%= link_to raw('<i class="fa fa-chevron-down block toggle-down"></i>'), trig_dec_path(@trigger) %>
+  <div class='td'>
+    <%=@trigger.message_text[0..18] %>...
   </div>
-  <div class='inline-block'>
-    <%= @trigger.message_text %>
+  <div class='editTrigger td'>
+    <a href="">edit</a>
+  </div>
+  <div  class='td'>
+    <a href="/triggers/<%=@trigger.id%>/delete" class='trigDelete'>delete</a>
   </div>
 </div>
-<%#= link_to raw("<div class='ellipse inline-block'>
-            <div class='circle inline-block'>
-            </div>
-          </div>"), toggle_twitter_trig_path(current_user), :class => 'toggleActive' %>

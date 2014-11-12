@@ -37,15 +37,19 @@ $(document).ready(function(){
     }
   });
 
-  $('#new_supporter').on('submit', function(event){
-    event.preventDefault();
-    var url = $(this).attr( 'action' ),
-        data = $("#new_supporter").serialize();
+  var changeDivColor = function(div, color, margin){
+    div.children().first().children().animate({
+          backgroundColor: color,
+          'margin-left': margin
+        }, 400 );
+  }
 
-    $.post(url, data, function(serverResponse, status, jqXHR) {
-      $(serverResponse).hide().appendTo('#network').fadeIn();
-      $('form').find("input[type=text]").val("");
-    });
-  })
+  $('#twitterAuth').on('click', function(event){
+    changeDivColor($(this), '#FF0000', 19)
+  });
+
+  $('#googleAuth').on('click', function(event){
+    changeDivColor($(this), '#FF0000', 19)
+  });
 
 });
