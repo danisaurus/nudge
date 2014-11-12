@@ -11,7 +11,7 @@ class Supporter < ActiveRecord::Base
   include Texter
 
   def must_have_a_way_to_contact
-  	unless phone || twitter || gmail
+  	unless phone
   		errors.add(:way_to_contact, "must have at least one of: phone number, twitter handle, gmail")
   	end
   end
