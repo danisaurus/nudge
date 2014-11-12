@@ -58,9 +58,9 @@ class User < ActiveRecord::Base
   end
 
   def text_supporters(message)
-     self.supporters.each do |supporter|
-        supporter.text(message, supporter.phone)
-      end
+    self.supporters.each do |supporter|
+      supporter.text(message, supporter.phone)
+    end
   end
 
   def happy_messages?(number_of_days, data_type)
@@ -118,7 +118,7 @@ class User < ActiveRecord::Base
       response = alchemyapi.sentiment("text", tweet.text)
       if response["status"] != "ERROR"
         daily_report.tweets << Tweet.create!(id_of_tweet: tweet.id, qualitative: response['docSentiment']['type'], quantitative: response['docSentiment']['score'].to_f)
-        current_user.daily_reports << daily_report
+        self.daily_reports << daily_report
       end
     end
   end
