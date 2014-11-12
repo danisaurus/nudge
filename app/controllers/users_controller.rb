@@ -49,7 +49,10 @@ class UsersController < ApplicationController
 	end
 
 	def moods
-		
+		@check_in = CheckIn.new(params['quantitative'])
+		current_user.daily_reports.last.check_ins << @check_in
+		puts 'hello'
+		render nothing: true
 	end
 
 	def toggle_twitter_triggers

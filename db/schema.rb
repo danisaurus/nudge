@@ -11,14 +11,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141112172500) do
+ActiveRecord::Schema.define(version: 20141112190518) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "check_ins", force: true do |t|
     t.integer  "daily_report_id"
-    t.integer  "quantitative"
+    t.float    "quantitative"
     t.date     "created_at"
     t.datetime "updated_at"
   end
@@ -80,13 +80,8 @@ ActiveRecord::Schema.define(version: 20141112172500) do
     t.integer  "task_id"
     t.integer  "user_id"
     t.text     "message_text"
-<<<<<<< HEAD
-    t.integer  "duration_in_hours"
-    t.datetime "time_last_run",     default: '2014-11-12 17:07:16'
-=======
     t.integer  "duration_in_hours", default: 1
-    t.datetime "time_last_run",     default: '2014-11-12 16:35:28'
->>>>>>> master
+    t.datetime "time_last_run",     default: '2014-11-12 17:07:16'
     t.datetime "created_at"
     t.datetime "updated_at"
     t.boolean  "active",            default: true

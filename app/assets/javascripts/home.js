@@ -31,7 +31,8 @@ $(document).ready(function(){
 	$('#mood-submit').on('submit', function(e){
 		e.preventDefault();
 		var url = '/moods'
-		$.post(url, moodVal, function(serverResponse, status, jqXHR) {
+		var moodData = {quantitative: moodVal}
+		$.post(url, moodData, function(serverResponse, status, jqXHR) {
 			
 	    });
 	})
