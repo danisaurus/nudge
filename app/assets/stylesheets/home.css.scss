@@ -319,12 +319,12 @@
 #menu input[type='checkbox'], input[type='radio'] { display: none; }
  
 /* Position the icons correctly */
-#menu-items .bottom .ss-tornado { top: 90px; left: 34px; background-image: url("/assets/tornado.png"); height: 83px; width: 83px; }
-#menu-items .top .ss-tranquil {  top: 90px; left: 241px; background-image: url("/assets/tranquil.png"); height: 83px; width: 83px; }
-#menu-items .top .ss-sunshine { top: 21px; left: 137px; background-image: url("/assets/sunshine.png"); height: 83px; width: 83px;}
-#menu-items .bottom .ss-rainy {  top: 181px; left: 35px; background-image: url("/assets/rainy.png"); height: 83px; width: 83px;}
-#menu-items .top .ss-partly-cloudy {  top: 181px; left: 243px; background-image: url("/assets/partly-cloudy.png"); height: 83px; width: 83px;}
-#menu-items .bottom .ss-stormy { top: 249px; left: 139px; background-image: url("/assets/stormy.png"); height: 83px; width: 83px;}
+#menu-items .bottom .ss-tornado { top: 90px; left: 34px; background-image: url(<%= asset-path("tornado.png") %>); height: 83px; width: 83px; }
+#menu-items .top .ss-tranquil {  top: 90px; left: 241px; background-image: url(<%= asset-path("tranquil.png") %>); height: 83px; width: 83px; }
+#menu-items .top .ss-sunshine { top: 21px; left: 137px; background-image: url(<%= asset-path("sunshine.png") %>); height: 83px; width: 83px;}
+#menu-items .bottom .ss-rainy {  top: 181px; left: 35px; background-image: url(<%= asset-path("rainy.png") %>); height: 83px; width: 83px;}
+#menu-items .top .ss-partly-cloudy {  top: 181px; left: 243px; background-image: url(<%= asset-path("partly-cloudy.png") %>); height: 83px; width: 83px;}
+#menu-items .bottom .ss-stormy { top: 249px; left: 139px; background-image: url(<%= asset-path("stormy.png") %>); height: 83px; width: 83px;}
 
 /* The below code rotates the menu items to the correct position
    when each is clicked. */
