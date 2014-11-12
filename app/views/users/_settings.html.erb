@@ -23,12 +23,6 @@
             <li>
               <%= supporter.phone %>
             </li>
-            <li>
-              <%= supporter.gmail %>
-            </li>
-            <li>
-              <%= supporter.twitter %>
-            </li>
             <%= link_to 'Edit', edit_user_supporter_path(current_user, supporter), :class => "editSupporter" %> <%= link_to 'Delete', delete_supporter_path(current_user, supporter), :class => "deleteSupporter" %>
           </ul>
         <% end %>

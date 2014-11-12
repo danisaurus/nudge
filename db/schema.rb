@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141112160743) do
+ActiveRecord::Schema.define(version: 20141112172500) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -80,7 +80,7 @@ ActiveRecord::Schema.define(version: 20141112160743) do
     t.integer  "task_id"
     t.integer  "user_id"
     t.text     "message_text"
-    t.integer  "duration_in_hours"
+    t.integer  "duration_in_hours", default: 1
     t.datetime "time_last_run",     default: '2014-11-12 16:35:28'
     t.datetime "created_at"
     t.datetime "updated_at"
