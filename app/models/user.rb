@@ -80,6 +80,7 @@ class User < ActiveRecord::Base
       response = alchemyapi.sentiment("text", tweet.text)
       if response["status"] != "ERROR"
         daily_report.tweets << Tweet.create!(id_of_tweet: tweet.id, qualitative: response['docSentiment']['type'], quantitative: response['docSentiment']['score'].to_f)
+        current_user.daily_reports << daily_report
       end
     end
   end
@@ -104,6 +105,45 @@ class User < ActiveRecord::Base
         keyword_response['keywords'].each{ |keyword_hash| database_gmail.keywords << Keyword.create!(keyword_hash) }
         daily_report.gmails << database_gmail
       end
+    end
+  end
+
+  def toggle_twitter_triggers
+    self.triggers.each do |trigger|
+      if trigger.task.method =~ /twitter/i
+        if trigger.active
+          trigger.active = false
+          trigger.save
+        else
+          trigger.active = true
+          trigger.save
+        end
+      end
+    end
+  end
+
+  def toggle_google_triggers
+    self.triggers.each do |trigger|
+      if trigger.task.method =~ /email/i
+        if trigger.active
+          trigger.active = false
+          trigger.save
+        else
+          trigger.active = true
+          trigger.save
+        end
+      end
+    end
+  end
+
+
+  def toggle(trigger)
+    if trigger.active
+      trigger.active = false
+      trigger.save
+    else
+      trigger.active = true
+      trigger.save
     end
   end
 

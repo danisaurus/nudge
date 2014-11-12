@@ -2,7 +2,12 @@
 <%= @error %>
   <div class='col-md-6'>
     <div class='inline-block width155'>
-      Text my support network if I haven't checked my email in
+      <select name='method'>
+        <option value="Email Activity">Email Activity</option>
+        <option value="Email Sentiment">Email Sentiment</option>
+        <option value="Twitter Sentiment">Twitter Sentiment</option>
+      </select>
+      Message:
     </div>
     <div class='inline-block'>
       <div><i id="toggle-up" class="fa fa-chevron-up"></i></div>
