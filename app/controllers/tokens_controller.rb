@@ -14,6 +14,7 @@ class TokensController < ApplicationController
         expires_at: Time.at(@auth['expires_at']).to_datetime
         )
       current_user.set_token(token)
+      current_user.find_last_history_id
       current_user.save
       render :new
     end
