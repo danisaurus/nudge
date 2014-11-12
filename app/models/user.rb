@@ -144,6 +144,7 @@ class User < ActiveRecord::Base
         daily_report.gmails << database_gmail
       end
     end
+    self.set_history_id
   end
 
   def toggle_twitter_triggers
