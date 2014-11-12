@@ -1,6 +1,7 @@
 require 'gmail_api_client'
 require 'twitter_client'
 require 'alchemyapi'
+require 'module_text'
 
 class User < ActiveRecord::Base
   has_many :supporters
@@ -12,7 +13,13 @@ class User < ActiveRecord::Base
   has_many :trigger_histories
   has_many :tokens
 
+  phony_normalize :phone, :default_country_code => 'US' # takes care of the many different ways to input a phone number
+  validates :phone, :phony_plausible => true
+
   has_secure_password
+
+  include Texter
+
 
   def set_token(token)
     self.tokens << token
@@ -50,12 +57,43 @@ class User < ActiveRecord::Base
     end
   end
 
+  def text_supporters(message)
+     self.supporters.each do |supporter|
+        supporter.text(message, supporter.phone)
+      end
+  end
+
+  def happy_messages?(number_of_days, data_type)
+    return true if daily_reports.empty?
+    reports = get_last_reports(number_of_days)
+    avg_sentiment = reports.map{|report| report.data_average(data_type)}.inject(:+) / reports.count.to_f
+    return avg_sentiment > -0.6
+  end
+
+  def check_email_sentiment(trigger)
+    unless happy_messages?(trigger.duration_in_hours, "gmails")
+      text(trigger.message_text, self.phone)
+    end
+  end
+
+  def check_twitter_sentiment(trigger)
+    unless happy_messages?(trigger.duration_in_hours, "tweets")
+      text(trigger.message_text, self.phone)
+    end
+  end
+
+  def get_last_reports(number_of_days)
+    daily_reports.order("id desc").limit(number_of_days)
+  end
+
   def check_email_activity(trigger)
     unless active_in_last_hours?(trigger.duration_in_hours/60.to_f)
-      self.supporters.each do |supporter|
-        supporter.text(trigger.message_text)
+      #if trigger.text_self?
+      # => self.text(self.phone)
+      # else
+      text_supporters(trigger.message_text)
       logger.info "checking the email activity method in #{supporter.first_name}, #{self.email}"
-      end
+
     end
 
     # trigger.time_last_run = Time.now
