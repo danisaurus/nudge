@@ -17,6 +17,10 @@
     <% end -%>
   <%= link_to "Signup", '/users/new', :id => "signUp" %>
   </div>
+  <% if @user.errors.any?  %>
+    <p><%= @user.errors.messages %></p>
+  <% end %>
+
   <div class='col-md-offset-4' id='newUser'>
     <%= form_for @user do |f| %>
       <%= f.text_field :first_name, placeholder: "First Name" %>
