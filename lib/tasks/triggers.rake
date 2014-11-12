@@ -2,9 +2,10 @@ namespace :events do
   desc "Rake task to check triggers"
   task :check_triggers => :environment do
     triggers = Trigger.all
-    current_time = Time.now
     triggers.each do | trigger |
-        perform(trigger)
+        if trigger.active
+          perform(trigger)
+        end
     end
   end
 
