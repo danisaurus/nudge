@@ -1,7 +1,8 @@
 require 'sidekiq/web'
 
 Rails.application.routes.draw do
-  mount Sidekiq::Web, at: "/sidekiq"
+
+  post '/moods' => 'users#moods'
   get '/triggers/:trigger_id/delete' => 'triggers#destroy'
   resources :triggers do
   end

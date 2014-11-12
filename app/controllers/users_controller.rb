@@ -48,6 +48,10 @@ class UsersController < ApplicationController
 		end
 	end
 
+	def moods
+		
+	end
+
 	def toggle_twitter_triggers
 		current_user.toggle_twitter_triggers
     render nothing: true
