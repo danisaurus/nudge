@@ -28,12 +28,12 @@ $(document).ready(function(){
 		console.log(moodVal)
 	});
 	
-	$('#mood-submit').on('submit', function(e){
+	$('#mood-submit').on('click', function(e){
 		e.preventDefault();
 		var url = '/moods'
-		var moodData = {quantitative: moodVal}
+		var moodData = {'quantitative': moodVal}
 		$.post(url, moodData, function(serverResponse, status, jqXHR) {
-			
+			console.log('moodData')
 	    });
 	})
 

@@ -49,26 +49,25 @@ class UsersController < ApplicationController
 	end
 
 	def moods
-		@check_in = CheckIn.new(params['quantitative'])
+		@check_in = CheckIn.new(quantitative: params['quantitative'])
 		current_user.daily_reports.last.check_ins << @check_in
-		puts 'hello'
 		render nothing: true
 	end
 
 	def toggle_twitter_triggers
 		current_user.toggle_twitter_triggers
-    render nothing: true
+    	render nothing: true
 	end
 
 	def toggle_google_triggers
 		current_user.toggle_google_triggers
-    render nothing: true
+    	render nothing: true
 	end
 
 	def specific_toggle
-    trigger = current_user.triggers.find(params[:trigger_id])
+    	trigger = current_user.triggers.find(params[:trigger_id])
 		current_user.toggle(trigger)
-    render nothing: true
+    	render nothing: true
 	end
 
 	def get_started
