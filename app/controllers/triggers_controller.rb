@@ -16,7 +16,7 @@ class TriggersController < ApplicationController
   def create
     @trigger = Trigger.new(trigger_params)
     @trigger.user_id = current_user.id
-    @trigger.task = Task.find_by_method(method: params[:method])
+    @trigger.task = Task.find_by_method(params[:method])
     if @trigger.save
       render partial: "triggers/show.html", formats: :html
     else
