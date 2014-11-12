@@ -21,7 +21,7 @@ class TriggersController < ApplicationController
       render partial: "triggers/show.html", formats: :html
     else
       @error = "Looks like that trigger wasn't valid!"
-      redirect_to new_trigger_path
+      render partial: 'errors.html'
     end
   end
 
