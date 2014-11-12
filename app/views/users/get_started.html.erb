@@ -15,9 +15,9 @@
             </div>
           </div>"), "/auth/google_oauth2", :target => "_blank", :id => 'googleAuth' %>
           <% if current_user.gmail_token.nil? %>
-            Activate Passive Monitor with Google
+            Authorize Passive Monitor with Google
           <% else %>
-            Google Monitoring Active!
+            Google Monitoring Authorized!
           <% end %>
         </div>
         <div class='block'>
@@ -26,9 +26,9 @@
             </div>
           </div>"), "/auth/twitter", :target => "_blank", :id => 'twitterAuth' %>
           <% if current_user.gmail_token.nil? %>
-            Activate Passive Monitor with Twitter
+            Authorize Passive Monitor with Twitter
           <% else %>
-            Twitter Monitoring Active!
+            Twitter Monitoring Authorized!
           <% end %>
         </div>
       </div>
@@ -36,6 +36,11 @@
         <h2 class='formHeader' id="tabOne">Build Support Network</h2>
         <p>Set up your support by completing the form below to add a someone to your support network.</p>
         <%= render "supporters/form", locals: {user: @user} %>
+          <% if @user.errors.any?  %>
+            <% @user.errors.full_messages.each do |message| %>
+            <p><%= message %></p>
+            <% end %>
+          <% end %>
       </div>
       <div class='formDiv' id="divThree">
         <h2 class='formHeader' id="tabThree">Setup Notifications</h2>
