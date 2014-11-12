@@ -33,6 +33,7 @@ $(document).ready(function(){
     $.post(url, data, function(serverResponse, status, jqXHR) {
       $(serverResponse).hide().appendTo('.tbody').fadeIn();
       $('form').find("textarea").val("");
+      $('.disappear').delay( 2000 ).fadeOut();
     });
   });
 

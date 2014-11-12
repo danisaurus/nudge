@@ -18,6 +18,8 @@ class SupportersController < ApplicationController
 		@supporter.user = @user
 		  if @supporter.save
 		    render partial: "show.html", formats: :html
+		  else
+		  	render partial: 'error.html', formats: :html
 		  end
 	end
 

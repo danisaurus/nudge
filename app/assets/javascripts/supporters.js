@@ -35,6 +35,7 @@ $(document).ready(function(){
     $.post(url, data, function(serverResponse, status, jqXHR) {
       $(serverResponse).hide().appendTo('#network').fadeIn();
       $('form').find("input[type=text]").val("");
+      $('.disappear').delay( 2000 ).fadeOut();
     });
   })
 });
