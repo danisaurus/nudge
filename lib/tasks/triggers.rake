@@ -4,12 +4,13 @@ namespace :events do
     triggers = Trigger.all
     current_time = Time.now
     triggers.each do | trigger |
-      # task = Task.find(trigger.task_id)
-      # time_lapsed = Time.now - trigger.time_last_run
-     # if time_lapsed > task.frequency
-        TriggerTaskWorker.perform_in(2.minute, trigger.id)
-     # end
+        perform(trigger)
     end
+  end
+
+  def perform(trigger)
+      user = User.find(trigger.user_id)
+      user.send(trigger.task.method, trigger)
   end
 
 end
