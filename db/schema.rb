@@ -25,15 +25,8 @@ ActiveRecord::Schema.define(version: 20141111165428) do
 
   create_table "daily_reports", force: true do |t|
     t.integer  "user_id"
-    t.float    "average_tweet_sentiment"
-    t.float    "average_email_sentiment"
     t.date     "created_at"
     t.datetime "updated_at"
-  end
-
-  create_table "gmail_accounts", force: true do |t|
-    t.string  "last_history_number"
-    t.integer "user_id"
   end
 
   create_table "gmails", force: true do |t|
@@ -88,11 +81,7 @@ ActiveRecord::Schema.define(version: 20141111165428) do
     t.integer  "user_id"
     t.text     "message_text"
     t.integer  "duration_in_hours"
-<<<<<<< HEAD
-    t.datetime "time_last_run",     default: '2014-11-11 18:24:46'
-=======
-    t.datetime "time_last_run",     default: '2014-11-12 00:24:08'
->>>>>>> master
+    t.datetime "time_last_run",     default: '2014-11-12 14:58:04'
     t.datetime "created_at"
     t.datetime "updated_at"
     t.boolean  "active",            default: true
@@ -110,6 +99,7 @@ ActiveRecord::Schema.define(version: 20141111165428) do
   create_table "users", force: true do |t|
     t.string   "first_name"
     t.string   "last_name"
+    t.string   "phone"
     t.string   "password_digest"
     t.string   "gmail"
     t.datetime "last_active"
