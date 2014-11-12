@@ -5,7 +5,9 @@ require 'alchemyapi'
 class User < ActiveRecord::Base
   has_many :supporters
   has_many :daily_reports
+  has_many :check_ins, through: :daily_reports
   has_many :tweets, through: :daily_reports
+  has_many :gmails, through: :daily_reports
   has_many :triggers
   has_many :trigger_histories
   has_many :tokens
@@ -25,7 +27,7 @@ class User < ActiveRecord::Base
     self.tokens.where('type=?', "GmailToken").first
   end
 
-  def active?
+  def active? # activity on GMAIL
     if self.last_history_number != find_last_history_id
       update_active_time
       return true
@@ -70,37 +72,85 @@ class User < ActiveRecord::Base
     return (time_since_last_active / 3600.to_f) < inactivity_time_limit
   end
 
-  def get_daily_tweets
-    daily_report = DailyReport.create
+  def get_daily_tweets(daily_report)
     client = TwitterClient.new(self.twitter_token)
-    tweets = client.get_most_recent_tweets(self.tweets.last.id_of_tweet)
+    tweets = client.get_most_recent_tweets(self.tweets.order("id_of_tweet").last.id_of_tweet)
     alchemyapi = AlchemyAPI.new
     tweets.each do |tweet|
       response = alchemyapi.sentiment("text", tweet.text)
       if response["status"] != "ERROR"
-        Tweet.create!(user: self, id_of_tweet: tweet.id, qualitative: response['docSentiment']['type'], quantitative: response['docSentiment']['score'].to_f)
+        daily_report.tweets << Tweet.create!(id_of_tweet: tweet.id, qualitative: response['docSentiment']['type'], quantitative: response['docSentiment']['score'].to_f)
+        current_user.daily_reports << daily_report
       end
     end
   end
 
-  def most_recent_tweet_id
+  def most_recent_tweet
     client = TwitterClient.new(self.twitter_token)
     alchemyapi = AlchemyAPI.new
     tweet = client.get_tweets(1)[0]
     response = alchemyapi.sentiment("text", tweet.text)
-    Tweet.create!(user: self, id_of_tweet: tweet.id, qualitative: response['docSentiment']['type'], quantitative: response['docSentiment']['score'].to_f)
+    Tweet.create!(id_of_tweet: tweet.id, qualitative: response['docSentiment']['type'], quantitative: response['docSentiment']['score'].to_f)
   end
 
-  def get_daily_gmails
+  def get_daily_gmails(daily_report)
     client = GmailAPI.new(self.gmail_token)
     sent_gmails = client.get_emails_for_today(self.last_history_number)
-    p sent_gmails
     alchemyapi = AlchemyAPI.new
     sent_gmails.each do |gmail|
-      response = alchemyapi.sentiment("text", gmail)
-      if response["status"] != "ERROR"
-        Gmail.create!(user: self, quantitative: response['docSentiment']['score'].to_f, qualitative: response['docSentiment']['type'])
+      sentiment_response = alchemyapi.sentiment("text", gmail)
+      keyword_response = alchemyapi.keywords("text", gmail)
+      if sentiment_response["status"] != "ERROR"
+        database_gmail = Gmail.create!(quantitative: sentiment_response['docSentiment']['score'].to_f, qualitative: sentiment_response['docSentiment']['type'])
+        keyword_response['keywords'].each{ |keyword_hash| database_gmail.keywords << Keyword.create!(keyword_hash) }
+        daily_report.gmails << database_gmail
       end
+    end
+  end
+
+  def toggle_twitter_triggers
+    self.triggers.each do |trigger|
+      if trigger.task.method =~ /twitter/i
+        if trigger.active
+          trigger.active = false
+          trigger.save
+        else
+          trigger.active = true
+          trigger.save
+        end
+      end
+    end
+  end
+
+  def toggle_google_triggers
+    self.triggers.each do |trigger|
+      if trigger.task.method =~ /email/i
+        if trigger.active
+          trigger.active = false
+          trigger.save
+        else
+          trigger.active = true
+          trigger.save
+        end
+      end
+    end
+  end
+
+
+  def toggle(trigger)
+    if trigger.active
+      trigger.active = false
+      trigger.save
+    else
+      trigger.active = true
+      trigger.save
+    end
+  end
+
+  def get_daily_check_ins(daily_report)
+    check_ins_for_the_day = self.check_ins.where(created_at: Date.today + 1)
+    check_ins_for_the_day.each do |check_in|
+      daily_report.check_ins << check_in
     end
   end
 

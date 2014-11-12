@@ -12,6 +12,9 @@
         <% @user.supporters.each do |supporter| %>
         <li>
           <ul class='supportContainer'>
+            <% if @user.supporters.nil? %>
+              You have no one in your support network! Add some!
+            <%end %>
             <li>
               <%= supporter.first_name %> <%= supporter.last_name %>
             </li>
@@ -31,24 +34,83 @@
       </ul>
     </div>
     <div id='notificationsShow'>
-      <% @user.triggers.each do |trigger| %>
-        <div>
-          <div class='inline-flex'>
-            <%= link_to raw('<i class="fa fa-chevron-up block toggle-up"></i>'), trig_inc_path(trigger) %>
-          </div>
-          <div class='block'>
-            <span class='incDays'><%= trigger.duration_in_hours %></span> <span class='day'>day</span>
-          </div>
-          <div>
-            <%= link_to raw('<i class="fa fa-chevron-down block toggle-down"></i>'), trig_dec_path(trigger) %>
-          </div>
-          <div class='inline-block'>
-            <%= trigger.message_text %>
+      <div class='block'>
+        <div id='showNewTrigger'>
+          Add New Notification
+        </div>
+        <div id='newTriggerSettings'>
+          <%= render "triggers/new", locals: {user: @user} %>
+        </div>
+      </div>
+      <div id='notifications'>
+      <div class='table'>
+        <div class='thead'>
+          <div class='tr'>
+            <div class='td'>Active?</div>
+            <div class='td'>Days of Inactivity</div>
+            <div class='td'>Message</div>
+            <div class='td'></div>
+            <div class='td'></div>
           </div>
         </div>
-      <% end %>
+        <div class='tbody'>
+          <% @user.triggers.each do |trigger| %>
+            <div class='tr'>
+              <div class='td'>
+                <%= link_to raw("<div class='ellipse inline-block'>
+                <div class='circle inline-block '>
+                </div>
+                </div>"), trig_toggle_path(trigger), :class => trigger.active ? "toggleTwitterTriggers" : "toggleTwitterTriggers marginNineteen" %>
+              </div>
+              <div class='td'>
+                <div class='inline-flex'>
+                  <%= link_to raw('<i class="fa fa-plus inline-block toggle-up"></i>'), trig_inc_path(trigger) %>
+                </div>
+                <div class='inline-block'>
+                  <span class='incDays'>
+                    <%= trigger.duration_in_hours %>
+                  </span>
+                </div>
+                <div>
+                <%= link_to raw('<i class="fa fa-minus inline-block toggle-down"></i>'), trig_dec_path(trigger) %>
+                </div>
+              </div>
+              <div class='td'>
+                <%=trigger.message_text[0..18] %>...
+              </div>
+              <div class='editTrigger td'>
+                <a href="">edit</a>
+              </div>
+              <div  class='td'>
+                <a href="/triggers/<%=trigger.id%>/delete" class='trigDelete'>delete</a>
+              </div>
+            </div>
+            <div class='tr'>
+            <div class='messageHolder maxWidth'>
+              <textarea class='triggerMessage' name='message_text' value='<%=trigger.message_text%>'></textarea>
+              <button class='block'>update message</button>
+            </div>
+            </div>
+          <% end %>
+          </div>
+        </div>
+      </div>
     </div>
     <div id='monitorsShow'>
+      <div class='block'>
+        <%= link_to raw("<div class='ellipse inline-block'>
+            <div class='circle inline-block'>
+            </div>
+          </div>"), toggle_twitter_trig_path(current_user), :id => 'toggleTwitterTriggers' %>
+        Twitter Monitoring: <span>Active</span>
+      </div>
+      <div class='block'>
+        <%= link_to raw("<div class='ellipse inline-block'>
+            <div class='circle inline-block'>
+            </div>
+          </div>"), toggle_google_trig_path(current_user), :id => 'toggleGoogleTriggers' %>
+        Google Monitoring: <span>Active</span>
+      </div>
     </div>
   </div>
 </div>
