@@ -65,7 +65,7 @@ class User < ActiveRecord::Base
   end
 
   def happy_messages?(number_of_days, data_type)
-    return true if daily_reports.empty?
+    return true if (daily_reports.empty? || daily_reports.send(data_type).empty?)
     reports = get_last_reports(number_of_days)
     avg_sentiment = reports.map{|report| report.data_average(data_type)}.inject(:+) / reports.count.to_f
     return avg_sentiment > -0.6
