@@ -11,22 +11,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141111154330) do
+ActiveRecord::Schema.define(version: 20141111165428) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "daily_reports", force: true do |t|
-    t.integer  "user_id"
-    t.float    "average_tweet_sentiment"
-    t.float    "average_email_sentiment"
+  create_table "check_ins", force: true do |t|
+    t.integer  "daily_report_id"
+    t.integer  "quantitative"
     t.date     "created_at"
     t.datetime "updated_at"
   end
 
-  create_table "gmail_accounts", force: true do |t|
-    t.string  "last_history_number"
-    t.integer "user_id"
+  create_table "daily_reports", force: true do |t|
+    t.integer  "user_id"
+    t.date     "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "gmails", force: true do |t|
@@ -81,7 +81,7 @@ ActiveRecord::Schema.define(version: 20141111154330) do
     t.integer  "user_id"
     t.text     "message_text"
     t.integer  "duration_in_hours"
-    t.datetime "time_last_run",     default: '2014-11-11 18:24:46'
+    t.datetime "time_last_run",     default: '2014-11-11 22:16:54'
     t.datetime "created_at"
     t.datetime "updated_at"
     t.boolean  "active",            default: true

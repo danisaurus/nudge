@@ -6,7 +6,7 @@ class DailyReportsController < ApplicationController
     weekly_report = user.daily_reports.order("id desc").limit(7)
     weekly_report.each do |report|
       score = {}
-      score["twitter"] = report.data_average("tweets")
+      score["tweets"] = report.data_average("tweets")
       score["gmails"] = report.data_average("gmails")
       score["check_ins"] = report.data_average("check_ins")
       weekly_scores << score

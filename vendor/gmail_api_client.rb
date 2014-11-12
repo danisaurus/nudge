@@ -11,8 +11,8 @@ class GmailAPI
     @gmail = @client.discovered_api('gmail', 'v1')
   end
 
-  def get_last_history_id
-    get_history.data.historyId
+  def get_last_history_id(history_id)
+    get_history(history_id).data.historyId
   end
 
   def get_message_body(message_id)
