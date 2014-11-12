@@ -1,5 +1,5 @@
 class TwitterClient
-  # attr_reader :client
+  attr_reader :client
 	def initialize(token)
 		@client = Twitter::REST::Client.new do |config|
   			config.consumer_key        = ENV["CONSUMER_KEY"]
@@ -10,11 +10,11 @@ class TwitterClient
   	end
 
   	def get_tweets(num_of_tweets)
-  		@client.user_timeline(client.user.screen_name, {count: num_of_tweets})
+  		client.user_timeline(client.user.screen_name, {count: num_of_tweets})
   	end
 
     def get_most_recent_tweets(id)
-      @client.user_timeline(client.user.screen_name, {since_id: id})
+      client.user_timeline(client.user.screen_name, {since_id: id})
     end
 
 end
