@@ -16,7 +16,7 @@ class TriggersController < ApplicationController
   def create
     @trigger = Trigger.new(trigger_params)
     @trigger.user_id = current_user.id
-    @trigger.task = Task.create(method: params[:method])
+    @trigger.task = Task.find_by_method(method: params[:method])
     if @trigger.save
       render partial: "triggers/show.html", formats: :html
     else
@@ -34,7 +34,7 @@ class TriggersController < ApplicationController
 
   def decrease_durations
     @trigger = Trigger.find(params[:trigger_id])
-    @trigger.duration_in_hours -= 1 unless @trigger.duration_in_hours == 1
+    @trigger.duration_in_hours -= 1 unless @trigger.duration_in_hours < 1
     @trigger.save
     render nothing: true
   end
