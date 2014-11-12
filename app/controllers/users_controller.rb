@@ -30,18 +30,14 @@ class UsersController < ApplicationController
 
 	def create
 		@user = User.new(user_params)
-		@supporter = Supporter.new
-		@trigger = Trigger.new
 		@user.daily_reports << DailyReport.new
 		@user.last_active = Time.now
-		respond_to do |format|
-		  if @user.save
-		  	session[:user_id] = @user.id
-		    format.html { render :get_started }
-		  else
-		    format.html { render :"sessions/new" }
-		  end
-		end
+	  if @user.save
+	  	session[:user_id] = @user.id
+	    redirect_to get_started_path
+	  else
+	    render :"sessions/new"
+	  end
 	end
 
 	def destroy
@@ -66,6 +62,12 @@ class UsersController < ApplicationController
     trigger = current_user.triggers.find(params[:trigger_id])
 		current_user.toggle(trigger)
     render nothing: true
+	end
+
+	def get_started
+		@supporter = Supporter.new
+		@trigger = Trigger.new
+		@user = current_user
 	end
 
 	private

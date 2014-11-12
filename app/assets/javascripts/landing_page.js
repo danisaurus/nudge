@@ -1,5 +1,5 @@
 $(document).ready(function(){
-  $('#newUser').hide();
+  $('#login').hide();
   $('#signUp').on('click', function(event){
     event.preventDefault();
     $('#login').hide();
