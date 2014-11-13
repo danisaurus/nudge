@@ -1,22 +1,22 @@
 <%= form_for @trigger do |f| %>
 <%= @error %>
   <div class='col-md-6'>
-      <select name='method' id='triggerMenu' class='messageType'>
+      <select name='method' id='triggerMenu'>
         <option value="check_email_activity">email activity</option>
         <option value="check_email_sentiment">email sentiment</option>
         <option value="check_twitter_sentiment">twitter sentiment</option>
       </select>
+      <div class='inline-block'>
+        <div><i id="toggle-up" class="fa fa-chevron-up"></i></div>
+          <div class='inline-block'> <span id='incDays'><%= @trigger.duration_in_hours %></span> <span id='day'>day</span></div>
+        <div><i id="toggle-down" class="fa fa-chevron-down"></i></div>
+      </div>
     <div class='block width155'>
       <span id='triggerSentimentNotification'>texts for sentiment analysis are only sent to you</span>
       <span id='errorMessageArea'></span>
-      <p class='messageHeader'>message:</p>
     </div>
-    <div class='inline-block'>
-      <div><i id="toggle-up" class="fa fa-chevron-up"></i></div>
-        <div class='inline-block'> <span id='incDays'><%= @trigger.duration_in_hours %></span> <span id='day'>day</span></div>
-      <div><i id="toggle-down" class="fa fa-chevron-down"></i></div>
-    </div>
-    <%= f.text_area :message_text, size: '30x2' %>
+    
+    <%= f.text_area :message_text, size: '30x2', placeholder: 'what do you want to say?' %>
     <%= f.submit 'add notification', :class => 'block marginForChildren' %>
   </div>
   <div class='col-md-6'>
