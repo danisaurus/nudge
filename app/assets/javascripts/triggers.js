@@ -2,6 +2,7 @@ $(document).ready(function(){
   var days = $("#trigger_duration_in_hours");
   days.val(1);
   days.hide();
+  $('#triggerSentimentNotification').hide();
   $('.messageHolder').hide();
   $("body").on( "click", "#toggle-up", function() {
     days.val(Number(days.val()) + 1);
@@ -31,9 +32,13 @@ $(document).ready(function(){
         par = $('body');
 
     $.post(url, data, function(serverResponse, status, jqXHR) {
+      if ( serverResponse.match(/class='disappear'/) ) {
+        $(serverResponse).hide().appendTo('.trigger').fadeIn();
+        $('.disappear').delay( 2000 ).fadeOut();
+      } else {
       $(serverResponse).hide().appendTo('.tbody').fadeIn();
       $('form').find("textarea").val("");
-      $('.disappear').delay( 2000 ).fadeOut();
+      }
     });
   });
 
@@ -97,4 +102,27 @@ $(document).ready(function(){
     $.get(url, function(serverResponse, status, jqXHR){
     });
   });
+
+   $('#triggerMenu').change(function() {
+    if ( $(this).val() === "check_email_sentiment" ) {
+      $('#triggerSentimentNotification').show();
+    } else if ( $(this).val() === "check_twitter_sentiment" ) {
+      $('#triggerSentimentNotification').show();
+    } else {
+      $('#triggerSentimentNotification').hide();
+    }
+
+   });
+
+   $('.marginForChildren').on("submit", )
+
 });
+
+
+
+
+
+
+
+
+

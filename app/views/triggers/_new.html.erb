@@ -1,21 +1,23 @@
 <%= form_for @trigger do |f| %>
 <%= @error %>
   <div class='col-md-6'>
-    <div class='inline-block width155'>
-      <select name='method'>
-        <option value="check_email_activity">Email Activity</option>
-        <option value="check_email_sentiment">Email Sentiment</option>
-        <option value="check_twitter_sentiment">Twitter Sentiment</option>
+      <select name='method' id='triggerMenu' class='messageType'>
+        <option value="check_email_activity">email activity</option>
+        <option value="check_email_sentiment">email sentiment</option>
+        <option value="check_twitter_sentiment">twitter sentiment</option>
       </select>
-      Message:
+    <div class='block width155'>
+      <span id='triggerSentimentNotification'>texts for sentiment analysis are only sent to you</span>
+
+      <p class='messageHeader'>message:</p>
     </div>
     <div class='inline-block'>
       <div><i id="toggle-up" class="fa fa-chevron-up"></i></div>
-        <div class='inline-block'> <span id='incDays'>1</span> <span id='day'>day</span> :</div>
+        <div class='inline-block'> <span id='incDays'>1</span> <span id='day'>day</span></div>
       <div><i id="toggle-down" class="fa fa-chevron-down"></i></div>
     </div>
-    <%= f.text_area :message_text, size: '30x3' %>
-    <%= f.submit 'Add Notification' %>
+    <%= f.text_area :message_text, size: '30x2' %>
+    <%= f.submit 'add notification', :class => 'block marginForChildren' %>
   </div>
   <div class='col-md-6'>
     <%= f.text_field :duration_in_hours %>
