@@ -1,10 +1,24 @@
-<div>
-  <div class='inline-block'>
-    <div><i id="toggle-up" class="fa fa-chevron-up"></i></div>
-      <div class='inline-block'> <span id='incDays'><%= @trigger.duration_in_hours %></span> <span id='day'>day</span> :</div>
-    <div><i id="toggle-down" class="fa fa-chevron-down"></i></div>
-  </div>
-  <div class='inline-block'>
-    <%= @trigger.text %>
-  </div>
+<div class='marginForChildrenEdit'>
+  edit notification
 </div>
+<%= form_for @trigger do |f| %>
+<%= @error %>
+  <div class='col-md-6'>
+      <select name='method' id='triggerMenu' class='messageType'>
+        <option value="check_email_activity">email activity</option>
+        <option value="check_email_sentiment">email sentiment</option>
+        <option value="check_twitter_sentiment">twitter sentiment</option>
+      </select>
+    <div class='block width155'>
+      <span id='triggerSentimentNotification'>texts for sentiment analysis are only sent to you</span>
+      <span id='errorMessageArea'></span>
+      <p class='messageHeader'>message:</p>
+    </div>
+    <%= f.text_area :message_text, size: '30x2',:class => 'editTextArea' %>
+    <%= f.submit 'update notification', :class => 'block marginForChildren' %>
+  </div>
+  <div class='col-md-6'>
+    <%= f.text_field :duration_in_hours, :class => 'hidden' %>
+  </div>
+<% end %>
+<div class="my_triggers"></div>

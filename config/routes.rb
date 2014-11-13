@@ -4,11 +4,11 @@ Rails.application.routes.draw do
 
   post '/moods' => 'users#moods'
   get '/triggers/:trigger_id/delete' => 'triggers#destroy'
+  post '/triggers/:trigger_id' => 'triggers#update'
   resources :triggers do
   end
   get '/triggers/:trigger_id/inc' => 'triggers#increase_durations', as: 'trig_inc'
   get '/triggers/:trigger_id/dec' => 'triggers#decrease_durations', as: 'trig_dec'
-
   resources :sessions
   get '/logout' => 'sessions#destroy', as: 'logout'
   get '/users/get_started' => 'users#get_started', as: 'get_started'
