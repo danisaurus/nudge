@@ -1,10 +1,13 @@
 $(document).ready(function(){
   var days = $("#trigger_duration_in_hours");
+  var editUrl = ""
+  var edittedRow = ""
   days.val(1);
   days.hide();
   $('#triggerSentimentNotification').hide();
   $('.messageHolder').hide();
   $("body").on( "click", "#toggle-up", function(event) {
+    console.log('shit')
     days.val(Number(days.val()) + 1);
       $('#incDays').text(days.val());
     if (days.val() > 1) {
@@ -14,6 +17,7 @@ $(document).ready(function(){
   });
 
   $("body").on( "click", "#toggle-down", function(event) {
+    console.log('shit')
     if (days.val() > 1){
       days.val(days.val() - 1);
       $('#incDays').text(days.val());
@@ -53,6 +57,7 @@ $(document).ready(function(){
     $.get(url, function(serverResponse, status, jqXHR){
     });
   });
+
   $('body').on('click', '.toggle-down', function(event){
     event.preventDefault();
     var url = $(event.target).parent().attr('href');
@@ -67,12 +72,34 @@ $(document).ready(function(){
     })
   })
 
-  $('.editTrigger').on('click', function(event){
+  $('body').on('click', '.editTrigger', function(event){
     event.preventDefault();
-    var par = $(this).parent();
-    var messageHolder = par.next().children();
-    messageHolder.slideToggle();
+    var url = $(this).attr('href');
+    var appendArea = $('#editTriggerSettings')
+        editUrl = $(this).attr('href')
+        edittedRow = $(this).parent().parent()
+    $.get(url, function(serverResponse, status, jqXHR){
+      $('#showNewTrigger').hide()
+      $('#newTriggerSettings').hide()
+      appendArea.append(serverResponse)
+    })
     });
+
+  $('body').on('submit', '.edit_trigger', function(event){
+    event.preventDefault();
+    var url    = editUrl.replace('/edit',''),
+        id     = url.split('/').reverse()[0],
+        formId = '#edit_trigger_' + id,
+        data   = $(formId).serialize();
+        console.log(data);
+        edittedRow.hide();
+    $.post(url, data, function(serverResponse, status, jqXHR){
+      $(serverResponse).hide().appendTo('.tbody').fadeIn();
+      $('#showNewTrigger').show();
+      $('#newTriggerSettings').show();
+      $('#editTriggerSettings').hide();
+    })
+  });
 
 
     var changeDivColorTheSequel = function(div, color, margin){
@@ -103,24 +130,17 @@ $(document).ready(function(){
     });
   });
 
-   $('#triggerMenu').change(function(event) {
+   $('body').on('change', '#triggerMenu', function(event) {
     if ( $(this).val() === "check_email_sentiment" ) {
-      $('#triggerSentimentNotification').show();
+      $('#triggerSentimentNotification').slideDown();
     } else if ( $(this).val() === "check_twitter_sentiment" ) {
-      $('#triggerSentimentNotification').show();
+      $('#triggerSentimentNotification').slideDown();
     } else {
-      $('#triggerSentimentNotification').hide();
+      $('#triggerSentimentNotification').slideUp();
     }
 
    });
 
 });
-
-
-
-
-
-
-
 
 

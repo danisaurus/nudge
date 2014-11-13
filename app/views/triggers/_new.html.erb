@@ -13,14 +13,14 @@
     </div>
     <div class='inline-block'>
       <div><i id="toggle-up" class="fa fa-chevron-up"></i></div>
-        <div class='inline-block'> <span id='incDays'>1</span> <span id='day'>day</span></div>
+        <div class='inline-block'> <span id='incDays'><%= @trigger.duration_in_hours %></span> <span id='day'>day</span></div>
       <div><i id="toggle-down" class="fa fa-chevron-down"></i></div>
     </div>
     <%= f.text_area :message_text, size: '30x2' %>
     <%= f.submit 'add notification', :class => 'block marginForChildren' %>
   </div>
   <div class='col-md-6'>
-    <%= f.text_field :duration_in_hours %>
+    <%= f.text_field :duration_in_hours, :class => 'hidden' %>
   </div>
 <% end %>
 <div class="my_triggers"></div>

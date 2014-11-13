@@ -94,6 +94,13 @@ height: 69px;
   padding: 2px;
   padding-bottom: 0px;
 }
+.thead
+{
+  display:table-header-group;
+  color:white;
+  font-weight:bold;
+  background-color:grey;
+}
 .tbody
 {
   display:table-row-group;
@@ -147,4 +154,23 @@ border-radius: 1px;
 margin: 20px;
 width: 358px;
 padding: 15px;
+}
+.inline {
+  display: inline;
+}
+
+.add-substract-days {
+  text-align: center;
+}
+
+.hidden {
+  display: none;
+}
+
+.marginForChildrenEdit {
+  margin-left: 132px;
+}
+
+.editTextArea {
+  margin-left: 28px;
 }

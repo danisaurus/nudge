@@ -5,27 +5,23 @@
     </div>
     <div class='collapse navbar-collapse'>
       <ul class='nav navbar-nav'>
-
         <li><a href="#" class='navLink' id='home'>Home</a></li>
         <li><a href="#" class='navLink' id="activity">Activity</a></li>
         <li><a href="#" class='navLink' id="settings">Settings</a></li>
         <li><a href="#" class='navLink' id="account">Account</a></li>
         <li class='right'><%= link_to 'Logout', logout_path %></li>
       </ul>
+  <div id='userContainer'>
+    <div id='userHome'>
+      <%= render "home", locals: {user: @user} %>
     </div>
-  </div>
-</nav>
-<div id='userContainer'>
-  <div id='userHome'>
-    <%= render "home", locals: {user: @user} %>
-  </div>
-  <div id='userActivity'>
-    <%= render "activity", locals: {user: @user} %>
-  </div>
-  <div id='userSettings'>
-    <%= render "settings", locals: {user: @user} %>
-  </div>
-  <div id='userAccount'>
-    <%= render "account", locals: {user: @user} %>
+    <div id='userActivity'>
+      <%= render "activity", locals: {user: @user} %>
+    </div>
+    <div id='userSettings'>
+      <%= render "settings", locals: {user: @user} %>
+    </div>
+    <div id='userAccount'>
+      <%= render "account", locals: {user: @user} %>
   </div>
 </div>

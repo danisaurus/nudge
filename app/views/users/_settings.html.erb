@@ -1,3 +1,4 @@
+<% User.first.all_twitter? %>
 <div id='wrapper' class='settingsShow widthFull'>
   <div id='sidebar-wrapper' class='inline-flex'>
     <ul class='sidebar-nav'>
@@ -50,17 +51,17 @@
                 </div>
                 </div>"), trig_toggle_path(trigger), :class => trigger.active ? "toggleTwitterTriggers" : "toggleTwitterTriggers marginNineteen" %>
               </div>
-              <div class='td'>
+              <div class='td add-substract-days'>
                 <div class='inline-flex'>
-                  <%= link_to raw('<i class="fa fa-plus inline-block toggle-up"></i>'), trig_inc_path(trigger) %>
+                  <%= link_to raw('<i class="fa fa-plus"></i>'), trig_inc_path(trigger), :class =>"toggle-up" %>
                 </div>
-                <div class='inline-block'>
+                <div class='inline'>
                   <span class='incDays'>
                     <%= trigger.duration_in_hours %>
                   </span>
                 </div>
-                <div>
-                <%= link_to raw('<i class="fa fa-minus inline-block toggle-down"></i>'), trig_dec_path(trigger) %>
+                <div class="inline">
+                <%= link_to raw('<i class="fa fa-minus"></i>'), trig_dec_path(trigger), :class => "toggle-down" %>
                 </div>
               </div>
               <div class='td'>
@@ -71,6 +72,7 @@
               </div>
               <div class='editTrigger td'>
                 <a href=""><i class="fa fa-pencil"></i></a>
+                <%= link_to 'edit', edit_trigger_path(trigger), :class => 'editTrigger' %>
               </div>
               <div  class='deleteTrigger td'>
                 <a href="/triggers/<%=trigger.id%>/delete" class='trigDelete'><i class="fa fa-trash"></i></a>
@@ -90,7 +92,7 @@
     <div id='monitorsShow'>
       <div class='block'>
         <%= link_to raw("<div class='ellipse inline-block'>
-            <div class='circle inline-block'>
+          <div class='circle inline-block'>
             </div>
           </div>"), toggle_twitter_trig_path(current_user), :id =>'toggleTwitterTriggers', :class => current_user.all_twitter? ? "" : "marginNineteen" %>
           <% if current_user.all_twitter? %>
@@ -117,7 +119,9 @@
   <div id='showNewTrigger' class='marginForChildren cursorPointer'>
     add new notification
   </div>
-  <div id='newTriggerSettings' class=block>
+  <div id='newTriggerSettings' class='block'>
     <%= render "triggers/new", locals: {user: @user} %>
+  </div>
+  <div id='editTriggerSettings'>
   </div>
 </div>

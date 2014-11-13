@@ -1,14 +1,15 @@
 $(document).ready(function(){
-  $('#login').hide();
-  $('#signUp').on('click', function(event){
+
+  $('button#signUp').on('click', function(event){
     event.preventDefault();
-    $('#login').hide();
-    $('#newUser').show();
+    $('.intro-logo, #homepage-cta').hide();
+    $('#newUser, .signIn').show();
   });
 
   $("#signIn").on('click', function(event){
     event.preventDefault();
-    $('#login').show();
-    $('#newUser').hide();
+    $('.intro-logo, #homepage-cta').hide();
+    $('#login, .signUpLink').show();
   });
+
 });
