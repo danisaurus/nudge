@@ -1,0 +1,57 @@
+#supporter_first_name {
+	width: 100%;
+}
+#supporter_last_name {
+	width: 100%;
+}
+#supporter_phone {
+	width: 100%;
+}
+
+#supporter_container{
+	width: 75%;
+	float: right;
+}
+
+
+#supportersShow {
+	margin: 0 auto; 
+}
+
+.newSupporter {
+	width: 100%;
+	display: inline-block;
+	float: left;
+	.intro {
+		font-weight: 200;
+	}
+}
+
+#networkForm {
+	width: 50%;
+	margin-top: 1em;
+}
+
+#supportersList{
+	margin: 0 auto;
+	width: 100%;
+	margin-top: -13em;
+	text-align: center;
+	.supporter {
+		width: 50%;
+		text-align: center;
+		margin: 10px auto;
+	}
+}
+
+.network {
+	width: 30%;
+	display:inline-block;
+	float: left;
+}
+
+#userSettings {
+	height: 100%;
+	position: absolute;
+	width: 100%;
+}

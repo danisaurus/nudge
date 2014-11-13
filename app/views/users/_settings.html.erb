@@ -1,34 +1,24 @@
 <% User.first.all_twitter? %>
-<div id='wrapper' class='settingsShow widthFull'>
-  <div id='sidebar-wrapper' class='inline-flex'>
-    <ul class='sidebar-nav'>
-      <li id='monitorSettings' class='sideNav'><a href="#">Monitors</a></li>
-      <li id='supportSettings' class='sideNav'><a href="#">Support Network</a></li>
-      <li id='notificationsSettings' class='sideNav'><a href="#">Notifications</a></li>
-    </ul>
-  </div>
-  <div id='page-content-wrapper' class='inline-flex'>
+<div id='wrapper' class='row settingsShow widthFull'>
+  <div id='page-content-wrapper'>
     <div id='supportersShow'>
-      <div class='newSupporter'>
-        <%= render 'supporters/form', locals: {user: @user} %>
+      <div class="supporter-container">
+        <div class='newSupporter'>
+          <div id="networkForm" class="form text-center">
+            <div class="centered text-center">
+                <h2 class="intro">add a new supporter</h2>
+            </div>
+            <%= render 'supporters/form', locals: {user: @user} %>
+          </div>
+          <div id="supportersList" class="network">
+            <div class="centered text-center">
+                <h4 class="intro">current supporters</h2>
+            </div>
+            <%= render 'supporters/show', locals: {user: @user} %>
+          </div>
+        </div>
       </div>
-      <div id='network'>
-        <% @user.supporters.each do |supporter| %>
-          <ul class='supportContainer'>
-            <% if @user.supporters.nil? %>
-              You have no one in your support network! Add some!
-            <%end %>
-            <li>
-              <%= supporter.first_name %> <%= supporter.last_name %>
-            </li>
-            <li>
-              <%= supporter.phone %>
-            </li>
-            <%= link_to 'Edit', edit_user_supporter_path(current_user, supporter), :class => "editSupporter" %> <%= link_to 'Delete', delete_supporter_path(current_user, supporter), :class => "deleteSupporter" %>
-          </ul>
-        <% end %>
-      </div>
-    </div>
+    </div> 
     <div id='notificationsShow'>
       <div id='notifications'>
       <div class='table'>
