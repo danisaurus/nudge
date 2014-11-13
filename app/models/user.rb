@@ -94,16 +94,8 @@ class User < ActiveRecord::Base
 
   def check_email_activity(trigger)
     unless active_in_last_hours?(trigger.duration_in_hours/60.to_f)
-      #if trigger.text_self?
-      # => self.text(self.phone)
-      # else
       text_supporters(trigger.message_text)
-      logger.info "checking the email activity method in #{supporter.first_name}, #{self.email}"
-
     end
-
-    # trigger.time_last_run = Time.now
-    # trigger.save
   end
 
   def set_history_id
