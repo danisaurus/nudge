@@ -53,3 +53,7 @@ li.sideNav {
 #chart {
   width: 100%;
 }
+
+.inline {
+  display: inline;
+}
