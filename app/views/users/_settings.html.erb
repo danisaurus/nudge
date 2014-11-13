@@ -33,17 +33,18 @@
       <div class='table'>
         <div class='thead'>
           <div class='tr'>
-            <div class='td'>Active?</div>
-            <div class='td'>Days of Inactivity</div>
-            <div class='td'>Message</div>
-            <div class='td'></div>
-            <div class='td'></div>
+            <div class='head td'>active?</div>
+            <div class='head td'>threshold</div>
+            <div class='head td'>message</div>
+            <div class='head td'>action</div>
+            <div class='head td lighterOrange'></div>
+            <div class='head td lighterOrange'></div>
           </div>
         </div>
         <div class='tbody'>
           <% @user.triggers.each do |trigger| %>
             <div class='tr'>
-              <div class='td'>
+              <div class='toggleSwitch td'>
                 <%= link_to raw("<div class='ellipse inline-block'>
                 <div class='circle inline-block '>
                 </div>
@@ -65,11 +66,14 @@
               <div class='td'>
                 <%=trigger.message_text[0..18] %>...
               </div>
-              <div class='editTrigger td'>
-                <a href="">edit</a>
+              <div class='td'>
+                method
               </div>
-              <div  class='td'>
-                <a href="/triggers/<%=trigger.id%>/delete" class='trigDelete'>delete</a>
+              <div class='editTrigger td'>
+                <a href=""><i class="fa fa-pencil"></i></a>
+              </div>
+              <div  class='deleteTrigger td'>
+                <a href="/triggers/<%=trigger.id%>/delete" class='trigDelete'><i class="fa fa-trash"></i></a>
               </div>
             </div>
             <div class='tr'>
@@ -110,7 +114,7 @@
   </div>
 </div>
 <div class='block marginLeftForNav' id='newTriggerContainer'>
-  <div id='showNewTrigger' class='marginForChildren'>
+  <div id='showNewTrigger' class='marginForChildren cursorPointer'>
     add new notification
   </div>
   <div id='newTriggerSettings' class=block>

@@ -95,9 +95,9 @@ $(document).ready(function(){
     var url = $(this).attr('href');
     var childTarget = $(this).children().first().children().first()
     if ( childTarget.css("margin-left") === '1px' ) {
-      changeDivColorTheSequel(childTarget, '#FF0000', 19)
+      changeDivColorTheSequel(childTarget, 'rgb(131, 38, 38)', 19)
     } else {
-     changeDivColorTheSequel(childTarget, 'green', 1)
+     changeDivColorTheSequel(childTarget, 'rgb(222, 249, 222)', 1)
     }
     $.get(url, function(serverResponse, status, jqXHR){
     });

@@ -85,10 +85,10 @@ $(document).ready(function(){
     var text = $(this).next();
     if ( text.text() === 'Active') {
       text.text('Inactive')
-      changeDivColor(that, '#FF0000', 19)
+      changeDivColor(that, 'rgb(131, 38, 38)', 19)
     } else {
      text.text('Active')
-      changeDivColor(that, 'green', 1)
+      changeDivColor(that, 'rgb(222, 249, 222)', 1)
     }
     $.get(url, function(serverResponse, status, jqXHR){});
   });
@@ -100,10 +100,10 @@ $(document).ready(function(){
     var text = $(this).next();
     if ( text.text() === 'Active') {
       text.text('Inactive')
-      changeDivColor(that, '#FF0000', 19)
+      changeDivColor(that, 'rgb(131, 38, 38)', 19)
     } else {
      text.text('Active')
-     changeDivColor(that, 'green', 1)
+     changeDivColor(that, 'rgb(222, 249, 222)', 1)
     }
     $.get(url, function(serverResponse, status, jqXHR){});
   });
