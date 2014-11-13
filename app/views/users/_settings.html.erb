@@ -1,3 +1,4 @@
+<% User.first.all_twitter? %>
 <div id='wrapper' class='settingsShow widthFull'>
   <div id='sidebar-wrapper' class='inline-flex'>
     <ul class='sidebar-nav'>
@@ -51,7 +52,7 @@
               </div>
               <div class='td add-substract-days'>
                 <div class='inline-flex'>
-                  <%= link_to raw('<i class="fa fa-plus"></i>'), trig_inc_path(trigger), class: "toggle-up" %>
+                  <%= link_to raw('<i class="fa fa-plus"></i>'), trig_inc_path(trigger), :class =>"toggle-up" %>
                 </div>
                 <div class='inline'>
                   <span class='incDays'>
@@ -59,14 +60,14 @@
                   </span>
                 </div>
                 <div class="inline">
-                <%= link_to raw('<i class="fa fa-minus"></i>'), trig_dec_path(trigger), class: "toggle-down" %>
+                <%= link_to raw('<i class="fa fa-minus"></i>'), trig_dec_path(trigger), :class => "toggle-down" %>
                 </div>
               </div>
               <div class='td'>
                 <%=trigger.message_text[0..18] %>...
               </div>
-              <div class='editTrigger td'>
-                <a href="">edit</a>
+              <div class='td'>
+                <%= link_to 'edit', edit_trigger_path(trigger), :class => 'editTrigger' %>
               </div>
               <div  class='td'>
                 <a href="/triggers/<%=trigger.id%>/delete" class='trigDelete'>delete</a>
@@ -86,7 +87,7 @@
     <div id='monitorsShow'>
       <div class='block'>
         <%= link_to raw("<div class='ellipse inline-block'>
-            <div class='circle inline-block'>
+          <div class='circle inline-block'>
             </div>
           </div>"), toggle_twitter_trig_path(current_user), :id =>'toggleTwitterTriggers', :class => current_user.all_twitter? ? "" : "marginNineteen" %>
           <% if current_user.all_twitter? %>
@@ -113,7 +114,9 @@
   <div id='showNewTrigger' class='marginForChildren'>
     add new notification
   </div>
-  <div id='newTriggerSettings' class=block>
+  <div id='newTriggerSettings' class='block'>
     <%= render "triggers/new", locals: {user: @user} %>
+  </div>
+  <div id='editTriggerSettings'>
   </div>
 </div>

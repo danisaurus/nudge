@@ -1,59 +1,39 @@
-<div id="mood-wheel" class="col-lg-12">
-    <div id="menu">
-         
-        <input type="checkbox" id="on-check" name="on-check" />
-         
-        <label id="on-button" for="on-check">
-            <span><span class="ss-plus"><!-- Put plus icon here if not using symbol set --></span></span>
-            <span><span class="ss-hyphen"><!-- Put minus icon here if not using symbol set --></span></span>
-        </label>
+<div class="row">
+	<div id="user-mood" class="blue-background">
+		<div id="mood-wheel">
+			<div class="centered text-center">
+					<h2 class="intro white">how are you feeling?</h2>
+			</div>
+			<div id="menu">  
+				<input type="radio" id="info-tornado" name="radio-check" />
+		    <input type="radio" id="info-sun" name="radio-check"/>
+		    <input type="radio" id="info-sunset" name="radio-check" />
+		    <input type="radio" id="info-storm" name="radio-check" />
+		    <input type="radio" id="info-rainy" name="radio-check" />
+		    <input type="radio" id="info-cloudy" name="radio-check" />
+				<div id="on-button" class="blue-background"></div>
+				<div id="menu-items">
+					<div class="middle">
+						<div class="top">
+							<label class="ss-tornado" for="info-tornado"></label>
+							<label class="ss-sun" for="info-sun"></label>
+							<label class="ss-sunset" for="info-sunset"></label> 
+						</div>
+						<div class="bottom">
+							<label class="ss-storm" for="info-storm"></label> 
+							<label class="ss-rainy" for="info-rainy"></label> 
+							<label class="ss-cloudy" for="info-cloudy"></label> 
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
 
-        <!-- <form action="/moods" method="POST"> -->
-         
-        <input type="radio" id="info-tornado" name="radio-check" />
-        <input type="radio" id="info-sun" name="radio-check" />
-        <input type="radio" id="info-sunset" name="radio-check" />
-        <input type="radio" id="info-storm" name="radio-check" />
-        <input type="radio" id="info-rainy" name="radio-check" />
-        <input type="radio" id="info-cloudy" name="radio-check" />
-
-    <!--     </form> -->
-         
-        <div id="menu-items">
-            <div class="middle">
-                <div class="top">
-                    <span class="bg-piece"> </span> 
-                    <label class="ss-tornado" for="info-tornado"><!-- Put home icon here if not using symbol set --></label>
-                    <span class="bg-piece"> </span> 
-                    <label class="ss-sun" for="info-sun"><!-- Put compass icon here if not using symbol set --></label>
-                    <span class="bg-piece"> </span> 
-                    <label class="ss-sunset" for="info-sunset"><!-- Put heart icon here if not using symbol set --></label> 
-                </div>
-                <div class="bottom">
-                    <span class="bg-piece"> </span> 
-                    <label class="ss-storm" for="info-storm"><!-- Put rss icon here if not using symbol set --></label> 
-                    <span class="bg-piece"> </span> 
-                    <label class="ss-rainy" for="info-rainy"><!-- Put refresh icon here if not using symbol set --></label> 
-                    <span class="bg-piece"> </span> 
-                    <label class="ss-cloudy" for="info-cloudy"><!-- Put icon here if not using symbol set --></label> 
-                </div>
-            </div>
-             
-        </div>
-         
-        <div class="info tornado-info">Lets go home</div>
-        <div class="info sun-info">Want directions?</div>
-        <div class="info sunset-info">Love</div>
-        <div class="info storm-info">RSS Feed</div>
-        <div class="info cloudy-info">Galactic domination</div>
-        <div class="info rainy-info">Refreshing</div>
-         
-        <div class="faux-shadow"> </div>
-    </div>
-</div>
-
-<div class="col-lg-12">
-    <button id="mood-submit" type="submit" class="btn btn-primary btn-lg">submit</button>
+		<div class="col-lg-12 text-center">
+			<div id="error" class="medium white"></div>
+			<button id="mood-submit" type="submit" class="btn btn-primary btn-lg">submit</button>
+		</div>
+	</div>
 </div>
 <!-- 
 <button type="submit" class="btn btn-primary btn-lg"></button> -->

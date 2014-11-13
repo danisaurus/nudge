@@ -21,8 +21,8 @@
   <div class='td'>
     <%=@trigger.message_text[0..18] %>...
   </div>
-  <div class='editTrigger td'>
-    <a href="">edit</a>
+  <div class='td'>
+    <%= link_to 'edit', edit_trigger_path(@trigger), :class => 'editTrigger' %>
   </div>
   <div  class='td'>
     <a href="/triggers/<%=@trigger.id%>/delete" class='trigDelete'>delete</a>

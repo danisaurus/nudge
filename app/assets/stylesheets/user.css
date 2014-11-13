@@ -17,7 +17,7 @@ li.sideNav {
   display:table-header-group;
   color:white;
   font-weight:bold;
-  background-color: gray;
+  background-color:grey;
 }
 .tbody
 {
@@ -60,4 +60,16 @@ li.sideNav {
 
 .add-substract-days {
   text-align: center;
+}
+
+.hidden {
+  display: none;
+}
+
+.marginForChildrenEdit {
+  margin-left: 132px;
+}
+
+.editTextArea {
+  margin-left: 28px;
 }
