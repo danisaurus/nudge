@@ -9,8 +9,22 @@ class TriggersController < ApplicationController
     render nothing: true
   end
 
+  def update
+    puts trigger_params
+    puts trigger_params
+    @trigger = Trigger.find(params[:id])
+    @trigger.message_text = trigger_params[:message_text]
+    @trigger.save
+    render partial: 'show.html'
+  end
+
   def new
     @trigger = Trigger.new
+  end
+
+  def edit
+    @trigger = Trigger.find(params[:id])
+    render partial: 'edit.html'
   end
 
   def create
@@ -34,7 +48,7 @@ class TriggersController < ApplicationController
 
   def decrease_durations
     @trigger = Trigger.find(params[:trigger_id])
-    @trigger.duration_in_hours -= 1 unless @trigger.duration_in_hours < 1
+    @trigger.duration_in_hours -= 1 unless @trigger.duration_in_hours < 2
     @trigger.save
     render nothing: true
   end
@@ -42,7 +56,7 @@ class TriggersController < ApplicationController
 
   private
   def trigger_params
-    params.require(:trigger).permit(:message_text, :duration_in_hours)
+    params.require(:trigger).permit(:id, :message_text, :duration_in_hours)
   end
 
 end

@@ -53,3 +53,23 @@ li.sideNav {
 #chart {
   width: 100%;
 }
+
+.inline {
+  display: inline;
+}
+
+.add-substract-days {
+  text-align: center;
+}
+
+.hidden {
+  display: none;
+}
+
+.marginForChildrenEdit {
+  margin-left: 132px;
+}
+
+.editTextArea {
+  margin-left: 28px;
+}

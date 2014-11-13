@@ -17,6 +17,8 @@ class TokensController < ApplicationController
       current_user.find_last_history_id
       current_user.save
       render :new
+    else
+      render :new
     end
   end
 
@@ -30,6 +32,8 @@ class TokensController < ApplicationController
       current_user.tokens << token
       current_user.daily_reports.last.tweets << current_user.most_recent_tweet
       current_user.save
+      render :new
+  else
       render :new
     end
   end

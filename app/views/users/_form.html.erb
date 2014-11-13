@@ -11,15 +11,15 @@
     </div>
   <% end %>
 
-  <%= f.text_field :first_name %>
-  <%= f.label :first_name %><br>
+  <%= f.text_field :first_name, :placeholder => 'first Name', :class => 'borderRound' %>
+  <br>
 
-  <%= f.text_field :last_name %>
-  <%= f.label :last_name %><br>
+  <%= f.text_field :last_name, :placeholder => 'last Name', :class => 'borderRound' %>
+  <br>
 
-  <%= f.text_field :gmail %>
-  <%= f.label :gmail %><br>
+  <%= f.text_field :gmail, :placeholder => 'email', :class => 'borderRound' %>
+  <br>
 
-  <%= f.submit %>
+  <%= f.submit 'add supporter' %>
 
 <% end %>

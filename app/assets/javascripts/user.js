@@ -1,12 +1,15 @@
 $(document).ready(function(){
   var navLink = $('.navLink')
   var activity = $('#userActivity')
+  var home = $('#userHome')
   var settings = $('#userSettings')
   var account = $('#userAccount')
+  var newTriggerContainer = $('#newTriggerContainer')
   $('#newTriggerSettings').hide();
   account.hide();
   activity.hide();
   settings.hide();
+  newTriggerContainer.hide();
   $('#monitorsShow').hide();
   // $('#supportersShow').hide();
   $('#notificationsShow').hide();
@@ -16,37 +19,51 @@ $(document).ready(function(){
 
   $('#account').on('click', function(){
     $('#userContainer').children().hide();
+    newTriggerContainer.hide();
     account.show();
 
   });
 
   $('#settings').on('click', function(){
     $('#userContainer').children().hide();
+    newTriggerContainer.hide();
     settings.show();
 
   });
 
   $('#activity').on('click', function(){
     $('#userContainer').children().hide();
+    newTriggerContainer.hide();
     activity.show();
+
+  });
+
+  $('#home').on('click', function(){
+    $('#userContainer').children().hide();
+    newTriggerContainer.hide();
+    home.show();
 
   });
 
   $('#userAccount').on('click', function() {
     $('#page-content-wrapper').children().hide();
+    newTriggerContainer.hide();
     $('#monitorsShow').show();
   })
 
   $('#monitorSettings').on('click', function() {
     $('#page-content-wrapper').children().hide();
+    newTriggerContainer.hide();
     $('#monitorsShow').show();
   })
   $('#supportSettings').on('click', function() {
     $('#page-content-wrapper').children().hide();
+    newTriggerContainer.hide();
     $('#supportersShow').show();
   })
   $('#notificationsSettings').on('click', function() {
     $('#page-content-wrapper').children().hide();
+    newTriggerContainer.show();
     $('#notificationsShow').show();
   })
 

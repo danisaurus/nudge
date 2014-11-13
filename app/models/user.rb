@@ -192,12 +192,12 @@ class User < ActiveRecord::Base
   end
 
   def all_email?
-    email_triggers = self.triggers.all.select { |t| t.task.method =~ /email/i }
+    email_triggers = self.triggers.all.select { |t| t.task.methods =~ /email/i }
     email_triggers.any? { |t| t.active }
   end
 
   def all_twitter?
-    twitter_triggers = self.triggers.all.select { |t| t.task.method =~ /twitter/i }
+    twitter_triggers = self.triggers.all.select { |t| t.task.methods =~ /twitter/i }
     twitter_triggers.any? { |t| t.active }
   end
 
