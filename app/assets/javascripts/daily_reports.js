@@ -6,14 +6,14 @@ $(function () {
     var tweets = [];
     $.get('/reports', function(response){
         weeklyReport = response;
-        for(var i = 0; i < 7; i++){
+        for(var i = 0; i < weeklyReport.length; i++){
             check_ins[i] = weeklyReport[i].check_ins;
             gmails[i] = weeklyReport[i].gmails;
             tweets[i] = weeklyReport[i].tweets;
         };
         $('#chart').highcharts({
             title: {
-                text: "Your week in review",
+                text: "How you've been",
                 x: -20 //center
             },
             xAxis: {
@@ -26,10 +26,12 @@ $(function () {
                 title: {
                     text: 'Sentiment'
                 },
+                max: 1,
+                min: -1,
                 plotLines: [{
                     value: 0,
-                    width: 1,
-                    color: '#808080'
+                    width: 2,
+                    color: '#999999'
                 }]
             },
             legend: {
