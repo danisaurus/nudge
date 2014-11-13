@@ -44,12 +44,12 @@ $(document).ready(function(){
         }, 400 );
   }
 
-  $('#twitterAuth').on('click', function(event){
-    changeDivColor($(this), '#FF0000', 19)
-  });
+  // $('#twitterAuth').on('click', function(event){
+  //   changeDivColor($(this), '#FF0000', 19)
+  // });
 
-  $('#googleAuth').on('click', function(event){
-    changeDivColor($(this), '#FF0000', 19)
-  });
+  // $('#googleAuth').on('click', function(event){
+  //   changeDivColor($(this), '#FF0000', 19)
+  // });
 
 });

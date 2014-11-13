@@ -49,3 +49,15 @@ li.sideNav {
 .marginTwentySix {
   margin-left: 26px;
 }
+
+#chart {
+  width: 100%;
+}
+
+.inline {
+  display: inline;
+}
+
+.add-substract-days {
+  text-align: center;
+}

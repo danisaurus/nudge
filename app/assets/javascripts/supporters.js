@@ -9,7 +9,7 @@ $(document).ready(function(){
       });
     })
 
-  	$('body').on('submit', '.edit_supporter', function(){
+  	$('body').on('submit', '.edit_supporter', function(event){
   		event.preventDefault();
   		var url = $(event.target).attr( 'action' ),
           par = $(event.target),
