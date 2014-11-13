@@ -1,8 +1,8 @@
 <%= form_for @trigger do |f| %>
 <%= @error %>
   <div class='col-md-6'>
-      <select name='method' id='triggerMenu'>
-        <option value="check_email_activity">email activity</option>
+      <select name='method' id='triggerMenu' class='messageType'>
+        <option value="check_email_activity">email activity<i class="fa fa-sort-desc"></i></option>
         <option value="check_email_sentiment">email sentiment</option>
         <option value="check_twitter_sentiment">twitter sentiment</option>
       </select>

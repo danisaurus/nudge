@@ -1,5 +1,5 @@
 <div class='tr'>
-  <div class='td'>
+  <div class='toggleSwitch td'>
     <%= link_to raw("<div class='ellipse inline-block'>
     <div class='circle inline-block '>
     </div>
@@ -22,9 +22,13 @@
     <%=@trigger.message_text[0..18] %>...
   </div>
   <div class='td'>
+    method
+  </div>
+  <div class='editTrigger td'>
+    <a href=""><i class="fa fa-pencil"></i></a>
     <%= link_to 'edit', edit_trigger_path(@trigger), :class => 'editTrigger' %>
   </div>
-  <div  class='td'>
-    <a href="/triggers/<%=@trigger.id%>/delete" class='trigDelete'>delete</a>
+  <div  class='deleteTrigger td'>
+    <a href="/triggers/<%=@trigger.id%>/delete" class='trigDelete'><i class="fa fa-trash"></i></a>
   </div>
 </div>
