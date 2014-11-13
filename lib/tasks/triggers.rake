@@ -10,8 +10,7 @@ namespace :events do
   end
 
   def perform(trigger)
-      user = User.find(trigger.user_id)
-      user.send(trigger.task.method, trigger)
+      trigger.user.send(trigger.task.method, trigger)
   end
 
 end
