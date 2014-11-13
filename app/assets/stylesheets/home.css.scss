@@ -1,34 +1,42 @@
 #mood-wheel {
-    display:block;
-    margin-top: 5%;
+    display: block;
+    position: relative;
+    margin-top: 6em;
+    .intro{
+        margin-bottom: 1em;
+        font-weight: 200;
+    }
 }
+
+#user-mood {
+    height: 100%;
+    width: 100%;
+    position: absolute;
+}
+
+
 /* Just for positioning the menu correctly */
 #menu {
     position: relative;
-    width: 230px;
+    width: 400px;
     margin: 0px auto;
-    top: 100px;
-    left: 37px;
 }
  
 
 #on-button {
     position: absolute;
     content: " ";
-    top: 50px;
-    left: 50px;
+    top: 34%;
+    left: 35%;
     width: 120px;
     height: 120px;
-    margin: 15px;
     border-radius: 120px;
     background: #fff;
     z-index: 2;
-    float: left;
     box-sizing: border-box;
     -moz-box-sizing: border-box;
     cursor: pointer;
-    background-color: #fff;
-    pointer-events: none;
+    background-color: #9DD3F3;
     font-size: 5em;
 }
  
@@ -36,12 +44,9 @@
 #menu-items {
     width: 400px;
     height: 400px;
-    left: -75px;
-    top: -75px;
     border-radius: 250px;
-    background: #aaa;
-    position: absolute;
-    z-index: -99;
+    background: #fff;
+    margin-bottom: 1em;
     overflow: hidden;
     -webkit-mask-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAIAAACQd1PeAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAA5JREFUeNpiYGBgAAgwAAAEAAGbA+oJAAAAAElFTkSuQmCC);
     box-shadow: 0 0 15px rgba(0,0,0,0.3);
@@ -71,66 +76,7 @@
     height: 100%;
     white-space: nowrap;
 }
- 
-/* Styling the background pieces. These containers don't do anything, they are 
-   just for design */
-    
-// #menu-items .middle .bg-piece {
-//     width: 33.3%;
-//     height: 100%;
-//     text-align: center;
-//     display: inline-block !important;
-//     background: #eee;
-//     font-size: 2.5em;
-//     position: absolute;
-//     display: block;
-// }
- 
-// /* It was important to make sure all the background pieces were in the correct
-//    position and this required a little bit of experimenting. The code below 
-//    makes sure everything is positioned in the correct order */
-    
-// #menu-items .middle > div .bg-piece:nth-of-type(2) {
-//     position: absolute;
-//     width: 0;
-//     height: 0;
-// }
-// #menu-items .middle .bottom .bg-piece:nth-of-type(2):after, #menu-items .middle .top .bg-piece:nth-of-type(2):after {  
-//     content: " ";
-//     position: absolute;
-//     border-color: transparent transparent #eee transparent;
-//     border-width: 148px;
-//     border-style: solid;
-//     top: -142px;
-//     left: 0px;
-//     z-index: 999;
-// }
- 
-// #menu-items .middle .top .bg-piece:nth-of-type(2):after {
-//     border-color: #eee transparent transparent transparent;
-//     top: -5px;
-//     left: 0;
-// }
- 
-// #menu-items .middle .top .bg-piece:nth-of-type(1) { 
-//     box-shadow: inset -125px 0 36px -35px rgba(0, 0, 0, 0.1), inset -7px -161px 72px rgba(0, 0, 0, 0.1);
-// }
- 
-// #menu-items .middle .top .bg-piece:nth-of-type(3) { 
-//     box-shadow: inset 125px 0 36px -35px rgba(0, 0, 0, 0.1), inset -7px -161px 72px rgba(0, 0, 0, 0.1);
-// }
- 
-// #menu-items .middle > div .bg-piece:nth-of-type(1) {
-//     width: 50%;
-//     box-shadow: inset -125px 0 36px -35px rgba(0, 0, 0, 0.1);
-// }
- 
-// #menu-items .middle > div .bg-piece:nth-of-type(3) {
-//     width: 50%;
-//     right: 0;
-//     box-shadow: inset 125px 0 36px -35px rgba(0, 0, 0, 0.1);
-// }
- 
+
 /* ------------------------------------------------------------ */
 
 /* The labels are what contain the icons */
@@ -175,14 +121,14 @@
 }
  
 #info-storm:checked ~ #menu-items, #menu-items .bottom .ss-cloudy { 
-    -webkit-transform: rotateZ(114deg); 
-    -moz-transform: rotateZ(114deg); 
-    -ms-transform: rotateZ(114deg); 
-    -o-transform: rotateZ(114deg);   
-    transform: rotateZ(114deg); 
+    -webkit-transform: rotateZ(114deg);
+    -moz-transform: rotateZ(114deg);
+    -ms-transform: rotateZ(114deg);
+    -o-transform: rotateZ(114deg);
+    transform: rotateZ(114deg);
 }
  
-#info-cloudy:checked ~ #menu-items, #menu-items .bottom .ss-storm { 
+.info-cloudy:checked ~ #menu-items, #menu-items .bottom .ss-storm { 
     -webkit-transform: rotateZ(-114deg); 
     -moz-transform: rotateZ(-114deg); 
     -ms-transform: rotateZ(-114deg); 
