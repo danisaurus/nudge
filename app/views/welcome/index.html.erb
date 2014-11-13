@@ -4,10 +4,12 @@
 			<section id="introduction" class="row centered text-center">
 						<div class="col-sm-12 col-md-12 col-lg-12 main-focus centered">
 							<div class="row centered">
-								<div class="col-lg-12 centered intro-logo">
-									<%= image_tag "nudge-logo.png", class: "img-responsive centered" %>
-								</div>
-								<div id='login'>
+								<% if !@user.errors.any? %>
+									<div class="col-lg-12 centered intro-logo">
+										<%= image_tag "nudge-logo.png", class: "img-responsive centered" %>
+									</div>
+								<% end %>
+								<div id='login' class="form">
 									<%= form_tag sessions_path, role: "form" do %>
 										<div class="form-group">
 											<%= text_field_tag :email, params[:email], :placeholder => "email", class: "form-control" %>
@@ -26,7 +28,7 @@
 									<% end %>
 								<% end %>
 
-								<div id='newUser'>
+								<div id='newUser' class="form">
 									<%= form_for @user, :html => {:role => "form"} do |f| %>
 										<div class="form-group">
 											<%= f.text_field :first_name, placeholder: "first name", class: "form-control" %>
