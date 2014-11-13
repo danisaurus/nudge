@@ -198,7 +198,7 @@ class User < ActiveRecord::Base
   end
 
   def all_twitter?
-    twitter_triggers = self.triggers.all.select { |t| t.task.method =~ /twitter/i }
+    twitter_triggers = trigger.
     twitter_triggers.any? { |t| t.active }
   end
 

@@ -17,7 +17,7 @@ li.sideNav {
   display:table-header-group;
   color:white;
   font-weight:bold;
-  background-color: gray;
+  background-color:grey;
 }
 .tbody
 {
@@ -48,8 +48,4 @@ li.sideNav {
 
 .marginTwentySix {
   margin-left: 26px;
-}
-
-#chart {
-  width: 100%;
 }

@@ -1,3 +1,4 @@
+<% User.first.all_twitter? %>
 <div id='wrapper' class='settingsShow widthFull'>
   <div id='sidebar-wrapper' class='inline-flex'>
     <ul class='sidebar-nav'>
@@ -86,7 +87,7 @@
     <div id='monitorsShow'>
       <div class='block'>
         <%= link_to raw("<div class='ellipse inline-block'>
-            <div class='circle inline-block'>
+          <div class='circle inline-block'>
             </div>
           </div>"), toggle_twitter_trig_path(current_user), :id =>'toggleTwitterTriggers', :class => current_user.all_twitter? ? "" : "marginNineteen" %>
           <% if current_user.all_twitter? %>
