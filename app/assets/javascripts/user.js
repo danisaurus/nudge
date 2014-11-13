@@ -24,7 +24,7 @@ $(document).ready(function(){
 
   });
 
-  $('#settings').on('click', function(){
+  $('.settings').children().on('click', function(){
     $('#userContainer').children().hide();
     newTriggerContainer.hide();
     settings.show();

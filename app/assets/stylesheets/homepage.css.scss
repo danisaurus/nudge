@@ -25,15 +25,6 @@
   		margin-top: 3%;
   	}
 
-  	.form-group {
-  		height: 55px;
-  	}
-
-  	input {
-  		height: 55px;
-		padding: 10px 10px 10px 10px;
-  	}
-
   	#login {
   		display:none;
   		width: 50%;
@@ -43,35 +34,6 @@
   	#newUser {
   		display:none;
   		width: 60%;
-  	}
-
-  	.form {
-		background: white;
-		padding: 75px 50px 75px;
-		border-radius: 40px;
-		margin: 10% auto;
-		background: rgba(255, 255, 255, .25);
-		padding: 75px 50px 75px;
-		border-radius: 40px;
-		margin: 10% auto;
-		-webkit-box-shadow: -5px 5px 30px 1px rgba(255,255,255,0.4);
-		-moz-box-shadow: -5px 5px 30px 1px rgba(255,255,255,0.4);
-		box-shadow: 6px 6px 1px 1px rgba(255,255,255,0.4);
-		::-webkit-input-placeholder {
-		   font-size: 18px;
-		}
-
-		:-moz-placeholder { /* Firefox 18- */
-		   font-size: 18px;
-		}
-
-		::-moz-placeholder {  /* Firefox 19+ */
-		   font-size: 18px;
-		}
-
-		:-ms-input-placeholder {  
-		   font-size: 18px;
-		}
   	}
 
   	#signUp {
@@ -115,6 +77,74 @@
   	}
 }
 
+.form {
+  background: white;
+  padding: 75px 50px 75px;
+  border-radius: 40px;
+  margin: 10% auto;
+  background: rgba(255, 255, 255, .25);
+  padding: 75px 50px 75px;
+  border-radius: 40px;
+  margin: 10% auto;
+  -webkit-box-shadow: -5px 5px 30px 1px rgba(255,255,255,0.4);
+  -moz-box-shadow: -5px 5px 30px 1px rgba(255,255,255,0.4);
+  box-shadow: 6px 6px 1px 1px rgba(255,255,255,0.4);
+  .form-group {
+    height: 55px;
+  }
+  input {
+    height: 55px;
+    padding: 10px 10px 10px 10px;
+  }
+  :-moz-placeholder { /* Firefox 18- */
+     font-size: 18px;
+  }
+
+  ::-moz-placeholder {  /* Firefox 19+ */
+     font-size: 18px;
+  }
+
+  :-ms-input-placeholder {  
+     font-size: 18px;
+  }
+  ::-webkit-input-placeholder {
+     font-size: 18px;
+  }
+
+  #user_first_name {
+      width: 49%;
+      display: inline-block;
+      float: left;
+  }
+  #user_last_name {
+    width: 49%;
+    display: inline-block;
+    float: right;
+  }
+  #user_gmail {
+    width: 49%;
+    display: inline-block;
+    float: left;
+  }
+  #user_phone {
+    width: 49%;
+    display: inline-block;
+    float: right;
+  }
+  #user_password {
+    width: 49%;
+    display: inline-block;
+    float: left;
+  }
+  #user_password_confirmation {
+    width: 49%;
+    display: inline-block;
+    float: right;
+  }
+
+
+
+}
 
 #intro-info {
 	background:white;
@@ -124,6 +154,8 @@
 	}
 
 }
+
+
 
 
 

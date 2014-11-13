@@ -1,16 +1,26 @@
-<nav class="navbar navbar-default" role="navigation">
-  <div class="container-fluid">
-    <div class='navbar-header'>
-      <span class='navbar-brand'>Welcome <%= @user.first_name %></span>
-    </div>
-    <div class='collapse navbar-collapse'>
-      <ul class='nav navbar-nav'>
-        <li><a href="#" class='navLink' id='home'>Home</a></li>
-        <li><a href="#" class='navLink' id="activity">Activity</a></li>
-        <li><a href="#" class='navLink' id="settings">Settings</a></li>
+<div class="container-fluid">
+  <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+      <div class='navbar-header'>
+        <span class='navbar-brand'>Welcome <%= @user.first_name %></span>
+      </div>
+      <div class='collapse navbar-collapse'>
+        <ul class='nav navbar-nav'>
+          <li><a href="#" class='navLink' id='home'>Home</a></li>
+          <li><a href="#" class='navLink' id="activity">Activity</a></li>
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle navLink" data-toggle="dropdown" role="button" aria-expanded="false">Settings <span class="caret"></span></a>
+            <ul class="settings dropdown-menu sidebar-nav" role="menu">
+              <li id='monitorSettings' class='sideNav'><a href="#">Monitors</a></li>
+              <li id='supportSettings' class='sideNav'><a href="#">Support Network</a></li>
+              <li id='notificationsSettings' class='sideNav'><a href="#">Notifications</a></li>
+              <li id='accountSettings' class='sideNav'><a href="#">Account Settings</a></li>
+            </ul>
+        </li>
         <li><a href="#" class='navLink' id="account">Account</a></li>
         <li class='right'><%= link_to 'Logout', logout_path %></li>
-      </ul>
+        </ul>
+      </div>
+  </nav>
   <div id='userContainer'>
     <div id='userHome'>
       <%= render "home", locals: {user: @user} %>
@@ -23,5 +33,5 @@
     </div>
     <div id='userAccount'>
       <%= render "account", locals: {user: @user} %>
-  </div>
+    </div>
 </div>

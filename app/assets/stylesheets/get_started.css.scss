@@ -2,6 +2,28 @@ h3 {
   text-align: center;
 }
 
+.get-started-background {
+  background: #9DD3F3;
+  position:absolute;
+  width: 100%;
+  height: 100%;
+}
+
+.get-started-container {
+    width:60%;
+    margin-top: 1em;
+    margin: 0 auto;
+}
+
+.pager {
+  width:100%;
+  border: 1px solid black;
+}
+.step {
+  width:  33%;
+}
+
+
 .active {
   background-color: #FF8E21;
   color: white;
@@ -36,7 +58,7 @@ li.gstart:nth-child(even) {
 }
 
 li.gstart {
-  padding: 10px;
+  padding: 10px 40px;
   -o-transition:color .1s ease-out, background .2s ease-in;
   -ms-transition:color .1s ease-out, background .2s ease-in;
   -moz-transition:color .1s ease-out, background .2s ease-in;
@@ -51,6 +73,7 @@ ul.gstart {
 p {
   margin: 0;
 }
+
 .width155 {
   width: 155px;
   text-align: center;
@@ -130,3 +153,14 @@ select {
 .hide {
 
 }
+
+.network {
+  width: 20%;
+}
+
+
+
+
+
+
+

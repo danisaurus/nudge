@@ -1,9 +1,9 @@
-<div>
-  <li>
-    <%= @supporter.first_name %> <%= @supporter.last_name %>
-  </li>
-  <li>
-    <%= @supporter.phone %>
-  </li>
-  <%= link_to 'Edit', edit_user_supporter_path(@user, @supporter), :class => "editSupporter marginTwentySix" %> <%= link_to 'Delete', delete_supporter_path(current_user, @supporter), :class => "deleteSupporter" %>
-</div>
+<% @user.supporters.each do |supporter| %>
+      <% if @user.supporters.nil? %>
+        You have no one in your support network! Add some!
+      <%end %>
+        <div class="supporter">
+          <%= supporter.first_name %> <%= supporter.last_name %> | <%= supporter.phone %> | <%= link_to 'Edit', edit_user_supporter_path(current_user, supporter), :class => "editSupporter" %> | <%= link_to 'Delete', delete_supporter_path(current_user, supporter), :class => "deleteSupporter" %>
+        </div>
+    </ul>
+<% end %>
