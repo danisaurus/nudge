@@ -1,4 +1,4 @@
-<div id='wrapper' class='settingsShow'>
+<div id='wrapper' class='settingsShow widthFull'>
   <div id='sidebar-wrapper' class='inline-flex'>
     <ul class='sidebar-nav'>
       <li id='monitorSettings' class='sideNav'><a href="#">Monitors</a></li>
@@ -29,14 +29,6 @@
       </div>
     </div>
     <div id='notificationsShow'>
-      <div class='block'>
-        <div id='showNewTrigger'>
-          Add New Notification
-        </div>
-        <div id='newTriggerSettings'>
-          <%= render "triggers/new", locals: {user: @user} %>
-        </div>
-      </div>
       <div id='notifications'>
       <div class='table'>
         <div class='thead'>
@@ -115,5 +107,13 @@
           <% end %>
       </div>
     </div>
+  </div>
+</div>
+<div class='block marginLeftForNav' id='newTriggerContainer'>
+  <div id='showNewTrigger' class='marginForChildren'>
+    add new notification
+  </div>
+  <div id='newTriggerSettings' class=block>
+    <%= render "triggers/new", locals: {user: @user} %>
   </div>
 </div>

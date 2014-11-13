@@ -52,7 +52,10 @@ p {
   margin: 0;
 }
 .width155 {
-  width: 155px
+  width: 155px;
+  text-align: center;
+  margin-left: 80px;
+  padding-top: 7px;
 }
 
 .block {
@@ -74,5 +77,54 @@ p {
   margin-top: 1px;
   width: 16px;
   height: 16px;
+}
+
+.fa-google {
+  font-size: 30px;
+}
+
+.fa-twitter {
+  text-decoration: none;
+  font-size: 30px;
+}
+
+.authLink {
+  font-size: 18px;
+  vertical-align: middle;
+}
+
+.marginLeftForNav {
+  margin-left: 151px;
+}
+
+.marginForChildren {
+  margin-left: 111px;
+}
+
+.messageType {
+  margin-left: 100px;
+}
+
+.messageHeader {
+  padding-top: 15px;
+  padding-bottom: 15px;
+}
+
+textarea {
+  border-radius: 5px;
+}
+
+select {
+  border-radius: 5px;
+}
+
+.borderRound {
+  border-radius: 5px;
+}
+
+#triggerSentimentNotification {
+  text-align: center;
+  size: 10px;
+  color: #DD5F27;
 }
 
