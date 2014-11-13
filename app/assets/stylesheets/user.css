@@ -1,5 +1,84 @@
 li.sideNav {
-  list-style: none
+  list-style: none;
+  margin: 10px;
+}
+
+
+.ellipse {
+  border: 2px solid rgb(218, 216, 213);
+  background: rgb(125, 131, 136);
+}
+
+a {
+  color: rgb(140, 138, 138);
+}
+
+.fa.fa-trash {
+  font-size: 2em;
+}
+
+.fa.fa-pencil {
+  font-size: 2em;
+}
+
+li.sideNav a {
+  padding: 5px;
+  border-radius: 1px;
+  color: gray;
+}
+
+div.wrapper{
+  padding-top: 0px;
+margin-top: -19px;
+}
+div.notifications {
+  font-size: 14px;
+  line-height: 1.42857143;
+  color: #333;
+}
+
+div.editTrigger {
+background: white;
+border: 3px solid #6EBBAF;
+padding-top: 10px;
+padding-left: 20px;
+padding-right: 20px;
+}
+
+div.deleteTrigger {
+background: white;
+border: 3px solid #6EBBAF;
+padding-top: 10px;
+padding-left: 20px;
+padding-right: 20px;
+}
+
+div.toggleSwitch {
+  background: #6EBBAF;
+}
+
+div.head {
+  background: #fbab18;
+}
+
+div.head.td.lighterOrange {
+  background-color: #FDCD74;
+}
+
+#showNewTrigger {
+  background-color: #fbab18;
+  width: 208px;
+  padding: 37px;
+  border-radius: 2px;
+}
+
+#triggerMenu {
+width: 137px;
+color: black;
+background: #FDCD74;
+border: 0;
+border-radius: 1px;
+height: 69px;
 }
 
 .settingsShow {
@@ -11,6 +90,9 @@ li.sideNav {
   display:table;
   border-collapse:separate;
   border-spacing:2px;
+  border: 2px solid #FDD58C;
+  padding: 2px;
+  padding-bottom: 0px;
 }
 .thead
 {
@@ -30,8 +112,17 @@ li.sideNav {
 .td
 {
   display:table-cell;
-  border:1px solid black;
-  padding:1px;
+  /*border:1px solid black;*/
+  background: #96D3CA;
+  padding:10px;
+  color: rgb(36, 29, 52);
+}
+.thead{
+  display:table-header-group;
+  color:white;
+  font-size: larger;
+  /*font-weight:bold;*/
+  background-color: #f7901e;
 }
 
 .maxTable {
@@ -41,8 +132,12 @@ li.sideNav {
 .red {
 }
 
+.circle {
+  background-color: rgb(222, 249, 222);
+}
+
 .marginNineteen .circle {
-  background-color: red;
+  background-color: rgb(131, 38, 38);
   margin-left: 19px;
 }
 
@@ -55,6 +150,12 @@ li.sideNav {
   margin-top: 50px;
 }
 
+#newTriggerSettings {
+border-radius: 1px;
+margin: 20px;
+width: 358px;
+padding: 15px;
+}
 .inline {
   display: inline;
 }
