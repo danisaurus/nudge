@@ -51,15 +51,15 @@
               </div>
               <div class='td'>
                 <div class='inline-flex'>
-                  <%= link_to raw('<i class="fa fa-plus inline-block toggle-up"></i>'), trig_inc_path(trigger) %>
+                  <%= link_to raw('<i class="fa fa-plus"></i>'), trig_inc_path(trigger), class: "toggle-up" %>
                 </div>
-                <div class='inline-block'>
+                <div class='inline'>
                   <span class='incDays'>
                     <%= trigger.duration_in_hours %>
                   </span>
                 </div>
-                <div>
-                <%= link_to raw('<i class="fa fa-minus inline-block toggle-down"></i>'), trig_dec_path(trigger) %>
+                <div class="inline">
+                <%= link_to raw('<i class="fa fa-minus"></i>'), trig_dec_path(trigger), class: "toggle-down" %>
                 </div>
               </div>
               <div class='td'>

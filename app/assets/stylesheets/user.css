@@ -49,3 +49,7 @@ li.sideNav {
 .marginTwentySix {
   margin-left: 26px;
 }
+
+.inline {
+  display: inline;
+}
