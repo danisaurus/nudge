@@ -2,60 +2,80 @@
 	<div class="container-fluid">
 		<div id="cloud-intro">
 			<section id="introduction" class="row centered text-center">
-						<div class="col-sm-12 col-md-12 col-lg-12 main-focus centered">
-							<div class="row centered">
-								<% if !@user.errors.any? %>
-									<div class="col-lg-12 centered intro-logo">
-										<%= image_tag "nudge-logo.png", class: "img-responsive centered" %>
+				<div class="col-sm-12 col-md-12 col-lg-12 main-focus centered">
+					<div class="row centered">
+						<% if !@user.errors.any? %>
+							<div class="col-lg-12 centered intro-logo">
+								<%= image_tag "nudge-logo.png", class: "img-responsive centered" %>
+							</div>
+						<% end %>
+						
+							<div id='login' class="form">
+								<%= form_tag sessions_path, role: "form" do %>
+									<div class="form-group">
+										<%= text_field_tag :email, params[:email], :placeholder => "email", class: "form-control" %>
+										<%#if @user.errors.any? %>
+											<!-- <p class="error"><%#= @user.errors.on(:email) %></p> -->
+										<%# end %>
+									</div>
+									<div class="form-group">
+										<%= password_field_tag :password, params[:password], :placeholder => "password", class: "form-control" %>
+										<%# if @user.errors.any? %>
+											<!-- <p class="error"><%#= @user.errors.on(:password) %></p> -->
+										<%# end %>
+									</div>
+									<div class="form-group">
+										<%= submit_tag 'login', class: "btn btn-primary btn-lg centered" %>
 									</div>
 								<% end %>
-								<div id='login' class="form">
-									<%= form_tag sessions_path, role: "form" do %>
-										<div class="form-group">
-											<%= text_field_tag :email, params[:email], :placeholder => "email", class: "form-control" %>
-										</div>
-										<div class="form-group">
-											<%= password_field_tag :password, params[:password], :placeholder => "password", class: "form-control" %>
-										</div>
-										<div class="form-group">
-											<%= submit_tag 'login', class: "btn btn-primary btn-lg centered" %>
-										</div>
-									<% end %>
-								</div>
-								<% if @user.errors.any?  %>
-									<% @user.errors.full_messages.each do |message| %>
-										<p><%= message %></p>
-									<% end %>
-								<% end %>
+							</div>
 
-								<div id='newUser' class="form">
-									<%= form_for @user, :html => {:role => "form"} do |f| %>
-										<div class="form-group">
-											<%= f.text_field :first_name, placeholder: "first name", class: "form-control" %>
-											<%= f.text_field :last_name, placeholder: "last name", class: "form-control"  %>
-										</div>
-										<div class="form-group">
-											<%= f.text_field :gmail, placeholder: "email", class: "form-control" %>
-											<%= f.text_field :phone, placeholder: "phone", class: "form-control" %>
-										</div>
-										<div class="form-group">
-											<%= f.password_field :password, placeholder: "password", class: "form-control" %>
-											<%= f.password_field :password_confirmation, placeholder: "enter password again", class: "form-control" %>
-										</div>
-										<div class="form-group">
-											<%= f.submit "Create Account", class: "btn btn-primary btn-lg centered" %>
-										</div>
-									<% end %>
-								</div>
+							<div id='newUser' class="form">
+								<%= form_for @user, :html => {:role => "form"} do |f| %>
+									<div class="form-group">
+										<%= f.text_field :first_name, placeholder: "first name", class: "form-control" %>
+										<%# if @user.errors.any? %>
+											<!-- <p class="error"><%#= @user.errors.on(:first_name) %></p> -->
+										<%# end %>
+										<%= f.text_field :last_name, placeholder: "last name", class: "form-control"  %>
+										<%# if @user.errors.any? %>
+											<!-- <p class="error"><%#= @user.errors.on(:last_name) %></p> -->
+										<%# end %>
+									</div>
+									<div class="form-group">
+										<%= f.text_field :gmail, placeholder: "email", class: "form-control" %>
+										<%# if @user.errors.any? %>
+											<!-- <p class="error"><%#= @user.errors.on(:gmail) %></p> -->
+										<%# end %>
+										<%= f.text_field :phone, placeholder: "phone", class: "form-control" %>
+										<%# if @user.errors.any? %>
+											<!-- <p class="error"><%#= @user.errors.on(:phone) %></p> -->
+										<%# end %>
+									</div>
+									<div class="form-group">
+										<%= f.password_field :password, placeholder: "password", class: "form-control" %>
+										<%# if @user.errors.any? %>
+											<!-- <p class="error"><%#= @user.errors.on(:password) %></p> -->
+										<%# end %>
+										<%= f.password_field :password_confirmation, placeholder: "enter password again", class: "form-control" %>
+										<%# if @user.errors.any? %>
+											<!-- <p class="error"><%#= @user.errors.on(:password_confirmation) %></p> -->
+										<%# end %>
+									</div>
+									<div class="form-group">
+										<%= f.submit "Create Account", class: "btn btn-primary btn-lg centered" %>
+									</div>
+								<% end %>
 							</div>
 						</div>
-					<div id="homepage-cta">
-						<div class="col-sm-12 col-md-12 col-lg-12 headline centered">
-							<h2>sometimes you just need a little nudge</h2>
-						</div>
-						<button id="signUp" class="btn btn-primary btn-lg centered">signup</button>
-						<div id="signIn"><%= link_to "login", '#' %></div>
 					</div>
+				<div id="homepage-cta">
+					<div class="col-sm-12 col-md-12 col-lg-12 headline centered">
+						<h2>sometimes you just need a little nudge</h2>
+					</div>
+					<button id="signUp" class="btn btn-primary btn-lg centered">signup</button>
+					<div id="signIn"><%= link_to "login", '#' %></div>
+				</div>
 			</section>
 		</div>
 		<div id="intro-info" class="container">
