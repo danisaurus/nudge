@@ -36,7 +36,7 @@ class UsersController < ApplicationController
 	  	session[:user_id] = @user.id
 	    redirect_to get_started_path
 	  else
-	    render :"sessions/new"
+	    render :"welcome/index"
 	  end
 	end
 

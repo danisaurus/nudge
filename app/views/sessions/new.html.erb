@@ -1,41 +1,5 @@
 <%# app/views/sessions/new.html.erb %>
 <%#= link_to "Authenticate with Google!", '/auth/google_oauth2' %>
-<div class='jumbotron col-md-4 col-md-offset-4'>
-  <h1>nudge</h1>
-  <div class='lead'><h2>notify the people who care about you, when you need them the most.</h2></div>
-  <div class='col-md-offset-4' id='login'>
-    <%= form_tag sessions_path do %>
-      <div>
-        <%= text_field_tag :email, params[:email], :placeholder => "email", :class => 'borderRound'  %>
-      </div>
-      <div>
-        <%= password_field_tag :password, params[:password], :placeholder => "password", :class => 'borderRound'  %>
-      </div>
-      <div>
-        <%= submit_tag 'login' %>
-      </div>
-    <% end -%>
-  <%= link_to "Signup", '/users/new', :id => "signUp" %>
-  </div>
-  <% if @user.errors.any?  %>
-    <% @user.errors.full_messages.each do |message| %>
-    <p><%= message %></p>
-    <% end %>
-  <% end %>
-
-  <div class='col-md-offset-4' id='newUser'>
-    <%= form_for @user do |f| %>
-      <%= f.text_field :first_name, placeholder: "first name" %>
-      <%= f.text_field :last_name, placeholder: "last name" %>
-      <%= f.text_field :gmail, placeholder: "email" %>
-      <%= f.text_field :phone, placeholder: "phone" %>
-      <%= f.password_field :password, placeholder: "password" %>
-      <%= f.password_field :password_confirmation, placeholder: "enter password again" %>
-      <%= f.submit "create account" %>
-    <% end %>
-    <%= link_to "Login", '#', :id => "signIn" %>
-  </div>
-</div>
 
 
 
