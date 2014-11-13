@@ -2,5 +2,5 @@ class Trigger < ActiveRecord::Base
 
   belongs_to :task
   belongs_to :user
-  validates :message_text, presence: true
+  validates_presence_of :message_text
 end
