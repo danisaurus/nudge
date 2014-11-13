@@ -4,7 +4,7 @@ $(document).ready(function(){
   days.hide();
   $('#triggerSentimentNotification').hide();
   $('.messageHolder').hide();
-  $("body").on( "click", "#toggle-up", function() {
+  $("body").on( "click", "#toggle-up", function(event) {
     days.val(Number(days.val()) + 1);
       $('#incDays').text(days.val());
     if (days.val() > 1) {
@@ -13,7 +13,7 @@ $(document).ready(function(){
 
   });
 
-  $("body").on( "click", "#toggle-down", function() {
+  $("body").on( "click", "#toggle-down", function(event) {
     if (days.val() > 1){
       days.val(days.val() - 1);
       $('#incDays').text(days.val());
@@ -33,7 +33,7 @@ $(document).ready(function(){
 
     $.post(url, data, function(serverResponse, status, jqXHR) {
       if ( serverResponse.match(/class='disappear'/) ) {
-        $(serverResponse).hide().appendTo('.trigger').fadeIn();
+        $(serverResponse).hide().appendTo('#errorMessageArea').fadeIn();
         $('.disappear').delay( 2000 ).fadeOut();
       } else {
       $(serverResponse).hide().appendTo('.tbody').fadeIn();
@@ -42,7 +42,7 @@ $(document).ready(function(){
     });
   });
 
-  $('body').on('click', '.toggle-up', function(){
+  $('body').on('click', '.toggle-up', function(event){
     event.preventDefault();
     var url = $(event.target).parent().attr('href');
     var par = $(event.target).parent().parent().next();
@@ -53,7 +53,7 @@ $(document).ready(function(){
     $.get(url, function(serverResponse, status, jqXHR){
     });
   });
-  $('body').on('click', '.toggle-down', function(){
+  $('body').on('click', '.toggle-down', function(event){
     event.preventDefault();
     var url = $(event.target).parent().attr('href');
     var par = $(event.target).parent().parent().prev();
@@ -67,7 +67,7 @@ $(document).ready(function(){
     })
   })
 
-  $('.editTrigger').on('click', function(){
+  $('.editTrigger').on('click', function(event){
     event.preventDefault();
     var par = $(this).parent();
     var messageHolder = par.next().children();
@@ -103,7 +103,7 @@ $(document).ready(function(){
     });
   });
 
-   $('#triggerMenu').change(function() {
+   $('#triggerMenu').change(function(event) {
     if ( $(this).val() === "check_email_sentiment" ) {
       $('#triggerSentimentNotification').show();
     } else if ( $(this).val() === "check_twitter_sentiment" ) {
@@ -113,8 +113,6 @@ $(document).ready(function(){
     }
 
    });
-
-   $('.marginForChildren').on("submit", )
 
 });
 
