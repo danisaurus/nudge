@@ -72,7 +72,7 @@ $(document).ready(function(){
     })
   })
 
-  $('.editTrigger').on('click', function(event){
+  $('body').on('click', '.editTrigger', function(event){
     event.preventDefault();
     var url = $(this).attr('href');
     var appendArea = $('#editTriggerSettings')
@@ -81,7 +81,7 @@ $(document).ready(function(){
     $.get(url, function(serverResponse, status, jqXHR){
       $('#showNewTrigger').hide()
       $('#newTriggerSettings').hide()
-      appendArea.html(serverResponse)
+      appendArea.append(serverResponse)
     })
     });
 
@@ -95,9 +95,9 @@ $(document).ready(function(){
         edittedRow.hide();
     $.post(url, data, function(serverResponse, status, jqXHR){
       $(serverResponse).hide().appendTo('.tbody').fadeIn();
-      formId.hide();
       $('#showNewTrigger').show();
       $('#newTriggerSettings').show();
+      $('#editTriggerSettings').hide();
     })
   });
 
