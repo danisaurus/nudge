@@ -6,9 +6,13 @@ body {
 	background-color: #9CD5F6;
 }
 
+.centered {
+	margin: 0 auto;
+}
+
 #introduction {
 	width:100%;
-	height:800px;
+	height:850px;
 	background: url(/animated-clouds-background.png) no-repeat center center fixed;
 	-webkit-background-size: cover;
   	-moz-background-size: cover;
@@ -20,10 +24,67 @@ body {
   	.headline {
   		color:white;
   	}
-  	.main-images{
+  	.main-focus{
   		margin: 50px 0px;
   	}
+
+  	.form-group {
+  		height: 40px;
+  		margin-bottom: 20px;
+  	}
+
+  	#login {
+  		display:none;
+  		width: 50%;
+  		margin: 0 auto;
+  		margin-top: 175px;
+  	}
+  	#newUser {
+  		display:none;
+  		width: 50%;
+  		margin: 0 auto;
+  	}
+
+  	#signUp {
+  		// margin-bottom: 20px;
+  	}
+  	#signIn {
+  		display:block;
+  		margin-top: 15px;
+  	}
+
+  	#user_first_name {
+  		width: 49%;
+  		display: inline-block;
+  		float: left;
+  	}
+  	#user_last_name {
+  		width: 49%;
+  		display: inline-block;
+  		float: right;
+  	}
+  	#user_gmail {
+  		width: 49%;
+  		display: inline-block;
+  		float: left;
+  	}
+  	#user_phone {
+  		width: 49%;
+  		display: inline-block;
+  		float: right;
+  	}
+  	#user_password {
+  		width: 49%;
+  		display: inline-block;
+  		float: left;
+  	}
+  	#user_password_confirmation {
+  		width: 49%;
+  		display: inline-block;
+  		float: right;
+  	}
 }
+
 
 .centered {
 	margin: 0 auto;

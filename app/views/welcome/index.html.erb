@@ -1,56 +1,99 @@
 <div class="row">
-<div class="container-fluid">
-	<div id="cloud-intro">
-		<section id="introduction">
-			<div class="col-sm-12 col-md-12 col-lg-12 centered">
-				<div class="col-sm-12 col-md-12 col-lg-12 main-images">
-					<div class="col-lg-12 centered intro-logo"><%= image_tag "nudge-logo.png", class: "img-responsive centered" %></div>
-				</div>
-				<div class="col-sm-12 col-md-12 col-lg-12 headline centered">
-					<h2>sometimes you just need a little nudge</h2>
-				</div>
-				<%= link_to 'sign-up', new_session_path, class: "btn btn-primary btn-lg centered" %>
-			</div>
-		</section>
-	</div>
-	<div id="intro-info" class="container">
-		<section id="supporters" class="row">
-			<div class="col-sm-12 col-md-12 col-lg-6">
-			 <h3 class="xlarge-headline text-left">gather your team of supporters</h3>
-			 <p class="xlarge-subheadline">create a network of people to be notified when you’re feeling down in the dumps and need someone to be there for you.</p>
-			</div>
-			<div class="col-sm-12 col-md-12 col-lg-6">
-				<%= image_tag "supporters-image.png", class: "img-responsive centered" %>
-			</div>
-		</section>
-		<section id="nudges" class="row">
-			<div class="col-sm-12 col-md-12 col-lg-6">
-				<%= image_tag "nudges.png", class: "img-responsive centered" %>
-			</div>
-			<div class="col-sm-12 col-md-12 col-lg-6">
-			 <h3 class="xlarge-headline text-left">setup your nudges</h3>
-			 <p class="xlarge-subheadline">create a series of self defined messages to be sent to your supporters when you’re feeling down. only you know the signs of being in a place you don’t want to be. choose automatic notifications based on self defined patterns of online social behavior, keywords, and email sentiment.</p>
-			</div>
-		</section>
-		<section id="check-in" class="row">
-			<div class="col-sm-12 col-md-12 col-lg-6">
-			 <h3 class="xlarge-headline text-left">check-in daily</h3>
-			 <p class="xlarge-subheadline">understand your mood and online patterns better by checking indaily and letting us know how you feel.</p>
-			</div>
-			<div class="col-sm-12 col-md-12 col-lg-6">
-				<%= image_tag "check-in.png", class: "img-responsive centered" %>
-			</div>
-		</section>
-		<section id="progress" class="row">
-			<div class="col-sm-12 col-md-12 col-lg-12">
-				<%= image_tag "view-stats.png", class: "img-responsive centered" %>
-			</div>
-			<div class="col-sm-12 col-md-12 col-lg-12">
-			 <h3 class="xlarge-headline">watch your progress</h3>
-			 <p class="xlarge-subheadline text-center">at nudge we use our homemade passive monitoring tools to keep track of how you express your feelings. view how your mood and your actions correlate to help you tune your nudges and move towards a healthier, happier you.</p>
-			</div>
+	<div class="container-fluid">
+		<div id="cloud-intro">
+			<section id="introduction" class="row centered text-center">
+						<div class="col-sm-12 col-md-12 col-lg-12 main-focus centered">
+							<div class="row centered">
+								<div class="col-lg-12 centered intro-logo">
+									<%= image_tag "nudge-logo.png", class: "img-responsive centered" %>
+								</div>
+								<div id='login'>
+									<%= form_tag sessions_path, role: "form" do %>
+										<div class="form-group">
+											<%= text_field_tag :email, params[:email], :placeholder => "email", class: "form-control" %>
+										</div>
+										<div class="form-group">
+											<%= password_field_tag :password, params[:password], :placeholder => "password", class: "form-control" %>
+										</div>
+										<div class="form-group">
+											<%= submit_tag 'login', class: "btn btn-primary btn-lg centered" %>
+										</div>
+									<% end %>
+								</div>
+								<% if @user.errors.any?  %>
+									<% @user.errors.full_messages.each do |message| %>
+										<p><%= message %></p>
+									<% end %>
+								<% end %>
 
-		</section>
+								<div id='newUser'>
+									<%= form_for @user, :html => {:role => "form"} do |f| %>
+										<div class="form-group">
+											<%= f.text_field :first_name, placeholder: "first name", class: "form-control" %>
+											<%= f.text_field :last_name, placeholder: "last name", class: "form-control"  %>
+										</div>
+										<div class="form-group">
+											<%= f.text_field :gmail, placeholder: "email", class: "form-control" %>
+											<%= f.text_field :phone, placeholder: "phone", class: "form-control" %>
+										</div>
+										<div class="form-group">
+											<%= f.password_field :password, placeholder: "password", class: "form-control" %>
+											<%= f.password_field :password_confirmation, placeholder: "enter password again", class: "form-control" %>
+										</div>
+										<div class="form-group">
+											<%= f.submit "Create Account", class: "btn btn-primary btn-lg centered" %>
+										</div>
+									<% end %>
+								</div>
+							</div>
+						</div>
+					<div id="homepage-cta">
+						<div class="col-sm-12 col-md-12 col-lg-12 headline centered">
+							<h2>sometimes you just need a little nudge</h2>
+						</div>
+						<button id="signUp" class="btn btn-primary btn-lg centered">signup</button>
+						<div id="signIn"><%= link_to "login", '#' %></div>
+					</div>
+			</section>
+		</div>
+		<div id="intro-info" class="container">
+			<section id="supporters" class="row">
+				<div class="col-sm-12 col-md-12 col-lg-6">
+					<h3 class="xlarge-headline text-left">gather your team of supporters</h3>
+					<p class="xlarge-subheadline">create a network of people to be notified when you’re feeling down in the dumps and need someone to be there for you.</p>
+				</div>
+				<div class="col-sm-12 col-md-12 col-lg-6">
+					<%= image_tag "supporters-image.png", class: "img-responsive centered" %>
+				</div>
+			</section>
+			<section id="nudges" class="row">
+				<div class="col-sm-12 col-md-12 col-lg-6">
+					<%= image_tag "nudges.png", class: "img-responsive centered" %>
+				</div>
+				<div class="col-sm-12 col-md-12 col-lg-6">
+					<h3 class="xlarge-headline text-left">setup your nudges</h3>
+					<p class="xlarge-subheadline">create a series of self defined messages to be sent to your supporters when you’re feeling down. only you know the signs of being in a place you don’t want to be. choose automatic notifications based on self defined patterns of online social behavior, keywords, and email sentiment.</p>
+				</div>
+			</section>
+			<section id="check-in" class="row">
+				<div class="col-sm-12 col-md-12 col-lg-6">
+					<h3 class="xlarge-headline text-left">check-in daily</h3>
+					<p class="xlarge-subheadline">understand your mood and online patterns better by checking indaily and letting us know how you feel.</p>
+				</div>
+				<div class="col-sm-12 col-md-12 col-lg-6">
+					<%= image_tag "check-in.png", class: "img-responsive centered" %>
+				</div>
+			</section>
+			<section id="progress" class="row">
+				<div class="col-sm-12 col-md-12 col-lg-12">
+					<%= image_tag "view-stats.png", class: "img-responsive centered" %>
+				</div>
+				<div class="col-sm-12 col-md-12 col-lg-12">
+					<h3 class="xlarge-headline">watch your progress</h3>
+					<p class="xlarge-subheadline text-center">at nudge we use our homemade passive monitoring tools to keep track of how you express your feelings. view how your mood and your actions correlate to help you tune your nudges and move towards a healthier, happier you.</p>
+				</div>
+
+			</section>
+		</div>
 	</div>
-</div>
 </div>
