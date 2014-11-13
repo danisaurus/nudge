@@ -11,20 +11,17 @@
     </div>
   <% end %>
   <div class='block'>
-    <%= f.label :first_name %>
-    <%= f.text_field :first_name %>
+    <%= f.text_field :first_name, :placeholder => 'first name', :class => 'borderRound'  %>
   </div >
   <div class='block'>
-    <%= f.label :last_name %>
-    <%= f.text_field :last_name %>
+    <%= f.text_field :last_name, :placeholder => 'last name', :class => 'borderRound' %>
   </div>
   <div class='block'>
-    <%= f.label :phone %>
-    <%= f.text_field :phone %>
+    <%= f.text_field :phone, :placeholder => 'phone', :class => 'borderRound' %>
   </div>
 
   <div class='block'>
-    <%= f.submit %>
+    <%= f.submit 'add supporter' %>
   </div>
 
 <% end %>

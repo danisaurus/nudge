@@ -1,14 +1,10 @@
-body {
-	font-family: Gotham, sans-serif, helvetica;
-}
-
 #cloud-intro {
 	background-color: #9CD5F6;
 }
 
 #introduction {
 	width:100%;
-	height:800px;
+	height:850px;
 	background: url(/animated-clouds-background.png) no-repeat center center fixed;
 	-webkit-background-size: cover;
   	-moz-background-size: cover;
@@ -16,19 +12,109 @@ body {
   	background-size: cover;
   	h2 {
   		font-weight: 100 !important;
+  		margin-top: -10px !important;
   	}
   	.headline {
   		color:white;
   	}
-  	.main-images{
+  	.main-focus{
   		margin: 50px 0px;
+  	}
+
+  	.intro-logo {
+  		margin-top: 3%;
+  	}
+
+  	.form-group {
+  		height: 55px;
+  	}
+
+  	input {
+  		height: 55px;
+		padding: 10px 10px 10px 10px;
+  	}
+
+  	#login {
+  		display:none;
+  		width: 50%;
+  		margin: 0 auto;
+  		margin-top: 175px;
+  	}
+  	#newUser {
+  		display:none;
+  		width: 60%;
+  	}
+
+  	.form {
+		background: white;
+		padding: 75px 50px 75px;
+		border-radius: 40px;
+		margin: 10% auto;
+		background: rgba(255, 255, 255, .25);
+		padding: 75px 50px 75px;
+		border-radius: 40px;
+		margin: 10% auto;
+		-webkit-box-shadow: -5px 5px 30px 1px rgba(255,255,255,0.4);
+		-moz-box-shadow: -5px 5px 30px 1px rgba(255,255,255,0.4);
+		box-shadow: 6px 6px 1px 1px rgba(255,255,255,0.4);
+		::-webkit-input-placeholder {
+		   font-size: 18px;
+		}
+
+		:-moz-placeholder { /* Firefox 18- */
+		   font-size: 18px;
+		}
+
+		::-moz-placeholder {  /* Firefox 19+ */
+		   font-size: 18px;
+		}
+
+		:-ms-input-placeholder {  
+		   font-size: 18px;
+		}
+  	}
+
+  	#signUp {
+  		// margin-bottom: 20px;
+  	}
+  	#signIn {
+  		display:block;
+  		margin-top: 15px;
+  		font-size: 16px;
+  	}
+
+  	#user_first_name {
+  		width: 49%;
+  		display: inline-block;
+  		float: left;
+  	}
+  	#user_last_name {
+  		width: 49%;
+  		display: inline-block;
+  		float: right;
+  	}
+  	#user_gmail {
+  		width: 49%;
+  		display: inline-block;
+  		float: left;
+  	}
+  	#user_phone {
+  		width: 49%;
+  		display: inline-block;
+  		float: right;
+  	}
+  	#user_password {
+  		width: 49%;
+  		display: inline-block;
+  		float: left;
+  	}
+  	#user_password_confirmation {
+  		width: 49%;
+  		display: inline-block;
+  		float: right;
   	}
 }
 
-.centered {
-	margin: 0 auto;
-	text-align:center;
-}
 
 #intro-info {
 	background:white;
@@ -39,39 +125,7 @@ body {
 
 }
 
-.xlarge-headline {
-	font-weight: 200 !important;
-	font-size: 46px;
-	color: #FBAF3F;
-	margin-top: 100px;
-}
 
-.xlarge-subheadline {
-	font-size: 25px;
-	font-weight: 100 !important;
-	color: #FBAF3F;
-}
-
-
-
-.btn-primary {
-	background: #FBAF3F !important;
-	border-color: transparent !important;
-	border: 0px;
-}
-
-.btn-primary:hover {
-	background: #DA5D26 !important;
-	border-color: transparent !important;
-	border: 0px;
-}
-
-.btn-lg {
-	height: 60px;
-	width: 200px;
-	padding: 15px;
-	margin-top: 25px
-}
 
 
 
