@@ -26,3 +26,10 @@ Nudge is an application that provides passive monitoring with active consent. Nu
 - [Twilio](https://www.twilio.com/api)
 - [Alchemy](http://www.alchemyapi.com/)
 - [Highcharts](http://www.highcharts.com/)ll
+
+# Team nudge
+- [Abbie Tuckner](https://github.com/abbiecat)
+- [Matthew Meyers](https://github.com/marinatedpork)
+- [Danielle Dirks](https://github.com/danisaurus)
+- [Raphael Ho](https://github.com/Kyhz)
+- [Mansi Puri](https://github.com/manspuri)
