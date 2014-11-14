@@ -2,44 +2,45 @@
   <div class='container-fluid'>
     <div class="get-started-background">
       <div class="get-started-container">
-        <ul class='gstart pager' id="getStarted">
+        <!-- <ul class='gstart pager' id="getStarted">
             <li class='step gstart active' id='stepOne'>Step One</li>
             <li class='step gstart' id='stepTwo'>Step Two</li>
             <li class='step gstart' id='stepThree'>Step Three</li>
-        </ul>
+        </ul> -->
         <div class='row formHolder'>
           <div id='formHolder'>
             <div class='formDiv' id="divOne">
-              <div class="step-container">
-                <div class="step-description">
-                  <div class="medium step-headline" id="tabTwo">enable monitoring</div>
-                  <p class="small step-subhead">at nudge we use our homemade passive monitoring tools to keep track of your online social activities in correlation with your emotional habits. allow nudge to monitor your gmail and twitter for inactivity and sentiment</p>
+              <div class="xlarge step-headline text-center" id="tabTwo">enable monitoring</div>
+                <div class="step-container">
+                  <div class="step-description">
+                    
+                    <p class="medium step-subhead">at nudge we use our homemade passive monitoring tools to keep track of your online social activities in correlation with your emotional habits. allow nudge to monitor your gmail and twitter for inactivity and sentiment</p>
+                  </div>
+                  <div class="access-buttons">
+                    <% if current_user.gmail_token.nil? %>
+                      <%= link_to 'allow gmail access', "/auth/google_oauth2", :target => "_blank", :id => 'googleAuth', class: "btn btn-gmail btn-lg" %>
+                    <% else %>
+                        <button class="btn btn-inactive btn-lg" %><i class="fa fa-google"></i> gmail access granted</button>
+                    <% end %>
+                    <% if current_user.twitter_token.nil? %>
+                      <%= link_to 'allow twitter access', "/auth/twitter", :target => "_blank", :id => 'twitterAuth', class: "btn btn-twitter btn-lg"%>
+                    <% else %>
+                      <button class="btn btn-inactive btn-lg" %> twitter access granted</button>
+                    <% end %>
+                  </div>
                 </div>
-                <div class="access-buttons">
-                  <% if current_user.gmail_token.nil? %>
-                    <%= link_to 'allow gmail access', "/auth/google_oauth2", :target => "_blank", :id => 'googleAuth', class: "btn btn-gmail btn-lg" %>
-                  <% else %>
-                      <button class="btn btn-inactive btn-lg" %><i class="fa fa-google"></i> gmail access granted</button>
-                  <% end %>
-                  <% if current_user.twitter_token.nil? %>
-                    <%= link_to 'allow twitter access', "/auth/twitter", :target => "_blank", :id => 'twitterAuth', class: "btn btn-twitter btn-lg"%>
-                  <% else %>
-                    <button class="btn btn-inactive btn-lg" %> twitter access granted</button>
-                  <% end %>
-                </div>
-              </div>
             </div>
           <div class='formDiv' id="divTwo">
             <div class='newSupporter'>
-              <div class="step-container">
-                  <div class="step-description">
-                    <div class="medium step-headline">gather your support network</div>
-                    <p class="small step-subhead">create a network of people to be notified when you’re feeling down in the dumps and need someone to be there for you.</p>
+              <div class="xlarge step-headline text-center">gather your support network</div>
+                <div class="step-container">
+                  <div class="step-description">  
+                    <p class="medium step-subhead">create a network of people to be notified when you’re feeling down in the dumps and need someone to be there for you.</p>
                   </div>
                   <div class="add-supporter">
                     <%= render 'supporters/form', locals: {user: @user} %>
                   </div>
-              </div>
+                </div>
               <% if @user.errors.any?  %>
                 <% @user.errors.full_messages.each do |message| %>
                 <p><%= message %></p>
@@ -49,10 +50,10 @@
             </div>
           </div>
             <div class='formDiv' id="divThree">
+              <div class='xlarge step-headline text-center' id="tabThree">set up your nudges</div>
               <div class="step-container">
                 <div class="step-description">
-                  <div class='medium step-headline' id="tabThree">setup your nudges</div>
-                  <p class="small step-subhead">create a series of self defined messages to be sent to your supporters when you’re feeling down. choose automatic notifications based on self defined patterns of online social behavior, keywords, and email sentiment.</p>
+                  <p class="medium step-subhead">create a series of self defined messages to be sent to your supporters when you’re feeling down. choose automatic notifications based on self defined patterns of online social behavior, keywords, and email sentiment.</p>
                 </div>
                 <div class="add-trigger form-setup">
                   <%= render "triggers/new", locals: {user: @user} %>
@@ -61,8 +62,8 @@
             </div>
           </div>
           <div class='before-and-after row' id='<%=@user.id%>'>
-            <button class='btn btn-primary btn-med cursorPointer' id='backButton'><i class="fa fa-chevron-left"></i> go back</button>
-            <button class='btn btn-primary btn-med cursorPointer' id='nextButton'>next step <i class="fa fa-chevron-right"></i></button>
+            <button class='btn btn-primary btn-lg cursorPointer' id='backButton'><i class="fa fa-chevron-left"></i> go back</button>
+            <button class='btn btn-primary btn-lg cursorPointer' id='nextButton'>next step <i class="fa fa-chevron-right"></i></button>
           </div>
         </div>
       </div>

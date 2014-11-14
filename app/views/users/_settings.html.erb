@@ -12,7 +12,7 @@
           </div>
           <div id="supportersList" class="network">
             <div class="centered text-center">
-                <h4 class="intro">current supporters</h2>
+                <h4 class="intro">current supporters</h4>
             </div>
             <%= render 'supporters/show', locals: {user: @user} %>
           </div>
@@ -20,6 +20,9 @@
       </div>
     </div>
     <div id='notificationsShow'>
+      <div class="centered text-center">
+          <div class="xlarge centered">scheduled nudges</div>
+      </div>
       <div id='notifications'>
       <div class='table'>
         <div class='thead'>
@@ -104,13 +107,13 @@
     </div>
   </div>
 </div>
-<div class='block marginLeftForNav' id='newTriggerContainer'>
+<!-- <div class='block marginLeftForNav' id='newTriggerContainer'>
   <div id='showNewTrigger' class='marginForChildren cursorPointer'>
     add new notification
   </div>
   <div id='newTriggerSettings' class='block'>
-    <%= render "triggers/new", locals: {user: @user} %>
+    <%#= render "triggers/new", locals: {user: @user} %>
   </div>
   <div id='editTriggerSettings'>
   </div>
-</div>
+</div> -->
