@@ -1,26 +1,37 @@
 <%= form_for @trigger do |f| %>
-<%= @error %>
-  <div class='col-md-6'>
-      <select name='method' id='triggerMenu' class='messageType'>
-        <option value="check_email_activity">email activity<i class="fa fa-sort-desc"></i></option>
-        <option value="check_email_sentiment">email sentiment</option>
-        <option value="check_twitter_sentiment">twitter sentiment</option>
-      </select>
-      <div class='inline-block'>
-        <div><i id="toggle-up" class="fa fa-chevron-up"></i></div>
-          <div class='inline-block'> <span id='incDays'><%= @trigger.duration_in_hours %></span> <span id='day'>day</span></div>
-        <div><i id="toggle-down" class="fa fa-chevron-down"></i></div>
+  <%= @error %>
+
+      <div class="form-group">
+        <%= f.text_area :message_text, size: '50x4', placeholder: 'what do you want to say?' %>
       </div>
-    <div class='block width155'>
-      <span id='triggerSentimentNotification'>texts for sentiment analysis are only sent to you</span>
-      <span id='errorMessageArea'></span>
-    </div>
-    
-    <%= f.text_area :message_text, size: '30x2', placeholder: 'what do you want to say?' %>
-    <%= f.submit 'add notification', :class => 'block marginForChildren' %>
-  </div>
-  <div class='col-md-6'>
-    <%= f.text_field :duration_in_hours, :class => 'hidden' %>
-  </div>
+      <div class="form-group">
+        <select name='method' id='triggerMenu'>
+          <option value="check_email_activity">email activity<i class="fa fa-sort-desc"></i></option>
+          <option value="check_email_sentiment">email sentiment</option>
+          <option value="check_twitter_sentiment">twitter sentiment</option>
+        </select>
+        <div class='add-substract-days'>
+          <div class='add-subtract-button inline-flex'>
+            <i id="toggle-up" class="fa fa-plus"></i>
+          </div>
+          <div class='inline'>
+            <span id='incDays'><%= @trigger.duration_in_hours %></span>
+          </div>
+
+          <div class="add-subtract-button inline">
+            <i id="toggle-down" class="fa fa-minus"></i>
+          </div>
+        </div>
+      </div>
+      <div class='form-group'>
+        <span id='triggerSentimentNotification'>texts for sentiment analysis are only sent to you</span>
+        <span id='errorMessageArea'></span>
+      </div>
+      <div class="form-group">
+        <%= f.submit 'add notification', :class => 'btn btn-primary btn-lg' %>
+      </div>
+      <div class='col-md-6'>
+        <%= f.text_field :duration_in_hours, :class => 'hidden' %>
+      </div>
 <% end %>
-<div class="my_triggers"></div>
+<!-- <div class="my_triggers"></div> -->

@@ -1,0 +1,18 @@
+<%= form_tag sessions_path, role: "form" do %>
+  <div class="form-group">
+    <%= text_field_tag :email, params[:email], :placeholder => "email", class: "form-control" %>
+    <%#if @user.errors.any? %>
+      <!-- <p class="error"><%#= @user.errors.on(:email) %></p> -->
+    <%# end %>
+  </div>
+  <div class="form-group">
+    <%= password_field_tag :password, params[:password], :placeholder => "password", class: "form-control" %>
+    <%# if @user.errors.any? %>
+      <!-- <p class="error"><%#= @user.errors.on(:password) %></p> -->
+    <%# end %>
+  </div>
+  <div class="form-group">
+    <%= submit_tag 'login', class: "btn btn-primary btn-lg centered" %>
+  </div>
+<% end %>
+
