@@ -10,29 +10,35 @@
         <div class='row formHolder'>
           <div id='formHolder'>
             <div class='formDiv' id="divOne">
-              <div class="form">
-                <h2 class='intro formHeader' id="tabTwo">enable monitoring</h2>
-                <p>allow nudge to monitor your gmail and twitter for inactivity and sentiment</p>
-                <% if current_user.gmail_token.nil? %>
-                  <%= link_to 'allow gmail access', "/auth/google_oauth2", :target => "_blank", :id => 'googleAuth', class: "btn btn-warning btn-lg" %>
-                <% else %>
-                    <button class="btn btn-inactive btn-lg" %>gmail access granted</button>
-                <% end %>
-                <% if current_user.twitter_token.nil? %>
-                  <%= link_to 'allow twitter access', "/auth/twitter", :target => "_blank", :id => 'twitterAuth', class: "btn btn-warning btn-lg"%>
-                <% else %>
-                  <button class="btn btn-inactive btn-lg" %>twitter access granted</button>
-                <% end %>
+              <div class="step-container">
+                <div class="step-description">
+                  <div class="medium step-headline" id="tabTwo">enable monitoring</div>
+                  <p class="small step-subhead">at nudge we use our homemade passive monitoring tools to keep track of your online social activities in correlation with your emotional habits. allow nudge to monitor your gmail and twitter for inactivity and sentiment</p>
+                </div>
+                <div class="access-buttons">
+                  <% if current_user.gmail_token.nil? %>
+                    <%= link_to 'allow gmail access', "/auth/google_oauth2", :target => "_blank", :id => 'googleAuth', class: "btn btn-gmail btn-lg" %>
+                  <% else %>
+                      <button class="btn btn-inactive btn-lg" %><i class="fa fa-google"></i> gmail access granted</button>
+                  <% end %>
+                  <% if current_user.twitter_token.nil? %>
+                    <%= link_to 'allow twitter access', "/auth/twitter", :target => "_blank", :id => 'twitterAuth', class: "btn btn-twitter btn-lg"%>
+                  <% else %>
+                    <button class="btn btn-inactive btn-lg" %> twitter access granted</button>
+                  <% end %>
+                </div>
               </div>
             </div>
           <div class='formDiv' id="divTwo">
             <div class='newSupporter'>
-              <div id="networkForm" class="form text-center">
-                <div class="centered text-center">
-                  <h2 class="intro">add a new supporter</h2>
-                  <p>set up your support network. complete the form below to add a someone you trust.</p>
-                </div>
-                <%= render 'supporters/form', locals: {user: @user} %>
+              <div class="step-container">
+                  <div class="step-description">
+                    <div class="medium step-headline">gather your support network</div>
+                    <p class="small step-subhead">create a network of people to be notified when you’re feeling down in the dumps and need someone to be there for you.</p>
+                  </div>
+                  <div class="add-supporter">
+                    <%= render 'supporters/form', locals: {user: @user} %>
+                  </div>
               </div>
               <% if @user.errors.any?  %>
                 <% @user.errors.full_messages.each do |message| %>
@@ -40,23 +46,23 @@
                 <% end %>
               <% end %>
             </div>
-            </div> 
+            </div>
           </div>
             <div class='formDiv' id="divThree">
-              <div class="form">
-                <div class="col-md-6 explanation">
-                  <h2 class='intro' id="tabThree">setup notifications</h2>
-                  <p>If you go inactive, what would message would you like your support network to get? Fill out the form below to set a inactivity duration and a message that will be sent.</p>
+              <div class="step-container">
+                <div class="step-description">
+                  <div class='medium step-headline' id="tabThree">setup your nudges</div>
+                  <p class="small step-subhead">create a series of self defined messages to be sent to your supporters when you’re feeling down. choose automatic notifications based on self defined patterns of online social behavior, keywords, and email sentiment.</p>
                 </div>
-                <div class="col-md-6 form-setup">
+                <div class="add-trigger form-setup">
                   <%= render "triggers/new", locals: {user: @user} %>
                 </div>
               </div>
             </div>
           </div>
-          <div class='row' id='<%=@user.id%>'>
-            <div class='col-md-3 cursorPointer' id='backButton'><h3><i class="fa fa-chevron-left"></i> Go Back</h3></div>
-            <div class='col-md-3 col-md-offset-6 cursorPointer' id='nextButton'><h3>Next Step <i class="fa fa-chevron-right"></i></h3></div>
+          <div class='before-and-after row' id='<%=@user.id%>'>
+            <button class='btn btn-primary btn-med cursorPointer' id='backButton'><i class="fa fa-chevron-left"></i> go back</button>
+            <button class='btn btn-primary btn-med cursorPointer' id='nextButton'>next step <i class="fa fa-chevron-right"></i></button>
           </div>
         </div>
       </div>

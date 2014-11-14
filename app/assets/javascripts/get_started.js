@@ -15,7 +15,7 @@ $(document).ready(function(){
     } else if ( $(formsOne[1]).is(":visible")) {
       $('#formHolder').children().hide();
       formsOne[2].fadeIn()
-      $('#nextButton').html("<a href='/users/"+id+"'><h3>Done</h3></a>")
+      $('#nextButton').html("<a href='/users/"+id+" style='color: white; text-decoration:none'>Done<i class='fa fa-chevron-right'></a>")
       steps[1].removeClass('active')
       steps[2].addClass('active')
     }
