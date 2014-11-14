@@ -1,5 +1,5 @@
 $(document).ready(function(){
-	var moodVal = 0 
+	var moodVal = 0
 	$('.ss-sun').on('click', function(){
 		moodVal = 1.0
 	});
@@ -21,14 +21,15 @@ $(document).ready(function(){
 	$('.ss-tornado').on('click', function(){
 		moodVal = -1.0
 	});
-	
+
 	$('#mood-submit').on('click', function(e){
 		e.preventDefault();
 		var url = '/moods'
 		if (moodVal === 0){
-			$('#error').text('( please choose a mood )')
+			$('#error').text('( please choose a mood )').fadeOut(1500)
 		} else {
 			var moodData = {'quantitative': moodVal}
+			$('#error').text("( cool, it's in the logs )").fadeOut(2000)
 			$.post(url, moodData, function(serverResponse, status, jqXHR) {
 			});
 		}
