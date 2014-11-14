@@ -1,7 +1,7 @@
 $(document).ready(function(){
   var days = $("#trigger_duration_in_hours");
-  var editUrl = ""
-  var edittedRow = ""
+  var editUrl = "";
+  var edittedRow = "";
   days.val(1);
   days.hide();
   $('#triggerSentimentNotification').hide();
@@ -74,15 +74,15 @@ $(document).ready(function(){
 
   $('body').on('click', '.editTrigger', function(event){
     event.preventDefault();
-    var url = $(this).attr('href');
-    var appendArea = $('#editTriggerSettings')
-        editUrl = $(this).attr('href')
-        edittedRow = $(this).parent().parent()
-    $.get(url, function(serverResponse, status, jqXHR){
-      $('#showNewTrigger').hide()
-      $('#newTriggerSettings').hide()
-      appendArea.append(serverResponse)
-    })
+    var url = $(this).parent().attr('href');
+    var appendArea = $('#editTriggerSettings');
+        editUrl = $(this).attr('href');
+        edittedRow = $(this).parent().parent();
+    $.get(editUrl, function(serverResponse, status, jqXHR){
+      $('#showNewTrigger').hide();
+      $('#newTriggerSettings').hide();
+      appendArea.append(serverResponse);
+    });
     });
 
   $('body').on('submit', '.edit_trigger', function(event){
@@ -91,7 +91,6 @@ $(document).ready(function(){
         id     = url.split('/').reverse()[0],
         formId = '#edit_trigger_' + id,
         data   = $(formId).serialize();
-        console.log(data);
         edittedRow.hide();
     $.post(url, data, function(serverResponse, status, jqXHR){
       $(serverResponse).hide().appendTo('.tbody').fadeIn();
@@ -109,7 +108,7 @@ $(document).ready(function(){
             }, 400 );
       }
 
-    $('.trigDelete').on('click', function(event){
+    $('body').on('click', '.trigDelete', function(event){
       event.preventDefault();
       var url = $(this).attr('href');
       var par = $(this).parent().parent();
@@ -117,7 +116,7 @@ $(document).ready(function(){
       $.get(url, function(serverResponse, status, jqXHR){})
     });
 
-  $('.toggleTwitterTriggers').on('click', function(event){
+  $('body').on('click', '.toggleTwitterTriggers', function(event){
     event.preventDefault();
     var url = $(this).attr('href');
     var childTarget = $(this).children().first().children().first()
