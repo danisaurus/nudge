@@ -36,7 +36,7 @@ class User < ActiveRecord::Base
   end
 
   def active? # activity on GMAIL
-    if self.last_history_number != find_last_history_id
+    if self.last_history_number.to_i != find_last_history_id.to_i
       update_active_time
       return true
     end

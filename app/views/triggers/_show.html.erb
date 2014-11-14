@@ -22,13 +22,12 @@
     <%=@trigger.message_text[0..18] %>...
   </div>
   <div class='td'>
-    method
+    <%= print_method_name(@trigger) %>
   </div>
-  <div class='editTrigger td'>
-    <a href=""><i class="fa fa-pencil"></i></a>
-    <%= link_to 'edit', edit_trigger_path(@trigger), :class => 'editTrigger' %>
+  <div class='td'>
+    <a href="/triggers/<%=@trigger.id%>/edit" class='editTrigger'><i class="fa fa-pencil"></i></a>
   </div>
-  <div  class='deleteTrigger td'>
+  <div  class='td'>
     <a href="/triggers/<%=@trigger.id%>/delete" class='trigDelete'><i class="fa fa-trash"></i></a>
   </div>
 </div>

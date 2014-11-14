@@ -3,7 +3,7 @@ class DailyReportsController < ApplicationController
   def weekly_report
     weekly_scores = []
     user = current_user
-    weekly_report = user.daily_reports
+    weekly_report = user.daily_reports.order("created_at asc")
     weekly_report.each do |report|
       score = {}
       score["tweets"] = report.data_average("tweets")
