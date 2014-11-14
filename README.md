@@ -21,10 +21,8 @@ Nudge is an application that provides passive monitoring with active consent. Nu
  - Rails 4.1.6
 
 # External APIs & Libraries Utilized:
-### API's
 - [Gmail](https://developers.google.com/gmail/api/)
 - [Twitter](https://dev.twitter.com/)
 - [Twilio](https://www.twilio.com/api)
 - [Alchemy](http://www.alchemyapi.com/)
-
-
+- [Highcharts](http://www.highcharts.com/)ll
