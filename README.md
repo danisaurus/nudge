@@ -10,7 +10,7 @@ Nudge is an application that provides passive monitoring with active consent. Nu
 2. Allow nudge to monitor your gmail and twitter for inactivity and sentiment. 
 3. Set up a support network of people whom you trust. 
 4. Set up nudges based on your preferences (e.g. If you go inactive on your gmail for a specific amount of time, write a nudge message you would like your supporters to recieve.)
-5. Check in with yourself by indicating your present mood. 
+5. Check in with yourself by logging your present mood. 
 6. Track your daily moods by viewing your activity chart.
 
 # Screenshots: 
