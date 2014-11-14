@@ -12,10 +12,19 @@ Nudge is an application that provides passive monitoring with active consent. Nu
 4. Set up nudges based on your preferences (e.g. If you go inactive on your gmail for a specific amount of time, write a nudge message you would like your supporters to recieve.)
 5. Check in with yourself by indicating your present mood. 
 6. Track your daily moods by viewing your activity chart.
-7. 
 
 # Screenshots: 
 ![img](https://raw.githubusercontent.com/danisaurus/nudge/master/public/images/Screen%20Shot%202014-11-13%20at%207.12.14%20PM.png)
 
 # System Requirements
- - 
+ - Ruby 2.0.0
+ - Rails 4.1.6
+
+# External APIs & Libraries Utilized:
+### API's
+- [Gmail](https://developers.google.com/gmail/api/)
+- [Twitter](https://dev.twitter.com/)
+- [Twilio](https://www.twilio.com/api)
+- [Alchemy](http://www.alchemyapi.com/)
+
+
