@@ -15,7 +15,7 @@ Nudge is an application that provides passive monitoring with active consent. Nu
 7. 
 
 # Screenshots: 
-[Imgur](http://i.imgur.com/WX6X4T8.png?1)
+![img](https://raw.githubusercontent.com/danisaurus/nudge/master/public/images/Screen%20Shot%202014-11-13%20at%207.12.14%20PM.png)
 
 # System Requirements
  - 
